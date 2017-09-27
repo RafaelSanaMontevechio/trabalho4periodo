@@ -15,14 +15,17 @@ public class JmenuBar extends JMenuBar {
 
 	private JMenu menu;
 	private JMenu jmCadastro;
+	private JMenu jmPesquisa;
 	private JMenu jmEstoque;
 	private JMenuItem jmiCadastroFornecedor;
 	private JMenuItem jmiCadastroEquipamento;
-	private JMenuItem menuItem3;
-	private JMenuItem jmiEntarEquipamento;
-	private JMenuItem jmiRetirarEquipamento;
-	private JMenuItem jmiEntrarPeca;
-	private JMenuItem jmiRetirarPeca;
+	private JMenuItem jmiCadastroPeca;
+	private JMenuItem jmiListaFornecedor;
+	private JMenuItem jmiListaEquipamento;
+	private JMenuItem jmiListaPecas;
+	private JMenuItem jmiInserirEstoque;
+	private JMenuItem jmiRetirarEstoque;
+	
 
 	private InternalFrameFornecedor iFrameFornecedor;
 	private InternalFrameEquipamentos iFrameEquipamento;
@@ -45,6 +48,7 @@ public class JmenuBar extends JMenuBar {
 		menu.setIcon(iconMenu);
 
 		menu.add(jmenuCadastros());
+		menu.add(jmenuPesquisa());
 		menu.add(jmenuEstoque());
 
 		add(menu);
@@ -55,6 +59,8 @@ public class JmenuBar extends JMenuBar {
 	 */
 	private JMenu jmenuCadastros() {
 
+		ListenerJmenuCadastro listenerCadastro = new ListenerJmenuCadastro();
+
 		jmCadastro = new JMenu("Cadastros");
 		ImageIcon iconCadastro = new ImageIcon("imagens/cadastro2.png");
 		jmCadastro.setIcon(iconCadastro);
@@ -62,58 +68,50 @@ public class JmenuBar extends JMenuBar {
 		jmiCadastroFornecedor = new JMenuItem("Fornecedor");
 		ImageIcon iconFornecedor = new ImageIcon("imagens/fornecedor2.png");
 		jmiCadastroFornecedor.setIcon(iconFornecedor);
-		jmiCadastroFornecedor.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent evt) {
-				if (iFrameFornecedor == null) {
-					iFrameFornecedor = new InternalFrameFornecedor();
-					principal.addInternalFrame(iFrameFornecedor);
-					iFrameFornecedor.setPosicao();
-					principal.mazimizeFrame(iFrameFornecedor);
-				}
-				iFrameFornecedor.setVisible(true);
-			}
-		});
+		jmiCadastroFornecedor.addActionListener(listenerCadastro);
 
 		jmiCadastroEquipamento = new JMenuItem("Equipamentos");
 		ImageIcon iconEquipamento = new ImageIcon("imagens/equip2.png");
 		jmiCadastroEquipamento.setIcon(iconEquipamento);
-		jmiCadastroEquipamento.addActionListener(new ActionListener() {
+		jmiCadastroEquipamento.addActionListener(listenerCadastro);
 
-			public void actionPerformed(ActionEvent evt) {
-
-				if (iFrameEquipamento == null) {
-					iFrameEquipamento = new InternalFrameEquipamentos();
-					principal.addInternalFrame(iFrameEquipamento);
-					iFrameEquipamento.setPosicao();
-					principal.mazimizeFrame(iFrameEquipamento);
-				}
-				iFrameEquipamento.setVisible(true);
-			}
-		});
-
-		menuItem3 = new JMenuItem("Peças");
+		jmiCadastroPeca = new JMenuItem("Peças");
 		ImageIcon iconPecas = new ImageIcon("imagens/pecas2.png");
-		menuItem3.setIcon(iconPecas);
-		menuItem3.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent evt) {
-				if (iFramePeca == null) {
-					iFramePeca = new InternalFramePecas();
-					principal.addInternalFrame(iFramePeca);
-					iFramePeca.setPosicao();
-					principal.mazimizeFrame(iFramePeca);
-				}
-				iFramePeca.setVisible(true);
-			}
-		});
+		jmiCadastroPeca.setIcon(iconPecas);
+		jmiCadastroPeca.addActionListener(listenerCadastro);
 
 		jmCadastro.add(jmiCadastroFornecedor);
 		jmCadastro.add(jmiCadastroEquipamento);
-		jmCadastro.add(menuItem3);
+		jmCadastro.add(jmiCadastroPeca);
 
 		return jmCadastro;
+	}
 
+	/**
+	 * Metodo responsavel por criar o jmenu pesquisa.
+	 */
+	private JMenu jmenuPesquisa() {
+
+		ListenerJmenuPesquisa listenerPesquisa = new ListenerJmenuPesquisa();
+
+		ImageIcon iconListar = new ImageIcon("imagens/listar.png");
+		jmPesquisa = new JMenu("Listar");
+		jmPesquisa.setIcon(iconListar);
+
+		jmiListaFornecedor = new JMenuItem("Fornecedor");
+		jmiListaFornecedor.addActionListener(listenerPesquisa);
+
+		jmiListaEquipamento = new JMenuItem("Equipamento");
+		jmiListaEquipamento.addActionListener(listenerPesquisa);
+
+		jmiListaPecas = new JMenuItem("Peças");
+		jmiListaPecas.addActionListener(listenerPesquisa);
+
+		jmPesquisa.add(jmiListaFornecedor);
+		jmPesquisa.add(jmiListaEquipamento);
+		jmPesquisa.add(jmiListaPecas);
+
+		return jmPesquisa;
 	}
 
 	/**
@@ -128,24 +126,70 @@ public class JmenuBar extends JMenuBar {
 		jmEstoque = new JMenu("Estoque");
 		jmEstoque.setIcon(iconEstoque);
 
-		jmiEntarEquipamento = new JMenuItem("Adicionar Equipamento");
-		jmiEntarEquipamento.setIcon(iconAdd);
+		jmiInserirEstoque = new JMenuItem("Adicionar ao estoque");
+		jmiInserirEstoque.setIcon(iconAdd);
 
-		jmiRetirarEquipamento = new JMenuItem("Retirar Equipamento");
-		jmiRetirarEquipamento.setIcon(iconMenos);
+		jmiRetirarEstoque = new JMenuItem("Retirar do estoque");
+		jmiRetirarEstoque.setIcon(iconMenos);
 
-		jmiEntrarPeca = new JMenuItem("Adicionar peça ");
-		jmiEntrarPeca.setIcon(iconAdd);
 
-		jmiRetirarPeca = new JMenuItem("Retirar peça");
-		jmiRetirarPeca.setIcon(iconMenos);
-
-		jmEstoque.add(jmiEntarEquipamento);
-		jmEstoque.add(jmiRetirarEquipamento);
-		jmEstoque.add(jmiEntrarPeca);
-		jmEstoque.add(jmiRetirarPeca);
+		jmEstoque.add(jmiInserirEstoque);
+		jmEstoque.add(jmiRetirarEstoque);
+	
 
 		return jmEstoque;
 	}
 
+	/***
+	 * Classes internas que irão controlar os eventos dos JMenuItens
+	 */
+
+	// inner class controla eventos dentro do Jmenu Cadastro
+	private class ListenerJmenuCadastro implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent evt) {
+
+			if (evt.getSource() == jmiCadastroFornecedor) {
+				new FrameCadastroFornecedor().setVisible(true);
+			} else if (evt.getSource() == jmiCadastroEquipamento) {
+				new FrameCadastroEquipamentos().setVisible(true);
+			} else {
+				new FrameCadastroPeca().setVisible(true);
+			}
+		}
+	}
+
+	// inner class controla eventos dentro do Jmenu Pesquisa
+	private class ListenerJmenuPesquisa implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent evt) {
+			if (evt.getSource() == jmiListaFornecedor) {
+				if (iFrameFornecedor == null) {
+					iFrameFornecedor = new InternalFrameFornecedor();
+					principal.addInternalFrame(iFrameFornecedor);
+					iFrameFornecedor.setPosicao();
+					principal.mazimizeFrame(iFrameFornecedor);
+				}
+				iFrameFornecedor.setVisible(true);
+			} else if (evt.getSource() == jmiListaEquipamento) {
+				if (iFrameEquipamento == null) {
+					iFrameEquipamento = new InternalFrameEquipamentos();
+					principal.addInternalFrame(iFrameEquipamento);
+					iFrameEquipamento.setPosicao();
+					principal.mazimizeFrame(iFrameEquipamento);
+				}
+				iFrameEquipamento.setVisible(true);
+			} else {
+				if (iFramePeca == null) {
+					iFramePeca = new InternalFramePecas();
+					principal.addInternalFrame(iFramePeca);
+					iFramePeca.setPosicao();
+					principal.mazimizeFrame(iFramePeca);
+				}
+				iFramePeca.setVisible(true);
+			}
+		}
+	}
 }

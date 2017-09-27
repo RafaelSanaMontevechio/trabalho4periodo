@@ -3,6 +3,8 @@ package br.edu.univas.si4.lab4.view;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -26,7 +28,6 @@ public class FrameCadastroFornecedor extends JFrame {
 
 	public FrameCadastroFornecedor() {
 		this.setSize(550, 300);
-
 		this.setTitle("Cadastro de Fornecedor");
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -88,6 +89,13 @@ public class FrameCadastroFornecedor extends JFrame {
 		c.gridx = 1;
 		c.gridy = 5;
 		c.anchor = GridBagConstraints.LINE_END;
+
+		btSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+
+			}
+		});
+
 		panelCadastro.add(btSalvar, c);
 
 		setContentPane(panelCadastro);
