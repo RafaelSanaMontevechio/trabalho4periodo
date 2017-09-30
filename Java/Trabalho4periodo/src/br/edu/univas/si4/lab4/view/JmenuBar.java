@@ -13,7 +13,7 @@ public class JmenuBar extends JMenuBar {
 
 	private static final long serialVersionUID = 4907700397195319504L;
 
-	private JMenu menu;
+	private JMenu jmMenu;
 	private JMenu jmCadastro;
 	private JMenu jmPesquisa;
 	private JMenu jmEstoque;
@@ -25,12 +25,15 @@ public class JmenuBar extends JMenuBar {
 	private JMenuItem jmiListaPecas;
 	private JMenuItem jmiInserirEstoque;
 	private JMenuItem jmiRetirarEstoque;
-	
 
 	private InternalFrameFornecedor iFrameFornecedor;
 	private InternalFrameEquipamentos iFrameEquipamento;
 	private InternalFramePecas iFramePeca;
 	private Principal principal;
+
+	private FrameCadastroFornecedor fCadFornecedor;
+	private FrameCadastroEquipamentos fCadEquipamento;
+	private FrameCadastroPeca fCadPeca;
 
 	public JmenuBar(Principal principal) {
 		this.principal = principal;
@@ -42,16 +45,16 @@ public class JmenuBar extends JMenuBar {
 	 */
 	private void criaJmenuBar() {
 
-		menu = new JMenu("Menu");
+		jmMenu = new JMenu("Menu");
 		ImageIcon iconMenu = new ImageIcon("imagens/menu.png");
-		menu.setFont(new Font("SansSerif", Font.PLAIN, 17));
-		menu.setIcon(iconMenu);
+		jmMenu.setFont(new Font("SansSerif", Font.PLAIN, 17));
+		jmMenu.setIcon(iconMenu);
 
-		menu.add(jmenuCadastros());
-		menu.add(jmenuPesquisa());
-		menu.add(jmenuEstoque());
+		jmMenu.add(jmenuCadastros());
+		jmMenu.add(jmenuPesquisa());
+		jmMenu.add(jmenuEstoque());
 
-		add(menu);
+		add(jmMenu);
 	}
 
 	/**
@@ -132,12 +135,125 @@ public class JmenuBar extends JMenuBar {
 		jmiRetirarEstoque = new JMenuItem("Retirar do estoque");
 		jmiRetirarEstoque.setIcon(iconMenos);
 
-
 		jmEstoque.add(jmiInserirEstoque);
 		jmEstoque.add(jmiRetirarEstoque);
-	
 
 		return jmEstoque;
+	}
+	
+	/**
+	 * Getters componentes da barra de menu
+	 */
+	public JMenu getJmMenu() {
+		return jmMenu;
+	}
+
+	public JMenu getJmCadastro() {
+		return jmCadastro;
+	}
+
+	public JMenu getJmPesquisa() {
+		return jmPesquisa;
+	}
+
+	public JMenu getJmEstoque() {
+		return jmEstoque;
+	}
+
+	public JMenuItem getJmiCadastroFornecedor() {
+		return jmiCadastroFornecedor;
+	}
+
+	public JMenuItem getJmiCadastroEquipamento() {
+		return jmiCadastroEquipamento;
+	}
+
+	public JMenuItem getJmiCadastroPeca() {
+		return jmiCadastroPeca;
+	}
+
+	public JMenuItem getJmiListaFornecedor() {
+		return jmiListaFornecedor;
+	}
+
+	public JMenuItem getJmiListaEquipamento() {
+		return jmiListaEquipamento;
+	}
+
+	public JMenuItem getJmiListaPecas() {
+		return jmiListaPecas;
+	}
+
+	public JMenuItem getJmiInserirEstoque() {
+		return jmiInserirEstoque;
+	}
+
+	public JMenuItem getJmiRetirarEstoque() {
+		return jmiRetirarEstoque;
+	}
+
+	/**
+	 * Getters Frames de cadastros
+	 */
+
+	public FrameCadastroFornecedor getfCadFornecedor() {
+		if (fCadFornecedor == null) {
+			fCadFornecedor = new FrameCadastroFornecedor();
+			fCadFornecedor.setLocationRelativeTo(null);
+			fCadFornecedor.setVisible(true);
+		}
+		return fCadFornecedor;
+	}
+
+	public FrameCadastroEquipamentos getfCadEquipamento() {
+		if (fCadEquipamento == null) {
+			fCadEquipamento = new FrameCadastroEquipamentos();
+			fCadEquipamento.setLocationRelativeTo(null);
+			fCadEquipamento.setVisible(true);
+		}
+		return fCadEquipamento;
+	}
+
+	public FrameCadastroPeca getfCadPeca() {
+		if (fCadPeca == null) {
+			fCadPeca = new FrameCadastroPeca();
+			fCadPeca.setLocationRelativeTo(null);
+			fCadPeca.setVisible(true);
+		}
+		return fCadPeca;
+	}
+
+	/**
+	 * Getters Internal frames
+	 */
+	public InternalFrameFornecedor getiFrameFornecedor() {
+		if (iFrameFornecedor == null) {
+			iFrameFornecedor = new InternalFrameFornecedor();
+			principal.addInternalFrame(iFrameFornecedor);
+			principal.mazimizeFrame(iFrameFornecedor);
+		}
+		iFrameFornecedor.setVisible(true);
+		return iFrameFornecedor;
+	}
+
+	public InternalFrameEquipamentos getiFrameEquipamento() {
+		if (iFrameEquipamento == null) {
+			iFrameEquipamento = new InternalFrameEquipamentos();
+			principal.addInternalFrame(iFrameEquipamento);
+			principal.mazimizeFrame(iFrameEquipamento);
+		}
+		iFrameEquipamento.setVisible(true);
+		return iFrameEquipamento;
+	}
+
+	public InternalFramePecas getiFramePeca() {
+		if (iFramePeca == null) {
+			iFramePeca = new InternalFramePecas();
+			principal.addInternalFrame(iFramePeca);
+			principal.mazimizeFrame(iFramePeca);
+		}
+		iFramePeca.setVisible(true);
+		return iFramePeca;
 	}
 
 	/***
@@ -149,13 +265,12 @@ public class JmenuBar extends JMenuBar {
 
 		@Override
 		public void actionPerformed(ActionEvent evt) {
-
 			if (evt.getSource() == jmiCadastroFornecedor) {
-				new FrameCadastroFornecedor().setVisible(true);
+				getfCadFornecedor();
 			} else if (evt.getSource() == jmiCadastroEquipamento) {
-				new FrameCadastroEquipamentos().setVisible(true);
+				getfCadEquipamento();
 			} else {
-				new FrameCadastroPeca().setVisible(true);
+				getfCadPeca();
 			}
 		}
 	}
@@ -166,29 +281,11 @@ public class JmenuBar extends JMenuBar {
 		@Override
 		public void actionPerformed(ActionEvent evt) {
 			if (evt.getSource() == jmiListaFornecedor) {
-				if (iFrameFornecedor == null) {
-					iFrameFornecedor = new InternalFrameFornecedor();
-					principal.addInternalFrame(iFrameFornecedor);
-					iFrameFornecedor.setPosicao();
-					principal.mazimizeFrame(iFrameFornecedor);
-				}
-				iFrameFornecedor.setVisible(true);
+				getiFrameFornecedor();
 			} else if (evt.getSource() == jmiListaEquipamento) {
-				if (iFrameEquipamento == null) {
-					iFrameEquipamento = new InternalFrameEquipamentos();
-					principal.addInternalFrame(iFrameEquipamento);
-					iFrameEquipamento.setPosicao();
-					principal.mazimizeFrame(iFrameEquipamento);
-				}
-				iFrameEquipamento.setVisible(true);
+				getiFrameEquipamento();
 			} else {
-				if (iFramePeca == null) {
-					iFramePeca = new InternalFramePecas();
-					principal.addInternalFrame(iFramePeca);
-					iFramePeca.setPosicao();
-					principal.mazimizeFrame(iFramePeca);
-				}
-				iFramePeca.setVisible(true);
+				getiFramePeca();
 			}
 		}
 	}

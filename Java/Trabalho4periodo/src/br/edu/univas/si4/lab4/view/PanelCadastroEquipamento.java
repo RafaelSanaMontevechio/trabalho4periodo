@@ -2,6 +2,7 @@ package br.edu.univas.si4.lab4.view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -121,6 +122,7 @@ public class PanelCadastroEquipamento extends JPanel {
 			jlCodigoConstraints = new GridBagConstraints();
 			jlCodigoConstraints.gridx = 0;
 			jlCodigoConstraints.gridy = 0;
+			jlCodigoConstraints.insets = new Insets(5, 5, 5, 5);
 			jlCodigoConstraints.anchor = GridBagConstraints.LINE_START;
 		}
 		return jlCodigoConstraints;
@@ -131,6 +133,7 @@ public class PanelCadastroEquipamento extends JPanel {
 			jlNomeConstraints = new GridBagConstraints();
 			jlNomeConstraints.gridx = 2;
 			jlNomeConstraints.ipady = 0;
+			jlNomeConstraints.insets = new Insets(5, 5, 5, 5);
 			jlNomeConstraints.anchor = GridBagConstraints.LINE_START;
 		}
 		return jlNomeConstraints;
@@ -141,6 +144,7 @@ public class PanelCadastroEquipamento extends JPanel {
 			jlQuantidadeConstraints = new GridBagConstraints();
 			jlQuantidadeConstraints.gridx = 0;
 			jlQuantidadeConstraints.gridy = 1;
+			jlQuantidadeConstraints.insets = new Insets(5, 5, 5, 5);
 			jlQuantidadeConstraints.anchor = GridBagConstraints.LINE_START;
 		}
 		return jlQuantidadeConstraints;
@@ -151,6 +155,7 @@ public class PanelCadastroEquipamento extends JPanel {
 			jlFornecedorConstraints = new GridBagConstraints();
 			jlFornecedorConstraints.gridx = 2;
 			jlFornecedorConstraints.gridy = 1;
+			jlFornecedorConstraints.insets = new Insets(5, 5, 5, 5);
 			jlFornecedorConstraints.anchor = GridBagConstraints.LINE_START;
 		}
 		return jlFornecedorConstraints;
@@ -161,6 +166,7 @@ public class PanelCadastroEquipamento extends JPanel {
 			jtCodigoConstraints = new GridBagConstraints();
 			jtCodigoConstraints.gridx = 1;
 			jtCodigoConstraints.gridy = 0;
+			jtCodigoConstraints.insets = new Insets(5, 5, 5, 5);
 			jtCodigoConstraints.fill = GridBagConstraints.HORIZONTAL;
 		}
 		return jtCodigoConstraints;
@@ -172,6 +178,7 @@ public class PanelCadastroEquipamento extends JPanel {
 			jtNomeConstraints.gridx = 3;
 			jtNomeConstraints.gridy = 0;
 			jtNomeConstraints.ipadx = 100;
+			jtNomeConstraints.insets = new Insets(5, 5, 5, 5);
 			jtNomeConstraints.fill = GridBagConstraints.HORIZONTAL;
 		}
 		return jtNomeConstraints;
@@ -182,6 +189,7 @@ public class PanelCadastroEquipamento extends JPanel {
 			jtQuantidadeConstraints = new GridBagConstraints();
 			jtQuantidadeConstraints.gridx = 1;
 			jtQuantidadeConstraints.gridy = 1;
+			jtQuantidadeConstraints.insets = new Insets(5, 5, 5, 5);
 		}
 		return jtQuantidadeConstraints;
 	}
@@ -191,6 +199,8 @@ public class PanelCadastroEquipamento extends JPanel {
 			comboForncedoresConstraints = new GridBagConstraints();
 			comboForncedoresConstraints.gridx = 3;
 			comboForncedoresConstraints.gridy = 1;
+			comboForncedoresConstraints.insets = new Insets(5, 5, 5, 5);
+			comboForncedoresConstraints.fill = GridBagConstraints.BOTH;
 			comboForncedoresConstraints.anchor = GridBagConstraints.LINE_START;
 		}
 		return comboForncedoresConstraints;

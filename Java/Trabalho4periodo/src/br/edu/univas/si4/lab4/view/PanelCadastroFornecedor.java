@@ -2,6 +2,7 @@ package br.edu.univas.si4.lab4.view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -91,6 +92,7 @@ public class PanelCadastroFornecedor extends JPanel {
 			jlNomeRazaoConstraints = new GridBagConstraints();
 			jlNomeRazaoConstraints.gridx = 0;
 			jlNomeRazaoConstraints.gridy = 0;
+			jlNomeRazaoConstraints.insets = new Insets(5, 5, 5, 5);
 			jlNomeRazaoConstraints.anchor = GridBagConstraints.LINE_START;
 		}
 		return jlNomeRazaoConstraints;
@@ -101,6 +103,7 @@ public class PanelCadastroFornecedor extends JPanel {
 			jlFantasiaConstraints = new GridBagConstraints();
 			jlFantasiaConstraints.gridx = 0;
 			jlFantasiaConstraints.gridy = 1;
+			jlFantasiaConstraints.insets = new Insets(5, 5, 5, 5);
 			jlFantasiaConstraints.anchor = GridBagConstraints.LINE_START;
 		}
 		return jlFantasiaConstraints;
@@ -111,6 +114,7 @@ public class PanelCadastroFornecedor extends JPanel {
 			jlCnpjConstraints = new GridBagConstraints();
 			jlCnpjConstraints.gridx = 0;
 			jlCnpjConstraints.gridy = 2;
+			jlCnpjConstraints.insets = new Insets(5, 5, 5, 5);
 			jlCnpjConstraints.anchor = GridBagConstraints.LINE_START;
 		}
 		return jlCnpjConstraints;
@@ -122,6 +126,7 @@ public class PanelCadastroFornecedor extends JPanel {
 			jtNomeRazaoConstraints.gridx = 1;
 			jtNomeRazaoConstraints.gridy = 0;
 			jtNomeRazaoConstraints.ipadx = 100;
+			jtNomeRazaoConstraints.insets = new Insets(5, 5, 5, 5);
 		}
 		return jtNomeRazaoConstraints;
 	}
@@ -132,6 +137,7 @@ public class PanelCadastroFornecedor extends JPanel {
 			jtFantasiaConstraints.gridx = 1;
 			jtFantasiaConstraints.gridy = 1;
 			jtFantasiaConstraints.ipadx = 100;
+			jtFantasiaConstraints.insets = new Insets(5, 5, 5, 5);
 			jtFantasiaConstraints.fill = GridBagConstraints.HORIZONTAL;
 		}
 		return jtFantasiaConstraints;
@@ -143,6 +149,7 @@ public class PanelCadastroFornecedor extends JPanel {
 			jtCnpjConstraints.gridx = 1;
 			jtCnpjConstraints.gridy = 2;
 			jtCnpjConstraints.ipadx = 100;
+			jtCnpjConstraints.insets = new Insets(5, 5, 5, 5);
 			jtCnpjConstraints.fill = GridBagConstraints.HORIZONTAL;
 		}
 		return jtCnpjConstraints;

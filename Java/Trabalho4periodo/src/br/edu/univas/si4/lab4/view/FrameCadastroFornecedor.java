@@ -14,7 +14,6 @@ public class FrameCadastroFornecedor extends JDialog {
 	public FrameCadastroFornecedor() {
 		this.setTitle("Cadastro de Fornecedor");
 		this.setModal(true);
-		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 
 		addComponents();
