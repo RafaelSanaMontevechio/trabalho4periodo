@@ -14,6 +14,8 @@ public class MainTrabalho {
 			e.printStackTrace();
 		}
 
+		
+
 		Principal tela = new Principal();
 		tela.setVisible(true);
 

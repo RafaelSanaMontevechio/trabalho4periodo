@@ -45,150 +45,134 @@ public class JmenuBar extends JMenuBar {
 	 */
 	private void criaJmenuBar() {
 
-		jmMenu = new JMenu("Menu");
-		ImageIcon iconMenu = new ImageIcon("imagens/menu.png");
-		jmMenu.setFont(new Font("SansSerif", Font.PLAIN, 17));
-		jmMenu.setIcon(iconMenu);
+		getJmCadastro().add(getJmiCadastroFornecedor());
+		getJmCadastro().add(getJmiCadastroEquipamento());
+		getJmCadastro().add(getJmiCadastroPeca());
 
-		jmMenu.add(jmenuCadastros());
-		jmMenu.add(jmenuPesquisa());
-		jmMenu.add(jmenuEstoque());
+		getJmPesquisa().add(getJmiListaFornecedor());
+		getJmPesquisa().add(getJmiListaEquipamento());
+		getJmPesquisa().add(getJmiListaPecas());
+		
+		getJmEstoque().add(getJmiInserirEstoque());
+		getJmEstoque().add(getJmiRetirarEstoque());
 
-		add(jmMenu);
+		getJmMenu().add(getJmCadastro());
+		getJmMenu().add(getJmPesquisa());
+		getJmMenu().add(getJmEstoque());
+
+		add(getJmMenu());
 	}
 
-	/**
-	 * Metodo responsavel por criar o jmenu Cadastro.
-	 */
-	private JMenu jmenuCadastros() {
-
-		ListenerJmenuCadastro listenerCadastro = new ListenerJmenuCadastro();
-
-		jmCadastro = new JMenu("Cadastros");
-		ImageIcon iconCadastro = new ImageIcon("imagens/cadastro2.png");
-		jmCadastro.setIcon(iconCadastro);
-
-		jmiCadastroFornecedor = new JMenuItem("Fornecedor");
-		ImageIcon iconFornecedor = new ImageIcon("imagens/fornecedor2.png");
-		jmiCadastroFornecedor.setIcon(iconFornecedor);
-		jmiCadastroFornecedor.addActionListener(listenerCadastro);
-
-		jmiCadastroEquipamento = new JMenuItem("Equipamentos");
-		ImageIcon iconEquipamento = new ImageIcon("imagens/equip2.png");
-		jmiCadastroEquipamento.setIcon(iconEquipamento);
-		jmiCadastroEquipamento.addActionListener(listenerCadastro);
-
-		jmiCadastroPeca = new JMenuItem("Peças");
-		ImageIcon iconPecas = new ImageIcon("imagens/pecas2.png");
-		jmiCadastroPeca.setIcon(iconPecas);
-		jmiCadastroPeca.addActionListener(listenerCadastro);
-
-		jmCadastro.add(jmiCadastroFornecedor);
-		jmCadastro.add(jmiCadastroEquipamento);
-		jmCadastro.add(jmiCadastroPeca);
-
-		return jmCadastro;
-	}
-
-	/**
-	 * Metodo responsavel por criar o jmenu pesquisa.
-	 */
-	private JMenu jmenuPesquisa() {
-
-		ListenerJmenuPesquisa listenerPesquisa = new ListenerJmenuPesquisa();
-
-		ImageIcon iconListar = new ImageIcon("imagens/listar.png");
-		jmPesquisa = new JMenu("Listar");
-		jmPesquisa.setIcon(iconListar);
-
-		jmiListaFornecedor = new JMenuItem("Fornecedor");
-		jmiListaFornecedor.addActionListener(listenerPesquisa);
-
-		jmiListaEquipamento = new JMenuItem("Equipamento");
-		jmiListaEquipamento.addActionListener(listenerPesquisa);
-
-		jmiListaPecas = new JMenuItem("Peças");
-		jmiListaPecas.addActionListener(listenerPesquisa);
-
-		jmPesquisa.add(jmiListaFornecedor);
-		jmPesquisa.add(jmiListaEquipamento);
-		jmPesquisa.add(jmiListaPecas);
-
-		return jmPesquisa;
-	}
-
-	/**
-	 * Metodo responsavel por criar o jmenu estoque.
-	 */
-	private JMenu jmenuEstoque() {
-
-		ImageIcon iconEstoque = new ImageIcon("imagens/estoque.png");
-		ImageIcon iconMenos = new ImageIcon("imagens/menos.png");
-		ImageIcon iconAdd = new ImageIcon("imagens/add.png");
-
-		jmEstoque = new JMenu("Estoque");
-		jmEstoque.setIcon(iconEstoque);
-
-		jmiInserirEstoque = new JMenuItem("Adicionar ao estoque");
-		jmiInserirEstoque.setIcon(iconAdd);
-
-		jmiRetirarEstoque = new JMenuItem("Retirar do estoque");
-		jmiRetirarEstoque.setIcon(iconMenos);
-
-		jmEstoque.add(jmiInserirEstoque);
-		jmEstoque.add(jmiRetirarEstoque);
-
-		return jmEstoque;
-	}
-	
 	/**
 	 * Getters componentes da barra de menu
 	 */
 	public JMenu getJmMenu() {
+		if (jmMenu == null) {
+			jmMenu = new JMenu("Menu");
+			ImageIcon iconMenu = new ImageIcon("imagens/menu.png");
+			jmMenu.setFont(new Font("SansSerif", Font.PLAIN, 17));
+			jmMenu.setIcon(iconMenu);
+		}
 		return jmMenu;
 	}
 
 	public JMenu getJmCadastro() {
+		if (jmCadastro == null) {
+			jmCadastro = new JMenu("Cadastros");
+			ImageIcon iconCadastro = new ImageIcon("imagens/cadastro2.png");
+			jmCadastro.setIcon(iconCadastro);
+		}
 		return jmCadastro;
 	}
 
 	public JMenu getJmPesquisa() {
+		if (jmPesquisa == null) {
+			ImageIcon iconListar = new ImageIcon("imagens/listar.png");
+			jmPesquisa = new JMenu();
+			jmPesquisa.setText("Listar");
+			jmPesquisa.setIcon(iconListar);
+		}
 		return jmPesquisa;
 	}
 
 	public JMenu getJmEstoque() {
+		if (jmEstoque == null) {
+			jmEstoque = new JMenu("Estoque");
+			ImageIcon iconEstoque = new ImageIcon("imagens/estoque.png");
+			jmEstoque.setIcon(iconEstoque);
+		}
 		return jmEstoque;
 	}
 
 	public JMenuItem getJmiCadastroFornecedor() {
+		if (jmiCadastroFornecedor == null) {
+			jmiCadastroFornecedor = new JMenuItem("Fornecedor");
+			ImageIcon iconFornecedor = new ImageIcon("imagens/fornecedor2.png");
+			jmiCadastroFornecedor.setIcon(iconFornecedor);
+			jmiCadastroFornecedor.addActionListener(new ListenerJmenuCadastro());
+		}
 		return jmiCadastroFornecedor;
 	}
 
 	public JMenuItem getJmiCadastroEquipamento() {
+		if (jmiCadastroEquipamento == null) {
+			jmiCadastroEquipamento = new JMenuItem("Equipamentos");
+			ImageIcon iconEquipamento = new ImageIcon("imagens/equip2.png");
+			jmiCadastroEquipamento.setIcon(iconEquipamento);
+			jmiCadastroEquipamento.addActionListener(new ListenerJmenuCadastro());
+		}
 		return jmiCadastroEquipamento;
 	}
 
 	public JMenuItem getJmiCadastroPeca() {
+		if (jmiCadastroPeca == null) {
+			jmiCadastroPeca = new JMenuItem("Peças");
+			ImageIcon iconPecas = new ImageIcon("imagens/pecas2.png");
+			jmiCadastroPeca.setIcon(iconPecas);
+			jmiCadastroPeca.addActionListener(new ListenerJmenuCadastro());
+		}
 		return jmiCadastroPeca;
 	}
 
 	public JMenuItem getJmiListaFornecedor() {
+		if (jmiListaFornecedor == null) {
+			jmiListaFornecedor = new JMenuItem("Fornecedor");
+			jmiListaFornecedor.addActionListener(new ListenerJmenuPesquisa());
+		}
 		return jmiListaFornecedor;
 	}
 
 	public JMenuItem getJmiListaEquipamento() {
+		if (jmiListaEquipamento == null) {
+			jmiListaEquipamento = new JMenuItem("Equipamento");
+			jmiListaEquipamento.addActionListener(new ListenerJmenuPesquisa());
+		}
 		return jmiListaEquipamento;
 	}
 
 	public JMenuItem getJmiListaPecas() {
+		if (jmiListaPecas == null) {
+			jmiListaPecas = new JMenuItem("Peças");
+			jmiListaPecas.addActionListener(new ListenerJmenuPesquisa());
+		}
 		return jmiListaPecas;
 	}
 
 	public JMenuItem getJmiInserirEstoque() {
+		if (jmiInserirEstoque == null) {
+			jmiInserirEstoque = new JMenuItem("Adicionar ao estoque");
+			ImageIcon iconAdd = new ImageIcon("imagens/add.png");
+			jmiInserirEstoque.setIcon(iconAdd);
+		}
 		return jmiInserirEstoque;
 	}
 
 	public JMenuItem getJmiRetirarEstoque() {
+		if (jmiRetirarEstoque == null) {
+			jmiRetirarEstoque = new JMenuItem("Retirar do estoque");
+			ImageIcon iconMenos = new ImageIcon("imagens/menos.png");
+			jmiRetirarEstoque.setIcon(iconMenos);
+		}
 		return jmiRetirarEstoque;
 	}
 
