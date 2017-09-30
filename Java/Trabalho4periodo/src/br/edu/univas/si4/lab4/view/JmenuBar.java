@@ -52,7 +52,7 @@ public class JmenuBar extends JMenuBar {
 		getJmPesquisa().add(getJmiListaFornecedor());
 		getJmPesquisa().add(getJmiListaEquipamento());
 		getJmPesquisa().add(getJmiListaPecas());
-		
+
 		getJmEstoque().add(getJmiInserirEstoque());
 		getJmEstoque().add(getJmiRetirarEstoque());
 
@@ -106,9 +106,7 @@ public class JmenuBar extends JMenuBar {
 
 	public JMenuItem getJmiCadastroFornecedor() {
 		if (jmiCadastroFornecedor == null) {
-			jmiCadastroFornecedor = new JMenuItem("Fornecedor");
-			ImageIcon iconFornecedor = new ImageIcon("imagens/fornecedor2.png");
-			jmiCadastroFornecedor.setIcon(iconFornecedor);
+			jmiCadastroFornecedor = new JMenuItem("Fornecedor", new ImageIcon("imagens/fornecedor2.png"));
 			jmiCadastroFornecedor.addActionListener(new ListenerJmenuCadastro());
 		}
 		return jmiCadastroFornecedor;
@@ -116,9 +114,7 @@ public class JmenuBar extends JMenuBar {
 
 	public JMenuItem getJmiCadastroEquipamento() {
 		if (jmiCadastroEquipamento == null) {
-			jmiCadastroEquipamento = new JMenuItem("Equipamentos");
-			ImageIcon iconEquipamento = new ImageIcon("imagens/equip2.png");
-			jmiCadastroEquipamento.setIcon(iconEquipamento);
+			jmiCadastroEquipamento = new JMenuItem("Equipamentos", new ImageIcon("imagens/equip2.png"));
 			jmiCadastroEquipamento.addActionListener(new ListenerJmenuCadastro());
 		}
 		return jmiCadastroEquipamento;
@@ -126,9 +122,7 @@ public class JmenuBar extends JMenuBar {
 
 	public JMenuItem getJmiCadastroPeca() {
 		if (jmiCadastroPeca == null) {
-			jmiCadastroPeca = new JMenuItem("Peças");
-			ImageIcon iconPecas = new ImageIcon("imagens/pecas2.png");
-			jmiCadastroPeca.setIcon(iconPecas);
+			jmiCadastroPeca = new JMenuItem("Peças", new ImageIcon("imagens/pecas2.png"));
 			jmiCadastroPeca.addActionListener(new ListenerJmenuCadastro());
 		}
 		return jmiCadastroPeca;
@@ -136,7 +130,7 @@ public class JmenuBar extends JMenuBar {
 
 	public JMenuItem getJmiListaFornecedor() {
 		if (jmiListaFornecedor == null) {
-			jmiListaFornecedor = new JMenuItem("Fornecedor");
+			jmiListaFornecedor = new JMenuItem("Fornecedor", new ImageIcon("imagens/fornecedor2.png"));
 			jmiListaFornecedor.addActionListener(new ListenerJmenuPesquisa());
 		}
 		return jmiListaFornecedor;
@@ -144,7 +138,7 @@ public class JmenuBar extends JMenuBar {
 
 	public JMenuItem getJmiListaEquipamento() {
 		if (jmiListaEquipamento == null) {
-			jmiListaEquipamento = new JMenuItem("Equipamento");
+			jmiListaEquipamento = new JMenuItem("Equipamento", new ImageIcon("imagens/equip2.png"));
 			jmiListaEquipamento.addActionListener(new ListenerJmenuPesquisa());
 		}
 		return jmiListaEquipamento;
@@ -152,7 +146,7 @@ public class JmenuBar extends JMenuBar {
 
 	public JMenuItem getJmiListaPecas() {
 		if (jmiListaPecas == null) {
-			jmiListaPecas = new JMenuItem("Peças");
+			jmiListaPecas = new JMenuItem("Peças", new ImageIcon("imagens/pecas2.png"));
 			jmiListaPecas.addActionListener(new ListenerJmenuPesquisa());
 		}
 		return jmiListaPecas;
