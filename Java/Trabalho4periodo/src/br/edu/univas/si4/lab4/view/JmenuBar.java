@@ -34,6 +34,7 @@ public class JmenuBar extends JMenuBar {
 	private FrameCadastroFornecedor fCadFornecedor;
 	private FrameCadastroEquipamentos fCadEquipamento;
 	private FrameCadastroPeca fCadPeca;
+	private FrameEstoque fEstoque;
 
 	public JmenuBar(Principal principal) {
 		this.principal = principal;
@@ -154,9 +155,8 @@ public class JmenuBar extends JMenuBar {
 
 	public JMenuItem getJmiInserirEstoque() {
 		if (jmiInserirEstoque == null) {
-			jmiInserirEstoque = new JMenuItem("Adicionar ao estoque");
-			ImageIcon iconAdd = new ImageIcon("imagens/add.png");
-			jmiInserirEstoque.setIcon(iconAdd);
+			jmiInserirEstoque = new JMenuItem("Adicionar ao estoque", new ImageIcon("imagens/add.png"));
+			jmiInserirEstoque.addActionListener(new ListenerJmenuEstoque());
 		}
 		return jmiInserirEstoque;
 	}
@@ -178,7 +178,6 @@ public class JmenuBar extends JMenuBar {
 		if (fCadFornecedor == null) {
 			fCadFornecedor = new FrameCadastroFornecedor();
 			fCadFornecedor.setLocationRelativeTo(null);
-			fCadFornecedor.setVisible(true);
 		}
 		return fCadFornecedor;
 	}
@@ -187,7 +186,6 @@ public class JmenuBar extends JMenuBar {
 		if (fCadEquipamento == null) {
 			fCadEquipamento = new FrameCadastroEquipamentos();
 			fCadEquipamento.setLocationRelativeTo(null);
-			fCadEquipamento.setVisible(true);
 		}
 		return fCadEquipamento;
 	}
@@ -196,9 +194,16 @@ public class JmenuBar extends JMenuBar {
 		if (fCadPeca == null) {
 			fCadPeca = new FrameCadastroPeca();
 			fCadPeca.setLocationRelativeTo(null);
-			fCadPeca.setVisible(true);
 		}
 		return fCadPeca;
+	}
+
+	public FrameEstoque getfEstoque() {
+		if (fEstoque == null) {
+			fEstoque = new FrameEstoque();
+			fEstoque.setLocationRelativeTo(null);
+		}
+		return fEstoque;
 	}
 
 	/**
@@ -244,11 +249,13 @@ public class JmenuBar extends JMenuBar {
 		@Override
 		public void actionPerformed(ActionEvent evt) {
 			if (evt.getSource() == jmiCadastroFornecedor) {
-				getfCadFornecedor();
+				getfCadFornecedor().setVisible(true);
+				;
 			} else if (evt.getSource() == jmiCadastroEquipamento) {
-				getfCadEquipamento();
+				getfCadEquipamento().setVisible(true);
+				;
 			} else {
-				getfCadPeca();
+				getfCadPeca().setVisible(true);
 			}
 		}
 	}
@@ -264,6 +271,18 @@ public class JmenuBar extends JMenuBar {
 				getiFrameEquipamento();
 			} else {
 				getiFramePeca();
+			}
+		}
+	}
+
+	// inner class controla eventos jmenu estoque
+	private class ListenerJmenuEstoque implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent evt) {
+			if (evt.getSource() == jmiInserirEstoque) {
+				getfEstoque().setVisible(true);
+				;
 			}
 		}
 	}
