@@ -3,6 +3,9 @@ package br.edu.univas.si4.lab4.view;
 import java.awt.BorderLayout;
 
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
+import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
 
 public class FrameCadastroFornecedor extends JDialog {
 
@@ -35,8 +38,28 @@ public class FrameCadastroFornecedor extends JDialog {
 	private ButtonsPanelCadastros getButtonsCadastro() {
 		if (buttonsCadastro == null) {
 			buttonsCadastro = new ButtonsPanelCadastros();
+			buttonsCadastro.addButtonsListener(new ButtonsListener() {
+
+				@Override
+				public void salvarPerformed() {
+					salvarClicked();
+				}
+
+				@Override
+				public void cancelarPerforme() {
+					cancelarClicked();
+				}
+			});
 		}
 		return buttonsCadastro;
+	}
+
+	private void salvarClicked() {
+		JOptionPane.showMessageDialog(null, "Clicou botão salvar");
+	}
+
+	private void cancelarClicked() {
+		JOptionPane.showMessageDialog(null, "Clicou botão cancelar");
 	}
 
 }

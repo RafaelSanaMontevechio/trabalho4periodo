@@ -3,7 +3,9 @@ package br.edu.univas.si4.lab4.view;
 import java.awt.BorderLayout;
 
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
+import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
 
 public class FrameCadastroPeca extends JDialog {
 
@@ -21,12 +23,12 @@ public class FrameCadastroPeca extends JDialog {
 		addComponentes();
 		pack();
 	}
-	
-	private void addComponentes(){
+
+	private void addComponentes() {
 		add(getPanelCadPeca(), BorderLayout.CENTER);
 		add(getButtonsCadastro(), BorderLayout.SOUTH);
 	}
-	
+
 	private PanelCadastroPeca getPanelCadPeca() {
 		if (panelCadPeca == null) {
 			panelCadPeca = new PanelCadastroPeca();
@@ -37,8 +39,28 @@ public class FrameCadastroPeca extends JDialog {
 	private ButtonsPanelCadastros getButtonsCadastro() {
 		if (buttonsCadastro == null) {
 			buttonsCadastro = new ButtonsPanelCadastros();
+			buttonsCadastro.addButtonsListener(new ButtonsListener() {
+
+				@Override
+				public void salvarPerformed() {
+					salvarClicked();
+				}
+
+				@Override
+				public void cancelarPerforme() {
+					cancelarClicked();
+				}
+			});
 		}
 		return buttonsCadastro;
+	}
+	
+	private void salvarClicked() {
+		JOptionPane.showMessageDialog(null, "Clicou botão salvar - Tela cadastro peça");
+	}
+
+	private void cancelarClicked() {
+		JOptionPane.showMessageDialog(null, "Clicou botão cancelar - Tela cadastro peça");
 	}
 
 }

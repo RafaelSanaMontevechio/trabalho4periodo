@@ -3,6 +3,9 @@ package br.edu.univas.si4.lab4.view;
 import java.awt.BorderLayout;
 
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
+import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
 
 public class FrameEstoque extends JDialog {
 
@@ -36,8 +39,28 @@ public class FrameEstoque extends JDialog {
 	public ButtonsPanelCadastros getButtonsPanel() {
 		if (buttonsPanel == null) {
 			buttonsPanel = new ButtonsPanelCadastros();
+			buttonsPanel.addButtonsListener(new ButtonsListener() {
+				
+				@Override
+				public void salvarPerformed() {
+					salvarClicked();
+				}
+				
+				@Override
+				public void cancelarPerforme() {
+					cancelarClicked();
+				}
+			});
 		}
 		return buttonsPanel;
+	}
+	
+	private void salvarClicked() {
+		JOptionPane.showMessageDialog(null, "Clicou botão salvar - Tela estoque");
+	}
+
+	private void cancelarClicked() {
+		JOptionPane.showMessageDialog(null, "Clicou botão cancelar - Tela estoque");
 	}
 
 }

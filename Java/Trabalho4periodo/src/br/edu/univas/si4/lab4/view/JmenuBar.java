@@ -55,7 +55,7 @@ public class JmenuBar extends JMenuBar {
 		getJmPesquisa().add(getJmiListaPecas());
 
 		getJmEstoque().add(getJmiInserirEstoque());
-		getJmEstoque().add(getJmiRetirarEstoque());
+		//getJmEstoque().add(getJmiRetirarEstoque());
 
 		getJmMenu().add(getJmCadastro());
 		getJmMenu().add(getJmPesquisa());
@@ -155,7 +155,7 @@ public class JmenuBar extends JMenuBar {
 
 	public JMenuItem getJmiInserirEstoque() {
 		if (jmiInserirEstoque == null) {
-			jmiInserirEstoque = new JMenuItem("Adicionar ao estoque", new ImageIcon("imagens/add.png"));
+			jmiInserirEstoque = new JMenuItem("Adicionar/Retirar", new ImageIcon("imagens/PlusMinus.png"));
 			jmiInserirEstoque.addActionListener(new ListenerJmenuEstoque());
 		}
 		return jmiInserirEstoque;
@@ -282,7 +282,6 @@ public class JmenuBar extends JMenuBar {
 		public void actionPerformed(ActionEvent evt) {
 			if (evt.getSource() == jmiInserirEstoque) {
 				getfEstoque().setVisible(true);
-				;
 			}
 		}
 	}
