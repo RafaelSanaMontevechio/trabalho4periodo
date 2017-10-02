@@ -1,8 +1,14 @@
 package br.edu.univas.si4.lab4.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import br.edu.univas.si4.lab4.interfaces.ButtonsListenerRelatorios;
 
 public class ButtonsPanelRelatorio extends JPanel {
 
@@ -13,6 +19,8 @@ public class ButtonsPanelRelatorio extends JPanel {
 	private JButton btDeletar;
 	private JButton btListar;
 	private JButton btImprimir;
+
+	private ArrayList<ButtonsListenerRelatorios> listeners = new ArrayList<>();
 
 	public ButtonsPanelRelatorio() {
 		setBorder(BorderFactory.createTitledBorder(""));
@@ -31,6 +39,13 @@ public class ButtonsPanelRelatorio extends JPanel {
 		if (btNovo == null) {
 			btNovo = new JButton();
 			btNovo.setText("Novo");
+			btNovo.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					novoClicked();
+				}
+			});
 		}
 		return btNovo;
 	}
@@ -39,6 +54,14 @@ public class ButtonsPanelRelatorio extends JPanel {
 		if (btAlterar == null) {
 			btAlterar = new JButton();
 			btAlterar.setText("Alterar");
+			btAlterar.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					alterarClicked();
+
+				}
+			});
 		}
 		return btAlterar;
 	}
@@ -47,6 +70,14 @@ public class ButtonsPanelRelatorio extends JPanel {
 		if (btDeletar == null) {
 			btDeletar = new JButton();
 			btDeletar.setText("Deletar");
+			btDeletar.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					deletarClicked();
+
+				}
+			});
 		}
 		return btDeletar;
 	}
@@ -55,6 +86,14 @@ public class ButtonsPanelRelatorio extends JPanel {
 		if (btListar == null) {
 			btListar = new JButton();
 			btListar.setText("Buscar");
+			btListar.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					listarClicked();
+
+				}
+			});
 		}
 		return btListar;
 	}
@@ -63,8 +102,50 @@ public class ButtonsPanelRelatorio extends JPanel {
 		if (btImprimir == null) {
 			btImprimir = new JButton();
 			btImprimir.setText("Imprimir");
+			btImprimir.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					imprimirClicked();
+
+				}
+			});
 		}
 		return btImprimir;
+	}
+
+	public void addButtonsListenerRelatorios(ButtonsListenerRelatorios listener) {
+		listeners.add(listener);
+	}
+
+	private void novoClicked() {
+		for (ButtonsListenerRelatorios listener : listeners) {
+			listener.novoPerformed();
+		}
+	}
+
+	private void alterarClicked() {
+		for (ButtonsListenerRelatorios listener : listeners) {
+			listener.alterarPerformed();
+		}
+	}
+
+	private void deletarClicked() {
+		for (ButtonsListenerRelatorios listener : listeners) {
+			listener.deletarPerformed();
+		}
+	}
+
+	private void listarClicked() {
+		for (ButtonsListenerRelatorios listener : listeners) {
+			listener.listarPerformed();
+		}
+	}
+
+	private void imprimirClicked() {
+		for (ButtonsListenerRelatorios listener : listeners) {
+			listener.imprimirPerformed();
+		}
 	}
 
 }

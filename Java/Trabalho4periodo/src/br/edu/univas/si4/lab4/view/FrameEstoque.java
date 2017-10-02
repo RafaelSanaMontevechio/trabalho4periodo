@@ -47,7 +47,7 @@ public class FrameEstoque extends JDialog {
 				}
 				
 				@Override
-				public void cancelarPerforme() {
+				public void cancelarPerformed() {
 					cancelarClicked();
 				}
 			});

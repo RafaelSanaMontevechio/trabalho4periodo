@@ -11,4 +11,10 @@ public class InternalFrameEquipamentos extends Comum {
 		super("Consulta equipamentos em estoque", "Equipamentos cadastrados", columnNames, tableData);
 
 	}
+
+	@Override
+	public ButtonsPanelRelatorio getButtonsPanelRelatorio() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

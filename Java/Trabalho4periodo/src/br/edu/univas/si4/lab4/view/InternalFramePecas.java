@@ -11,4 +11,11 @@ public class InternalFramePecas extends Comum {
 	public InternalFramePecas() {
 		super("Consulta de peças em estoque", "Peças em estoque", columnNames,  tableData);
 	}
+
+
+	@Override
+	public ButtonsPanelRelatorio getButtonsPanelRelatorio() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

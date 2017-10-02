@@ -47,7 +47,7 @@ public class FrameCadastroEquipamentos extends JDialog {
 				}
 
 				@Override
-				public void cancelarPerforme() {
+				public void cancelarPerformed() {
 					cancelarClicked();
 				}
 			});

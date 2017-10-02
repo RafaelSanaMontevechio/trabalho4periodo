@@ -10,7 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 
-public class Comum extends JInternalFrame {
+public abstract class Comum extends JInternalFrame {
 
 	private static final long serialVersionUID = 7859729951608406473L;
 
@@ -22,7 +22,7 @@ public class Comum extends JInternalFrame {
 	private Object[][] tableData;
 
 	private JPanel contentPane;
-	private ButtonsPanelRelatorio buttonsPanelRelatorio;
+	protected ButtonsPanelRelatorio buttonsPanelRelatorio;
 
 	public Comum(String title, String titleContentPane, String[] columnNames, Object[][] tableData) {
 		this.setTitle(title);
@@ -79,12 +79,7 @@ public class Comum extends JInternalFrame {
 		return tableScroll;
 	}
 
-	public ButtonsPanelRelatorio getButtonsPanelRelatorio() {
-		if (buttonsPanelRelatorio == null) {
-			buttonsPanelRelatorio = new ButtonsPanelRelatorio();
-		}
-		return buttonsPanelRelatorio;
-	}
+	public abstract ButtonsPanelRelatorio getButtonsPanelRelatorio(); 
 
 	public void setPosicao() {
 		Dimension dimension = this.getDesktopPane().getSize();

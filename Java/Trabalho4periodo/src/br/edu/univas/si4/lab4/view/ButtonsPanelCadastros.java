@@ -10,11 +10,11 @@ import javax.swing.JPanel;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
 
 public class ButtonsPanelCadastros extends JPanel {
+	
+	private static final long serialVersionUID = 8479718910353411028L;
 
 	private JButton btSalvar;
 	private JButton btCancelar;
-
-	private static final long serialVersionUID = 8479718910353411028L;
 
 	private ArrayList<ButtonsListener> listeners = new ArrayList<>();
 
@@ -69,7 +69,7 @@ public class ButtonsPanelCadastros extends JPanel {
 
 	private void cancelarClicked() {
 		for (ButtonsListener listener : listeners) {
-			listener.cancelarPerforme();
+			listener.cancelarPerformed();
 		}
 	}
 }
