@@ -250,10 +250,8 @@ public class JmenuBar extends JMenuBar {
 		public void actionPerformed(ActionEvent evt) {
 			if (evt.getSource() == jmiCadastroFornecedor) {
 				getfCadFornecedor().setVisible(true);
-				;
 			} else if (evt.getSource() == jmiCadastroEquipamento) {
 				getfCadEquipamento().setVisible(true);
-				;
 			} else {
 				getfCadPeca().setVisible(true);
 			}

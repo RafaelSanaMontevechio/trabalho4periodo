@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -28,6 +29,8 @@ public class PanelEstoque extends JPanel {
 	private JRadioButton jrbPeca;
 	private JRadioButton jrbRetirar;
 	private JRadioButton jrbAdicionar;
+	private ButtonGroup groupItem;
+	private ButtonGroup groupAcao;
 
 	private GridBagConstraints jLabelInfoConstraints;
 	private GridBagConstraints jlEquipamentoConstraints;
@@ -52,24 +55,31 @@ public class PanelEstoque extends JPanel {
 		setLayout(new GridBagLayout());
 
 		add(getjLabelInfo(), getjLabelInfoConstraints());
-		
+
 		add(getJrbAdicionar(), getJrbAdicionarConstraints());
 		add(getJlAdicionar(), getJlAdicionarConstraints());
-		
+
 		add(getJrbRetirar(), getJrbRetirarConstraints());
 		add(getJlRetirar(), getJlRetirarConstraints());
-		
+
 		add(getJrbEquipamento(), getJrbEquipamentoConstraints());
 		add(getJlEquipamento(), getJlEquipamentoConstraints());
-		
+
 		add(getJrbPeca(), getJrbPecaConstraints());
 		add(getJlPeca(), getJlPecaConstraints());
-		
+
 		add(getJlCodigo(), getJlCodigoConstraints());
 		add(getJtCodigo(), getJtCodigoConstraints());
-		
+
 		add(getJlQuantidade(), getJlQuantidadeConstraints());
 		add(getJtQuantidade(), getJtQuantidadeConstraints());
+		
+		//ButtonsGroup
+		getGroupAcao().add(getJrbAdicionar());
+		getGroupAcao().add(getJrbRetirar());
+
+		getGroupItem().add(getJrbEquipamento());
+		getGroupItem().add(getJrbPeca());
 	}
 
 	public JLabel getjLabelInfo() {
@@ -147,6 +157,7 @@ public class PanelEstoque extends JPanel {
 	public JRadioButton getJrbEquipamento() {
 		if (jrbEquipamento == null) {
 			jrbEquipamento = new JRadioButton();
+			jrbEquipamento.setSelected(true);
 		}
 		return jrbEquipamento;
 	}
@@ -168,8 +179,23 @@ public class PanelEstoque extends JPanel {
 	public JRadioButton getJrbAdicionar() {
 		if (jrbAdicionar == null) {
 			jrbAdicionar = new JRadioButton();
+			jrbAdicionar.setSelected(true);
 		}
 		return jrbAdicionar;
+	}
+
+	private ButtonGroup getGroupItem() {
+		if (groupItem == null) {
+			groupItem = new ButtonGroup();
+		}
+		return groupItem;
+	}
+
+	private ButtonGroup getGroupAcao() {
+		if (groupAcao == null) {
+			groupAcao = new ButtonGroup();
+		}
+		return groupAcao;
 	}
 
 	/**
@@ -223,11 +249,11 @@ public class PanelEstoque extends JPanel {
 	}
 
 	public GridBagConstraints getJlQuantidadeConstraints() {
-		if(jlQuantidadeConstraints == null) {
+		if (jlQuantidadeConstraints == null) {
 			jlQuantidadeConstraints = new GridBagConstraints();
 			jlQuantidadeConstraints.gridx = 0;
 			jlQuantidadeConstraints.gridy = 4;
-			jlQuantidadeConstraints.insets = new Insets(5,5,5,5);
+			jlQuantidadeConstraints.insets = new Insets(5, 5, 5, 5);
 			jlQuantidadeConstraints.anchor = GridBagConstraints.LINE_START;
 		}
 		return jlQuantidadeConstraints;
@@ -256,24 +282,24 @@ public class PanelEstoque extends JPanel {
 	}
 
 	public GridBagConstraints getJtCodigoConstraints() {
-		if(jtCodigoConstraints == null) {
+		if (jtCodigoConstraints == null) {
 			jtCodigoConstraints = new GridBagConstraints();
 			jtCodigoConstraints.gridx = 1;
 			jtCodigoConstraints.gridy = 3;
 			jtCodigoConstraints.ipadx = 100;
-			jtCodigoConstraints.insets = new Insets(5,5,5,5);
+			jtCodigoConstraints.insets = new Insets(5, 5, 5, 5);
 			jtCodigoConstraints.anchor = GridBagConstraints.LINE_START;
 		}
 		return jtCodigoConstraints;
 	}
 
 	public GridBagConstraints getJtQuantidadeConstraints() {
-		if(jtQuantidadeConstraints == null) {
+		if (jtQuantidadeConstraints == null) {
 			jtQuantidadeConstraints = new GridBagConstraints();
 			jtQuantidadeConstraints.gridx = 1;
 			jtQuantidadeConstraints.gridy = 4;
 			jtQuantidadeConstraints.ipadx = 100;
-			jtQuantidadeConstraints.insets = new Insets(5,5,5,5);
+			jtQuantidadeConstraints.insets = new Insets(5, 5, 5, 5);
 			jtQuantidadeConstraints.anchor = GridBagConstraints.LINE_START;
 		}
 		return jtQuantidadeConstraints;
