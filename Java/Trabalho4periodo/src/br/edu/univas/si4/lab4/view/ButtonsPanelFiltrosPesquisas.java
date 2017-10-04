@@ -1,19 +1,28 @@
 package br.edu.univas.si4.lab4.view;
 
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 
-public class PanelFiltroPesquisas extends JPanel {
+import br.edu.univas.si4.lab4.interfaces.ButtonsListernerFiltroPesquisa;
+
+public class ButtonsPanelFiltrosPesquisas extends JPanel {
 
 	private static final long serialVersionUID = 1942300339171629445L;
+
+	private ArrayList<ButtonsListernerFiltroPesquisa> listeners = new ArrayList<>();
 
 	private JLabel jlFiltrarPor;
 	private JLabel jlNome;
@@ -25,7 +34,9 @@ public class PanelFiltroPesquisas extends JPanel {
 	private JRadioButton jrbFornecedor;
 	private JRadioButton jrbTodos;
 	private JTextField jtDados;
-	private JButton jbPesquisar;
+	private JButton btPesquisar;
+	
+	private ButtonGroup group;
 
 	private GridBagConstraints jlFiltrarPorConstraints;
 	private GridBagConstraints jlNomeConstraints;
@@ -37,10 +48,11 @@ public class PanelFiltroPesquisas extends JPanel {
 	private GridBagConstraints jrbFornecedorConstraints;
 	private GridBagConstraints jrbTodosConstraints;
 	private GridBagConstraints jtDadosConstraints;
-	private GridBagConstraints jbPesquisarConstraints;
+	private GridBagConstraints btPesquisarConstraints;
 
-	public PanelFiltroPesquisas() {
-		setBorder(new EmptyBorder(10, 10, 10, 10));
+	public ButtonsPanelFiltrosPesquisas() {
+		//setBorder(new EmptyBorder(10, 10, 10, 10));
+		setBorder(BorderFactory.createTitledBorder("Filtros"));
 		setLayout(new GridBagLayout());
 
 		add(getJlFiltrarPor(), getjlFiltarPorConstraints());
@@ -59,7 +71,13 @@ public class PanelFiltroPesquisas extends JPanel {
 
 		add(getJtDados(), getJtDadosConstraints());
 
-		add(getJbPesquisar(), getJbPesquisarConstraints());
+		add(getBtPesquisar(), getBtPesquisarConstraints());
+		
+		//Group Buttons
+		getGroup().add(getJrbCodigo());
+		getGroup().add(getJrbNome());
+		getGroup().add(getJrbFornecedor());
+		getGroup().add(getJrbTodos());
 
 	}
 
@@ -67,6 +85,7 @@ public class PanelFiltroPesquisas extends JPanel {
 		if (jlFiltrarPor == null) {
 			jlFiltrarPor = new JLabel();
 			jlFiltrarPor.setText("Filtrar por: ");
+			jlFiltrarPor.setFont(new Font("SansSerif", Font.PLAIN, 17));
 		}
 		return jlFiltrarPor;
 	}
@@ -103,29 +122,29 @@ public class PanelFiltroPesquisas extends JPanel {
 		return jlTodos;
 	}
 
-	private JRadioButton getJrbNome() {
+	public JRadioButton getJrbNome() {
 		if (jrbNome == null) {
 			jrbNome = new JRadioButton();
-			jrbNome.setSelected(true);
 		}
+
 		return jrbNome;
 	}
 
-	private JRadioButton getJrbCodigo() {
+	public JRadioButton getJrbCodigo() {
 		if (jrbCodigo == null) {
 			jrbCodigo = new JRadioButton();
 		}
 		return jrbCodigo;
 	}
 
-	private JRadioButton getJrbFornecedor() {
+	public JRadioButton getJrbFornecedor() {
 		if (jrbFornecedor == null) {
 			jrbFornecedor = new JRadioButton();
 		}
 		return jrbFornecedor;
 	}
 
-	private JRadioButton getJrbTodos() {
+	public JRadioButton getJrbTodos() {
 		if (jrbTodos == null) {
 			jrbTodos = new JRadioButton();
 		}
@@ -139,13 +158,30 @@ public class PanelFiltroPesquisas extends JPanel {
 		return jtDados;
 	}
 
-	private JButton getJbPesquisar() {
-		if (jbPesquisar == null) {
-			jbPesquisar = new JButton();
-			jbPesquisar.setText("Pesquisar");
+	private JButton getBtPesquisar() {
+		if (btPesquisar == null) {
+			btPesquisar = new JButton();
+			btPesquisar.setText("Pesquisar");
+			btPesquisar.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					pesquisarClicked();
+				}
+			});
 		}
-		return jbPesquisar;
+		return btPesquisar;
 	}
+	
+	private ButtonGroup getGroup() {
+		if (group == null) {
+			group = new ButtonGroup();
+		}
+		return group;
+	}
+
+	
+	//Constraints
 
 	private GridBagConstraints getjlFiltarPorConstraints() {
 		if (jlFiltrarPorConstraints == null) {
@@ -158,7 +194,6 @@ public class PanelFiltroPesquisas extends JPanel {
 		}
 		return jlFiltrarPorConstraints;
 	}
-	
 
 	private GridBagConstraints getJlCodigoConstraints() {
 		if (jlCodigoConstraints == null) {
@@ -204,7 +239,6 @@ public class PanelFiltroPesquisas extends JPanel {
 		}
 		return JlTodosConstraints;
 	}
-	
 
 	private GridBagConstraints getJrbCodigoConstraints() {
 		if (jrbCodigoConstraints == null) {
@@ -260,15 +294,26 @@ public class PanelFiltroPesquisas extends JPanel {
 		return jtDadosConstraints;
 	}
 
-	private GridBagConstraints getJbPesquisarConstraints() {
-		if (jbPesquisarConstraints == null) {
-			jbPesquisarConstraints = new GridBagConstraints();
-			jbPesquisarConstraints.gridx = 0;
-			jbPesquisarConstraints.gridy = 6;
-			jbPesquisarConstraints.gridwidth = 2;
-			jbPesquisarConstraints.anchor = GridBagConstraints.CENTER;
+	private GridBagConstraints getBtPesquisarConstraints() {
+		if (btPesquisarConstraints == null) {
+			btPesquisarConstraints = new GridBagConstraints();
+			btPesquisarConstraints.gridx = 0;
+			btPesquisarConstraints.gridy = 6;
+			btPesquisarConstraints.gridwidth = 4;
+			btPesquisarConstraints.anchor = GridBagConstraints.CENTER;
 		}
-		return jbPesquisarConstraints;
+		return btPesquisarConstraints;
 	}
+
+	public void addButtonsListenerFiltroPesquisa(ButtonsListernerFiltroPesquisa listener) {
+		listeners.add(listener);
+	}
+	
+	private void pesquisarClicked() {
+		for (ButtonsListernerFiltroPesquisa listener : listeners) {
+			listener.pesquisarPerformed();
+		}
+	}
+
 
 }

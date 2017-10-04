@@ -11,7 +11,7 @@ public class Principal extends JFrame {
 	private JDesktopPane desktopPane;
 
 	public Principal() {
-		this.setSize(900, 600);
+		this.setSize(1000, 600);
 		//this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setLayout(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

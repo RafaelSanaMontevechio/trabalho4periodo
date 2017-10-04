@@ -17,7 +17,6 @@ public class ButtonsPanelRelatorio extends JPanel {
 	private JButton btNovo;
 	private JButton btAlterar;
 	private JButton btDeletar;
-	private JButton btListar;
 	private JButton btImprimir;
 
 	private ArrayList<ButtonsListenerRelatorios> listeners = new ArrayList<>();
@@ -31,7 +30,6 @@ public class ButtonsPanelRelatorio extends JPanel {
 		add(getBtNovo());
 		add(getBtAlterar());
 		add(getBtDeletar());
-		add(getBtListar());
 		add(getBtImprimir());
 	}
 
@@ -82,22 +80,6 @@ public class ButtonsPanelRelatorio extends JPanel {
 		return btDeletar;
 	}
 
-	public JButton getBtListar() {
-		if (btListar == null) {
-			btListar = new JButton();
-			btListar.setText("Buscar");
-			btListar.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					listarClicked();
-
-				}
-			});
-		}
-		return btListar;
-	}
-
 	public JButton getBtImprimir() {
 		if (btImprimir == null) {
 			btImprimir = new JButton();
@@ -135,13 +117,7 @@ public class ButtonsPanelRelatorio extends JPanel {
 			listener.deletarPerformed();
 		}
 	}
-
-	private void listarClicked() {
-		for (ButtonsListenerRelatorios listener : listeners) {
-			listener.listarPerformed();
-		}
-	}
-
+	
 	private void imprimirClicked() {
 		for (ButtonsListenerRelatorios listener : listeners) {
 			listener.imprimirPerformed();

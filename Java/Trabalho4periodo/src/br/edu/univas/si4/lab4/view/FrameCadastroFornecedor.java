@@ -59,7 +59,7 @@ public class FrameCadastroFornecedor extends JDialog {
 	}
 
 	private void cancelarClicked() {
-		JOptionPane.showMessageDialog(null, "Clicou botão cancelar");
+		this.dispose();
 	}
 
 }

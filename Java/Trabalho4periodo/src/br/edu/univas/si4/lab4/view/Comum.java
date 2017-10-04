@@ -45,6 +45,7 @@ public abstract class Comum extends JInternalFrame {
 		contentPane.setLayout(new BorderLayout());
 		contentPane.add(criaPanelCadastrados(), BorderLayout.CENTER);
 		contentPane.add(getButtonsPanelRelatorio(), BorderLayout.SOUTH);
+	
 		setContentPane(contentPane);
 
 	}
@@ -79,7 +80,7 @@ public abstract class Comum extends JInternalFrame {
 		return tableScroll;
 	}
 
-	public abstract ButtonsPanelRelatorio getButtonsPanelRelatorio(); 
+	public abstract ButtonsPanelRelatorio getButtonsPanelRelatorio();
 
 	public void setPosicao() {
 		Dimension dimension = this.getDesktopPane().getSize();

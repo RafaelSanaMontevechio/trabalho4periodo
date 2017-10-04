@@ -1,20 +1,34 @@
 package br.edu.univas.si4.lab4.view;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.lab4.interfaces.ButtonsListenerRelatorios;
+import br.edu.univas.si4.lab4.interfaces.ButtonsListernerFiltroPesquisa;
 
 public class InternalFrameEquipamentos extends Comum {
 
 	private static final long serialVersionUID = 4727354562815126822L;
-	
-	private FrameFiltroPesquisas frameFiltros;
+
+	private FrameCadastroEquipamentos fCadEquipamentos;
+	private ButtonsPanelFiltrosPesquisas buttonsPanelPesquisa;
 
 	private static String[] columnNames = { "Codigo", "Nome", "Quantidade", "Fornecedor" };
 	private static Object[][] tableData = { { "90100123", "Equipamento 1", "20", "Fornecedor 1" } };
 
 	public InternalFrameEquipamentos() {
 		super("Consulta equipamentos em estoque", "Equipamentos cadastrados", columnNames, tableData);
+
+		add(getPanelFiltroPesquisas(), BorderLayout.WEST);
+	}
+
+	private FrameCadastroEquipamentos getfCadEquipamentos() {
+		if (fCadEquipamentos == null) {
+			fCadEquipamentos = new FrameCadastroEquipamentos();
+			fCadEquipamentos.setLocationRelativeTo(null);
+		}
+		return fCadEquipamentos;
 	}
 
 	@Override
@@ -25,13 +39,7 @@ public class InternalFrameEquipamentos extends Comum {
 
 				@Override
 				public void novoPerformed() {
-					JOptionPane.showMessageDialog(null, "Clicou botão novo - Tela pesquisa Equipamento");
-				}
-
-				@Override
-				public void listarPerformed() {
-					//JOptionPane.showMessageDialog(null, "Clicou botão listar - Tela pesquisa Equipamento");
-					getFrameFiltros().setVisible(true);;
+					getfCadEquipamentos().setVisible(true);
 				}
 
 				@Override
@@ -53,13 +61,33 @@ public class InternalFrameEquipamentos extends Comum {
 		}
 		return buttonsPanelRelatorio;
 	}
-	
-	//Getter frame filtros
-	
-	private FrameFiltroPesquisas getFrameFiltros() {
-		if (frameFiltros == null) {
-			frameFiltros = new FrameFiltroPesquisas();
+
+	// Getter frame filtros
+
+	private ButtonsPanelFiltrosPesquisas getPanelFiltroPesquisas() {
+		if (buttonsPanelPesquisa == null) {
+			buttonsPanelPesquisa = new ButtonsPanelFiltrosPesquisas();
+			buttonsPanelPesquisa.addButtonsListenerFiltroPesquisa(new ButtonsListernerFiltroPesquisa() {
+
+				@Override
+				public void pesquisarPerformed() {
+					pesquisarClicked();
+				}
+			});
 		}
-		return frameFiltros;
+		return buttonsPanelPesquisa;
 	}
+
+	private void pesquisarClicked() {
+		if (buttonsPanelPesquisa.getJrbCodigo().isSelected()) {
+			JOptionPane.showMessageDialog(null, "Filto: Código selecionado! - Peça");
+		} else if (buttonsPanelPesquisa.getJrbNome().isSelected()) {
+			JOptionPane.showMessageDialog(null, "Filto: Nome selecionado!");
+		} else if (buttonsPanelPesquisa.getJrbFornecedor().isSelected()) {
+			JOptionPane.showMessageDialog(null, "Filto: Fornecedor selecionado!");
+		} else {
+			JOptionPane.showMessageDialog(null, "Filto: Todos selecionado!");
+		}
+	}
+
 }
