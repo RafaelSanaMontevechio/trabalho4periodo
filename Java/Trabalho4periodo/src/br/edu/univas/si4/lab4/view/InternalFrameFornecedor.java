@@ -11,6 +11,7 @@ public class InternalFrameFornecedor extends Comum {
 
 	private static final long serialVersionUID = 7818698877376614841L;
 
+	private FrameCadastroFornecedor fCadFornecedor;
 	private ButtonsPanelFiltroFornecedor buttonsFiltroFornecedor;
 
 	private static String[] columnNames = { "Nome/Razão", "CNPJ", "Nome Fantasia" };
@@ -23,6 +24,14 @@ public class InternalFrameFornecedor extends Comum {
 		pack();
 	}
 
+	private FrameCadastroFornecedor getfCadFornecedor() {
+		if (fCadFornecedor == null) {
+			fCadFornecedor = new FrameCadastroFornecedor();
+			fCadFornecedor.setLocationRelativeTo(null);
+		}
+		return fCadFornecedor;
+	}
+
 	@Override
 	public ButtonsPanelRelatorio getButtonsPanelRelatorio() {
 		if (buttonsPanelRelatorio == null) {
@@ -31,8 +40,7 @@ public class InternalFrameFornecedor extends Comum {
 
 				@Override
 				public void novoPerformed() {
-					JOptionPane.showMessageDialog(null, "Clicou botão salvar - Tela pesquisa fornecedor");
-
+					getfCadFornecedor().setVisible(true);
 				}
 
 				@Override
@@ -74,12 +82,14 @@ public class InternalFrameFornecedor extends Comum {
 	}
 
 	private void pesquisarClicked() {
-		if(buttonsFiltroFornecedor.getJrbCnpj().isSelected()){
+		if (buttonsFiltroFornecedor.getJrbCnpj().isSelected()) {
 			String cnpj = buttonsFiltroFornecedor.getJtDados().getText();
-			JOptionPane.showMessageDialog(null,"Filtro: CNPJ - " + cnpj);
-		}else {
+			JOptionPane.showMessageDialog(null, "Filtro: CNPJ - " + cnpj);
+		} else if(buttonsFiltroFornecedor.getJrbRazao().isSelected()){
 			String razao = buttonsFiltroFornecedor.getJtDados().getText();
-			JOptionPane.showMessageDialog(null,"Filtro: Razão - " + razao);
+			JOptionPane.showMessageDialog(null, "Filtro: Razão - " + razao);
+		}else{
+			JOptionPane.showMessageDialog(null, "Filtro: Todos foi selecionado! ");
 		}
 	}
 }

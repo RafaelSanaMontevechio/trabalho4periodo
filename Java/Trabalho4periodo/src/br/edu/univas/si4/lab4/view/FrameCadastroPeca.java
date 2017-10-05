@@ -60,7 +60,7 @@ public class FrameCadastroPeca extends JDialog {
 	}
 
 	private void cancelarClicked() {
-		JOptionPane.showMessageDialog(null, "Clicou botão cancelar - Tela cadastro peça");
+		this.dispose();
 	}
 
 }

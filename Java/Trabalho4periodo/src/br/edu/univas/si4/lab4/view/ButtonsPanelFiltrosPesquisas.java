@@ -151,7 +151,7 @@ public class ButtonsPanelFiltrosPesquisas extends JPanel {
 		return jrbTodos;
 	}
 
-	private JTextField getJtDados() {
+	public JTextField getJtDados() {
 		if (jtDados == null) {
 			jtDados = new JTextField();
 		}

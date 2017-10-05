@@ -1,6 +1,5 @@
 package br.edu.univas.si4.lab4.view;
 
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -22,30 +21,33 @@ import br.edu.univas.si4.lab4.interfaces.ButtonsListernerFiltroPesquisa;
 public class ButtonsPanelFiltroFornecedor extends JPanel {
 
 	private static final long serialVersionUID = -1759312264043457519L;
-	
+
 	private ArrayList<ButtonsListernerFiltroPesquisa> listeners = new ArrayList<>();
-	
+
 	private JLabel jlFiltrarPor;
 	private JLabel jlCnpj;
 	private JLabel jlRazao;
+	private JLabel jlTodos;
 	private JRadioButton jrbCnpj;
 	private JRadioButton jrbRazao;
+	private JRadioButton jrbTodos;
 	private JTextField jtDados;
 	private JButton jbBuscar;
 
 	private ButtonGroup group;
-	
+
 	private GridBagConstraints jlFiltrarPorConstraints;
 	private GridBagConstraints jlCnpjConstraint;
 	private GridBagConstraints jlRazaoConstraint;
+	private GridBagConstraints jlTodosConstraints;
 	private GridBagConstraints jrbCnpjConstraint;
 	private GridBagConstraints jrbRazaoConstraint;
+	private GridBagConstraints jrbTodosConstraint;
 	private GridBagConstraints jtDadosConstraint;
 	private GridBagConstraints jbBuscarConstraint;
 
 	public ButtonsPanelFiltroFornecedor() {
 		setBorder(BorderFactory.createTitledBorder("Filtros"));
-		setPreferredSize(new Dimension(250, 250));
 		setLayout(new GridBagLayout());
 
 		addComponents();
@@ -54,17 +56,24 @@ public class ButtonsPanelFiltroFornecedor extends JPanel {
 
 	private void addComponents() {
 		add(getJlFiltrarPor(), getjlFiltarPorConstraints());
+
 		add(getJrbCnpj(), getJrbCnpjConstraint());
 		add(getJlCnpj(), getJlCnpjConstraint());
+
 		add(getJrbRazao(), getJrbRazaoConstraint());
 		add(getJlRazao(), getJlRazaoConstraint());
+
+		add(getJrbTodos(), getJrbTodosConstraint());
+		add(getJlTodos(), getJlTodosConstraints());
+
 		add(getJtDados(), getJtDadosConstraint());
 		add(getJbBuscar(), getJbBuscarConstraint());
 
 		getGroup().add(getJrbCnpj());
 		getGroup().add(getJrbRazao());
+		getGroup().add(getJrbTodos());
 	}
-	
+
 	private JLabel getJlFiltrarPor() {
 		if (jlFiltrarPor == null) {
 			jlFiltrarPor = new JLabel();
@@ -90,6 +99,14 @@ public class ButtonsPanelFiltroFornecedor extends JPanel {
 		return jlRazao;
 	}
 
+	private JLabel getJlTodos() {
+		if (jlTodos == null) {
+			jlTodos = new JLabel();
+			jlTodos.setText("Todos");
+		}
+		return jlTodos;
+	}
+
 	public JRadioButton getJrbCnpj() {
 		if (jrbCnpj == null) {
 			jrbCnpj = new JRadioButton();
@@ -103,6 +120,13 @@ public class ButtonsPanelFiltroFornecedor extends JPanel {
 			jrbRazao = new JRadioButton();
 		}
 		return jrbRazao;
+	}
+
+	private JRadioButton getJrbTodos() {
+		if (jrbTodos == null) {
+			jrbTodos = new JRadioButton();
+		}
+		return jrbTodos;
 	}
 
 	public JTextField getJtDados() {
@@ -135,7 +159,7 @@ public class ButtonsPanelFiltroFornecedor extends JPanel {
 	}
 
 	// Getters
-	
+
 	private GridBagConstraints getjlFiltarPorConstraints() {
 		if (jlFiltrarPorConstraints == null) {
 			jlFiltrarPorConstraints = new GridBagConstraints();
@@ -192,12 +216,34 @@ public class ButtonsPanelFiltroFornecedor extends JPanel {
 		return jlRazaoConstraint;
 	}
 
+	private GridBagConstraints getJrbTodosConstraint() {
+		if (jrbTodosConstraint == null) {
+			jrbTodosConstraint = new GridBagConstraints();
+			jrbTodosConstraint.gridx = 4;
+			jrbTodosConstraint.gridy = 1;
+			jrbTodosConstraint.insets = new Insets(5, 5, 5, 5);
+			jrbTodosConstraint.anchor = GridBagConstraints.LINE_START;
+		}
+		return jrbTodosConstraint;
+	}
+
+	private GridBagConstraints getJlTodosConstraints() {
+		if (jlTodosConstraints == null) {
+			jlTodosConstraints = new GridBagConstraints();
+			jlTodosConstraints.gridx = 5;
+			jlTodosConstraints.gridy = 1;
+			jlTodosConstraints.insets = new Insets(5, 5, 5, 5);
+			jlTodosConstraints.anchor = GridBagConstraints.LINE_START;
+		}
+		return jlTodosConstraints;
+	}
+
 	private GridBagConstraints getJtDadosConstraint() {
 		if (jtDadosConstraint == null) {
 			jtDadosConstraint = new GridBagConstraints();
 			jtDadosConstraint.gridx = 0;
 			jtDadosConstraint.gridy = 3;
-			jtDadosConstraint.gridwidth = 4;
+			jtDadosConstraint.gridwidth = 6;
 			jtDadosConstraint.ipadx = 100;
 			jtDadosConstraint.insets = new Insets(5, 5, 5, 5);
 			jtDadosConstraint.fill = GridBagConstraints.HORIZONTAL;
@@ -216,11 +262,11 @@ public class ButtonsPanelFiltroFornecedor extends JPanel {
 		}
 		return jbBuscarConstraint;
 	}
-	
+
 	public void addButtonsListenerFiltroPesquisa(ButtonsListernerFiltroPesquisa listener) {
 		listeners.add(listener);
 	}
-	
+
 	private void pesquisarClicked() {
 		for (ButtonsListernerFiltroPesquisa listener : listeners) {
 			listener.pesquisarPerformed();

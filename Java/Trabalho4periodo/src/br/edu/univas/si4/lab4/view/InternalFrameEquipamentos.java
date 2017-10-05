@@ -15,7 +15,7 @@ public class InternalFrameEquipamentos extends Comum {
 	private ButtonsPanelFiltrosPesquisas buttonsPanelPesquisa;
 
 	private static String[] columnNames = { "Codigo", "Nome", "Quantidade", "Fornecedor" };
-	private static Object[][] tableData = { { "90100123", "Equipamento 1", "20", "Fornecedor 1" } };
+	private static Object[][] tableData = {{ "90100123", "Equipamento 1", "20", "Fornecedor 1" }};
 
 	public InternalFrameEquipamentos() {
 		super("Consulta equipamentos em estoque", "Equipamentos cadastrados", columnNames, tableData);
@@ -80,7 +80,7 @@ public class InternalFrameEquipamentos extends Comum {
 
 	private void pesquisarClicked() {
 		if (buttonsPanelPesquisa.getJrbCodigo().isSelected()) {
-			JOptionPane.showMessageDialog(null, "Filto: Código selecionado! - Peça");
+			JOptionPane.showMessageDialog(null, "Filto: Código selecionado! - Equipamento");
 		} else if (buttonsPanelPesquisa.getJrbNome().isSelected()) {
 			JOptionPane.showMessageDialog(null, "Filto: Nome selecionado!");
 		} else if (buttonsPanelPesquisa.getJrbFornecedor().isSelected()) {
