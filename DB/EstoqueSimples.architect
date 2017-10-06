@@ -45,7 +45,7 @@
     <column id="COL10" populated="true" UUID="6326e521-ceae-44cb-8619-4b0a8264407b" autoIncrement="false" autoIncrementSequenceName="Equipamento_quantidade_seq" defaultValue="" name="quantidade" nullable="0" physicalName="quantidade" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL11" populated="true" UUID="60985189-82ac-4693-a07f-e290c5746099" autoIncrement="false" autoIncrementSequenceName="Fornecedor_cnpj_seq" defaultValue="" name="cnpj" nullable="0" physicalName="cnpj" precision="14" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
+    <column id="COL11" populated="true" UUID="60985189-82ac-4693-a07f-e290c5746099" autoIncrement="false" autoIncrementSequenceName="Fornecedor_cnpj_seq_1" defaultValue="" name="cnpj" nullable="0" physicalName="cnpj" precision="14" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
     </folder>
@@ -71,10 +71,10 @@
     <column id="COL17" populated="true" UUID="4018890b-03b1-4ece-ae1d-63e5faa69169" autoIncrement="false" autoIncrementSequenceName="peca_quantidade_seq" defaultValue="" name="quantidade" nullable="0" physicalName="quantidade" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL18" populated="true" UUID="1f3a08b6-9e1b-4956-bd7c-f224300316d2" autoIncrement="false" autoIncrementSequenceName="Fornecedor_cnpj_seq" defaultValue="" name="cnpj" nullable="0" physicalName="cnpj" precision="14" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
+    <column id="COL18" populated="true" UUID="1f3a08b6-9e1b-4956-bd7c-f224300316d2" autoIncrement="false" autoIncrementSequenceName="Fornecedor_cnpj_seq_2" defaultValue="" name="cnpj" nullable="0" physicalName="cnpj" precision="14" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
-    <column id="COL19" populated="true" UUID="02009edd-b193-4c84-a83d-31b494077af3" autoIncrement="false" autoIncrementSequenceName="Equipamento_codigoEquipamento_seq" defaultValue="" name="codigoEquipamento" nullable="0" physicalName="codigoEquipamento" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL19" populated="true" UUID="02009edd-b193-4c84-a83d-31b494077af3" autoIncrement="false" autoIncrementSequenceName="Equipamento_codigoEquipamento_seq_1" defaultValue="" name="codigoEquipamento" nullable="0" physicalName="codigoEquipamento" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     </folder>
