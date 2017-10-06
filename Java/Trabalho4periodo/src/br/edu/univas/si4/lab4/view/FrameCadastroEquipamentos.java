@@ -54,13 +54,12 @@ public class FrameCadastroEquipamentos extends JDialog {
 		}
 		return buttonsCadastro;
 	}
-	
+
 	private void salvarClicked() {
 		JOptionPane.showMessageDialog(null, "Clicou botão salvar - Tela cadastro equipamento");
 	}
 
 	private void cancelarClicked() {
-		JOptionPane.showMessageDialog(null, "Clicou botão cancelar - Tela cadastro equipamento");
+		this.dispose();
 	}
-
 }

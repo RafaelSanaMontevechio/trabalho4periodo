@@ -40,12 +40,12 @@ public class FrameEstoque extends JDialog {
 		if (buttonsPanel == null) {
 			buttonsPanel = new ButtonsPanelCadastros();
 			buttonsPanel.addButtonsListener(new ButtonsListener() {
-				
+
 				@Override
 				public void salvarPerformed() {
 					salvarClicked();
 				}
-				
+
 				@Override
 				public void cancelarPerformed() {
 					cancelarClicked();
@@ -54,13 +54,23 @@ public class FrameEstoque extends JDialog {
 		}
 		return buttonsPanel;
 	}
-	
+
 	private void salvarClicked() {
-		JOptionPane.showMessageDialog(null, "Clicou botão salvar - Tela estoque");
+		if (panelEstoque.getJrbAdicionar().isSelected() && panelEstoque.getJrbEquipamento().isSelected()) {
+			JOptionPane.showMessageDialog(null, "Adicionar equipamento ao estoque");
+		} 
+		else if (panelEstoque.getJrbAdicionar().isSelected() && panelEstoque.getJrbPeca().isSelected()) {
+			JOptionPane.showMessageDialog(null, "Adicionar peça ao estoque");
+		} 
+		else if (panelEstoque.getJrbRetirar().isSelected() && panelEstoque.getJrbEquipamento().isSelected()) {
+			JOptionPane.showMessageDialog(null, "Retirar equipamento ao estoque");
+		} 
+		else if (panelEstoque.getJrbRetirar().isSelected() && panelEstoque.getJrbPeca().isSelected()) {
+			JOptionPane.showMessageDialog(null, "Retirar peças ao estoque");
+		}
 	}
 
 	private void cancelarClicked() {
-		JOptionPane.showMessageDialog(null, "Clicou botão cancelar - Tela estoque");
+		this.dispose();
 	}
-
 }
