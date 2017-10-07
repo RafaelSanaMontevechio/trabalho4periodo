@@ -1,4 +1,4 @@
-package br.edu.univas.si4.lab4.view;
+package br.edu.univas.si4.lab4.view.estoque;
 
 import java.awt.BorderLayout;
 
@@ -6,6 +6,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
+import br.edu.univas.si4.lab4.view.commonButtonsPanels.ButtonsPanelCadastros;
 
 public class FrameEstoque extends JDialog {
 

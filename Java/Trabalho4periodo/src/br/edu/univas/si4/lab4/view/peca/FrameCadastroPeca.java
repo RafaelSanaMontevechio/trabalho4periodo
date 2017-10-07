@@ -1,4 +1,4 @@
-package br.edu.univas.si4.lab4.view;
+package br.edu.univas.si4.lab4.view.peca;
 
 import java.awt.BorderLayout;
 
@@ -6,34 +6,35 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
+import br.edu.univas.si4.lab4.view.commonButtonsPanels.ButtonsPanelCadastros;
 
-public class FrameCadastroEquipamentos extends JDialog {
+public class FrameCadastroPeca extends JDialog {
 
-	private static final long serialVersionUID = 6411516047271744522L;
+	private static final long serialVersionUID = -7860829342439937591L;
 
-	private PanelCadastroEquipamento panelCadEquipamento;
+	private PanelCadastroPeca panelCadPeca;
 	private ButtonsPanelCadastros buttonsCadastro;
 
-	public FrameCadastroEquipamentos() {
-		this.setTitle("Cadastro de equipamento");
+	public FrameCadastroPeca() {
+		this.setTitle("Cadastro de peça");
 		this.setModal(true);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 
-		addComponents();
+		addComponentes();
 		pack();
 	}
 
-	private void addComponents() {
-		add(getPanelCadEquipamento(), BorderLayout.CENTER);
+	private void addComponentes() {
+		add(getPanelCadPeca(), BorderLayout.CENTER);
 		add(getButtonsCadastro(), BorderLayout.SOUTH);
 	}
 
-	private PanelCadastroEquipamento getPanelCadEquipamento() {
-		if (panelCadEquipamento == null) {
-			panelCadEquipamento = new PanelCadastroEquipamento();
+	private PanelCadastroPeca getPanelCadPeca() {
+		if (panelCadPeca == null) {
+			panelCadPeca = new PanelCadastroPeca();
 		}
-		return panelCadEquipamento;
+		return panelCadPeca;
 	}
 
 	private ButtonsPanelCadastros getButtonsCadastro() {
@@ -54,12 +55,13 @@ public class FrameCadastroEquipamentos extends JDialog {
 		}
 		return buttonsCadastro;
 	}
-
+	
 	private void salvarClicked() {
-		JOptionPane.showMessageDialog(null, "Clicou botão salvar - Tela cadastro equipamento");
+		JOptionPane.showMessageDialog(null, "Clicou botão salvar - Tela cadastro peça");
 	}
 
 	private void cancelarClicked() {
 		this.dispose();
 	}
+
 }

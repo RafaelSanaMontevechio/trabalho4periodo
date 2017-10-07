@@ -9,6 +9,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import br.edu.univas.si4.lab4.view.equipamento.FrameCadastroEquipamentos;
+import br.edu.univas.si4.lab4.view.equipamento.InternalFrameEquipamentos;
+import br.edu.univas.si4.lab4.view.estoque.FrameEstoque;
+import br.edu.univas.si4.lab4.view.fornecedor.FrameCadastroFornecedor;
+import br.edu.univas.si4.lab4.view.fornecedor.InternalFrameFornecedor;
+import br.edu.univas.si4.lab4.view.peca.FrameCadastroPeca;
+import br.edu.univas.si4.lab4.view.peca.InternalFramePecas;
+
 public class JmenuBar extends JMenuBar {
 
 	private static final long serialVersionUID = 4907700397195319504L;

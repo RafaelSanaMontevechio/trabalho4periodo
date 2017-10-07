@@ -1,4 +1,4 @@
-package br.edu.univas.si4.lab4.view;
+package br.edu.univas.si4.lab4.view.peca;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

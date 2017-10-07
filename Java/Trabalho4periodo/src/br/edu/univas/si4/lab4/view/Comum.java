@@ -10,6 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 
+import br.edu.univas.si4.lab4.view.commonButtonsPanels.ButtonsPanelRelatorio;
+
 public abstract class Comum extends JInternalFrame {
 
 	private static final long serialVersionUID = 7859729951608406473L;

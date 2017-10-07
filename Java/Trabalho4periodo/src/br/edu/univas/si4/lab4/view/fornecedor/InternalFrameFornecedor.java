@@ -1,4 +1,4 @@
-package br.edu.univas.si4.lab4.view;
+package br.edu.univas.si4.lab4.view.fornecedor;
 
 import java.awt.BorderLayout;
 
@@ -6,6 +6,8 @@ import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.lab4.interfaces.ButtonsListenerRelatorios;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListernerFiltroPesquisa;
+import br.edu.univas.si4.lab4.view.Comum;
+import br.edu.univas.si4.lab4.view.commonButtonsPanels.ButtonsPanelRelatorio;
 
 public class InternalFrameFornecedor extends Comum {
 

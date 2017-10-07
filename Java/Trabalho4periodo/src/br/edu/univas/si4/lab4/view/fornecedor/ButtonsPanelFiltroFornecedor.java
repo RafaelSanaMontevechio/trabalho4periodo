@@ -1,4 +1,4 @@
-package br.edu.univas.si4.lab4.view;
+package br.edu.univas.si4.lab4.view.fornecedor;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;

@@ -1,29 +1,32 @@
 package br.edu.univas.si4.lab4.model;
 
 public class Fornecedor {
-	
-	private String NomeRazao = "";
-	private String Fantasia = "";
-	private int Cnpj = 0;
-	
-	
+
+	private String nomeRazao = "";
+	private String fantasia = "";
+	private int cnpj = 0;
+
 	public String getNomeRazao() {
-		return NomeRazao;
-	}
-	public void setNomeRazao(String nomeRazao) {
-		NomeRazao = nomeRazao;
-	}
-	public String getFantasia() {
-		return Fantasia;
-	}
-	public void setFantasia(String fantasia) {
-		Fantasia = fantasia;
-	}
-	public int getCnpj() {
-		return Cnpj;
-	}
-	public void setCnpj(int cnpj) {
-		Cnpj = cnpj;
+		return nomeRazao;
 	}
 
+	public void setNomeRazao(String nomeRazao) {
+		this.nomeRazao = nomeRazao;
+	}
+
+	public String getFantasia() {
+		return fantasia;
+	}
+
+	public void setFantasia(String fantasia) {
+		this.fantasia = fantasia;
+	}
+
+	public int getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(int cnpj) {
+		this.cnpj = cnpj;
+	}
 }
