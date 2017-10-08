@@ -13,14 +13,12 @@ public class InternalFrameFornecedor extends Comum {
 
 	private static final long serialVersionUID = 7818698877376614841L;
 
+	private static TableModelFornecedor tableModelFornecedor;
 	private FrameCadastroFornecedor fCadFornecedor;
 	private ButtonsPanelFiltroFornecedor buttonsFiltroFornecedor;
 
-	private static String[] columnNames = { "Nome/Razão", "CNPJ", "Nome Fantasia" };
-	private static Object[][] tableData = { { "Fornecedor 1 LTDA", "11111111111111", "Fornecedor 1" } };
-
 	public InternalFrameFornecedor() {
-		super("Consulta de fornecedores cadastrados", "Fornecedores Cadastrados", columnNames, tableData);
+		super("Consulta de fornecedores cadastrados", "Fornecedores Cadastrados", getTableModelFornecedor());
 
 		add(getButtonsFiltroFornecedor(), BorderLayout.WEST);
 		pack();
@@ -32,6 +30,14 @@ public class InternalFrameFornecedor extends Comum {
 			fCadFornecedor.setLocationRelativeTo(null);
 		}
 		return fCadFornecedor;
+	}
+
+	//Table Model Fornecedor
+	public static TableModelFornecedor getTableModelFornecedor() {
+		if (tableModelFornecedor == null) {
+			tableModelFornecedor = new TableModelFornecedor();
+		}
+		return tableModelFornecedor;
 	}
 
 	@Override
@@ -63,7 +69,6 @@ public class InternalFrameFornecedor extends Comum {
 
 				}
 			});
-
 		}
 
 		return buttonsPanelRelatorio;
@@ -87,10 +92,10 @@ public class InternalFrameFornecedor extends Comum {
 		if (buttonsFiltroFornecedor.getJrbCnpj().isSelected()) {
 			String cnpj = buttonsFiltroFornecedor.getJtDados().getText();
 			JOptionPane.showMessageDialog(null, "Filtro: CNPJ - " + cnpj);
-		} else if(buttonsFiltroFornecedor.getJrbRazao().isSelected()){
+		} else if (buttonsFiltroFornecedor.getJrbRazao().isSelected()) {
 			String razao = buttonsFiltroFornecedor.getJtDados().getText();
 			JOptionPane.showMessageDialog(null, "Filtro: Razão - " + razao);
-		}else{
+		} else {
 			JOptionPane.showMessageDialog(null, "Filtro: Todos foi selecionado! ");
 		}
 	}

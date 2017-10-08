@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.table.TableModel;
 
 import br.edu.univas.si4.lab4.view.commonButtonsPanels.ButtonsPanelRelatorio;
 
@@ -22,15 +23,17 @@ public abstract class Comum extends JInternalFrame {
 	private String titleContentPane;
 	private String[] columnNames;
 	private Object[][] tableData;
+	private TableModel model;
 
 	private JPanel contentPane;
 	protected ButtonsPanelRelatorio buttonsPanelRelatorio;
 
-	public Comum(String title, String titleContentPane, String[] columnNames, Object[][] tableData) {
+	public Comum(String title, String titleContentPane, TableModel model) {
 		this.setTitle(title);
 		this.titleContentPane = titleContentPane;
-		this.columnNames = columnNames;
-		this.tableData = tableData;
+//		this.columnNames = columnNames;
+//		this.tableData = tableData;
+		this.model = model;
 
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setLayout(new BorderLayout());
@@ -68,7 +71,7 @@ public abstract class Comum extends JInternalFrame {
 	 */
 	public JTable getTable() {
 		if (table == null) {
-			table = new JTable(tableData, columnNames);
+			table = new JTable(model);
 		}
 		return table;
 	}

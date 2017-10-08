@@ -3,7 +3,9 @@ package br.edu.univas.si4.lab4.view.fornecedor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.text.ParseException;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -18,7 +20,7 @@ public class PanelCadastroFornecedor extends JPanel {
 	private JLabel jlCnpj;
 	private JTextField jtNomeRazao;
 	private JTextField jtFantasia;
-	private JTextField jtCnpj;
+	private JFormattedTextField jtCnpj;
 
 	private GridBagConstraints jlNomeRazaoConstraints;
 	private GridBagConstraints jlFantasiaConstraints;
@@ -66,7 +68,6 @@ public class PanelCadastroFornecedor extends JPanel {
 	public JTextField getJtNomeRazao() {
 		if (jtNomeRazao == null) {
 			jtNomeRazao = new JTextField();
-			jtNomeRazao.setText("RAZÃO SOCIAL");
 		}
 		return jtNomeRazao;
 	}
@@ -74,15 +75,19 @@ public class PanelCadastroFornecedor extends JPanel {
 	public JTextField getJtFantasia() {
 		if (jtFantasia == null) {
 			jtFantasia = new JTextField();
-			jtFantasia.setText("FANTASIA");
 		}
 		return jtFantasia;
 	}
 
-	public JTextField getJtCnpj() {
+	public JFormattedTextField getJtCnpj() {
 		if (jtCnpj == null) {
-			jtCnpj = new JTextField();
-			jtCnpj.setText("CNPJ");
+			javax.swing.text.MaskFormatter maskCnpj = null;
+			try {
+				maskCnpj = new javax.swing.text.MaskFormatter("##.###.###/####-##");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			jtCnpj = new JFormattedTextField(maskCnpj);
 		}
 		return jtCnpj;
 	}
@@ -101,7 +106,7 @@ public class PanelCadastroFornecedor extends JPanel {
 	private GridBagConstraints getJlFantasiaConstraints() {
 		if (jlFantasiaConstraints == null) {
 			jlFantasiaConstraints = new GridBagConstraints();
-			jlFantasiaConstraints.gridx = 0;
+			jlFantasiaConstraints.gridx = 2;
 			jlFantasiaConstraints.gridy = 1;
 			jlFantasiaConstraints.insets = new Insets(5, 5, 5, 5);
 			jlFantasiaConstraints.anchor = GridBagConstraints.LINE_START;
@@ -113,7 +118,7 @@ public class PanelCadastroFornecedor extends JPanel {
 		if (jlCnpjConstraints == null) {
 			jlCnpjConstraints = new GridBagConstraints();
 			jlCnpjConstraints.gridx = 0;
-			jlCnpjConstraints.gridy = 2;
+			jlCnpjConstraints.gridy = 1;
 			jlCnpjConstraints.insets = new Insets(5, 5, 5, 5);
 			jlCnpjConstraints.anchor = GridBagConstraints.LINE_START;
 		}
@@ -126,7 +131,9 @@ public class PanelCadastroFornecedor extends JPanel {
 			jtNomeRazaoConstraints.gridx = 1;
 			jtNomeRazaoConstraints.gridy = 0;
 			jtNomeRazaoConstraints.ipadx = 100;
+			jtNomeRazaoConstraints.gridwidth = 3;
 			jtNomeRazaoConstraints.insets = new Insets(5, 5, 5, 5);
+			jtNomeRazaoConstraints.fill = GridBagConstraints.BOTH;
 		}
 		return jtNomeRazaoConstraints;
 	}
@@ -134,7 +141,7 @@ public class PanelCadastroFornecedor extends JPanel {
 	private GridBagConstraints getJtFantasiaConstraints() {
 		if (jtFantasiaConstraints == null) {
 			jtFantasiaConstraints = new GridBagConstraints();
-			jtFantasiaConstraints.gridx = 1;
+			jtFantasiaConstraints.gridx = 3;
 			jtFantasiaConstraints.gridy = 1;
 			jtFantasiaConstraints.ipadx = 100;
 			jtFantasiaConstraints.insets = new Insets(5, 5, 5, 5);
@@ -147,12 +154,11 @@ public class PanelCadastroFornecedor extends JPanel {
 		if (jtCnpjConstraints == null) {
 			jtCnpjConstraints = new GridBagConstraints();
 			jtCnpjConstraints.gridx = 1;
-			jtCnpjConstraints.gridy = 2;
+			jtCnpjConstraints.gridy = 1;
 			jtCnpjConstraints.ipadx = 100;
 			jtCnpjConstraints.insets = new Insets(5, 5, 5, 5);
 			jtCnpjConstraints.fill = GridBagConstraints.HORIZONTAL;
 		}
 		return jtCnpjConstraints;
 	}
-
 }

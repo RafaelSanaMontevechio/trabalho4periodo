@@ -4,7 +4,7 @@ public class Fornecedor {
 
 	private String nomeRazao = "";
 	private String fantasia = "";
-	private int cnpj = 0;
+	private Long cnpj;
 
 	public String getNomeRazao() {
 		return nomeRazao;
@@ -22,11 +22,11 @@ public class Fornecedor {
 		this.fantasia = fantasia;
 	}
 
-	public int getCnpj() {
+	public Long getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(int cnpj) {
+	public void setCnpj(Long cnpj) {
 		this.cnpj = cnpj;
 	}
 }

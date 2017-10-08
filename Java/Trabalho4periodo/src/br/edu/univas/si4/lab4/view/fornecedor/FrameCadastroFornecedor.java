@@ -3,8 +3,8 @@ package br.edu.univas.si4.lab4.view.fornecedor;
 import java.awt.BorderLayout;
 
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 
+import br.edu.univas.si4.lab4.controller.FornecedorController;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
 import br.edu.univas.si4.lab4.view.commonButtonsPanels.ButtonsPanelCadastros;
 
@@ -12,6 +12,7 @@ public class FrameCadastroFornecedor extends JDialog {
 
 	private PanelCadastroFornecedor panelCadFornecedor;
 	private ButtonsPanelCadastros buttonsCadastro;
+	private FornecedorController fornecedorController = new FornecedorController();
 
 	private static final long serialVersionUID = 8703398655774672349L;
 
@@ -56,11 +57,13 @@ public class FrameCadastroFornecedor extends JDialog {
 	}
 
 	private void salvarClicked() {
-		JOptionPane.showMessageDialog(null, "Clicou botão salvar");
+
+		 fornecedorController.newFornecedor(panelCadFornecedor.getJtCnpj().getText(),
+		 panelCadFornecedor.getJtNomeRazao().getText(),
+		 panelCadFornecedor.getJtFantasia().getText());		
 	}
 
 	private void cancelarClicked() {
 		this.dispose();
 	}
-
 }
