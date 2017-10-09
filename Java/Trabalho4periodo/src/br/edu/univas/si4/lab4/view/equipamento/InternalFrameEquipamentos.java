@@ -7,8 +7,8 @@ import javax.swing.JOptionPane;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListenerRelatorios;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListernerFiltroPesquisa;
 import br.edu.univas.si4.lab4.view.Comum;
-import br.edu.univas.si4.lab4.view.commonButtonsPanels.ButtonsPanelFiltrosPesquisas;
-import br.edu.univas.si4.lab4.view.commonButtonsPanels.ButtonsPanelRelatorio;
+import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelFiltrosPesquisas;
+import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelRelatorio;
 
 public class InternalFrameEquipamentos extends Comum {
 
@@ -18,10 +18,10 @@ public class InternalFrameEquipamentos extends Comum {
 	private ButtonsPanelFiltrosPesquisas buttonsPanelPesquisa;
 
 	private static String[] columnNames = { "Codigo", "Nome", "Quantidade", "Fornecedor" };
-	private static Object[][] tableData = {{ "90100123", "Equipamento 1", "20", "Fornecedor 1" }};
+	private static Object[][] tableData = { { "90100123", "Equipamento 1", "20", "Fornecedor 1" } };
 
 	public InternalFrameEquipamentos() {
-		super("Consulta equipamentos em estoque", "Equipamentos cadastrados", columnNames, tableData);
+		super("Consulta equipamentos em estoque", "Equipamentos cadastrados");
 
 		add(getPanelFiltroPesquisas(), BorderLayout.WEST);
 	}

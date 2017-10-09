@@ -6,7 +6,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
-import br.edu.univas.si4.lab4.view.commonButtonsPanels.ButtonsPanelCadastros;
+import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelCadastros;
 
 public class FrameCadastroPeca extends JDialog {
 

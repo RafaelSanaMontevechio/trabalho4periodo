@@ -2,7 +2,11 @@ package br.edu.univas.si4.lab4.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.edu.univas.si4.lab4.model.Fornecedor;
 
@@ -40,17 +44,23 @@ public class FornecedorDao {
 		conn.close();
 	}
 
-	public Fornecedor selectAllFornecedor() throws SQLException{
-		
-		String sentence = "SELECT * FROM FORNCEDOR";
-		
-		Connection conn = DBUtil.openConnection();
-		
-		PreparedStatement prepStat = conn.prepareStatement(sentence);
-		
-		prepStat.execute();
-		
-		return fornecedor;
+	public List<Fornecedor> listAllFornecedores() throws SQLException {
+		List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
 
+		Connection conn = DBUtil.openConnection();
+
+		String sentence = " SELECT * FROM FORNECEDOR ";
+
+		Statement stm = conn.createStatement();
+		ResultSet rs = stm.executeQuery(sentence);
+
+		while (rs.next()) {
+			fornecedor = new Fornecedor();
+			fornecedor.setCnpj(rs.getLong(1));
+			fornecedor.setNomeRazao(rs.getString(2));
+			fornecedor.setFantasia(rs.getString(3));
+			fornecedores.add(fornecedor);
+		}
+		return fornecedores;
 	}
 }

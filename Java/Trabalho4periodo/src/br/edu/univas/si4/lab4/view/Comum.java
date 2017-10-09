@@ -11,7 +11,7 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.TableModel;
 
-import br.edu.univas.si4.lab4.view.commonButtonsPanels.ButtonsPanelRelatorio;
+import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelRelatorio;
 
 public abstract class Comum extends JInternalFrame {
 
@@ -21,8 +21,8 @@ public abstract class Comum extends JInternalFrame {
 	private JScrollPane tableScroll;
 	private JPanel panelCadastrados;
 	private String titleContentPane;
-	private String[] columnNames;
-	private Object[][] tableData;
+	//private String[] columnNames;
+	//private Object[][] tableData;
 	private TableModel model;
 
 	private JPanel contentPane;
@@ -34,6 +34,7 @@ public abstract class Comum extends JInternalFrame {
 //		this.columnNames = columnNames;
 //		this.tableData = tableData;
 		this.model = model;
+	
 
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setLayout(new BorderLayout());

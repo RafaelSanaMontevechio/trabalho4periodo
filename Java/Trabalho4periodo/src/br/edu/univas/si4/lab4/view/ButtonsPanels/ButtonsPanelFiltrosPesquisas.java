@@ -1,4 +1,4 @@
-package br.edu.univas.si4.lab4.view.commonButtonsPanels;
+package br.edu.univas.si4.lab4.view.ButtonsPanels;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;

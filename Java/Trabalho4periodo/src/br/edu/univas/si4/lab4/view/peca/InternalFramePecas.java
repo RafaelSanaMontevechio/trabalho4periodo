@@ -7,8 +7,8 @@ import javax.swing.JOptionPane;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListenerRelatorios;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListernerFiltroPesquisa;
 import br.edu.univas.si4.lab4.view.Comum;
-import br.edu.univas.si4.lab4.view.commonButtonsPanels.ButtonsPanelFiltrosPesquisas;
-import br.edu.univas.si4.lab4.view.commonButtonsPanels.ButtonsPanelRelatorio;
+import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelFiltrosPesquisas;
+import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelRelatorio;
 
 public class InternalFramePecas extends Comum {
 
@@ -22,7 +22,7 @@ public class InternalFramePecas extends Comum {
 			{ "001 ", "Teste 1", "        10", "Unidade", "Equipamento 1", "Fornecedor 1" } };
 
 	public InternalFramePecas() {
-		super("Consulta de peças em estoque", "Peças em estoque", columnNames, tableData);
+		super("Consulta de peças em estoque", "Peças em estoque");
 
 		add(getPanelFiltroPesquisas(), BorderLayout.WEST);
 	}
