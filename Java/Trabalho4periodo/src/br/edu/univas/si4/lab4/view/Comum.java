@@ -2,6 +2,7 @@ package br.edu.univas.si4.lab4.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
@@ -11,7 +12,9 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.TableModel;
 
+import br.edu.univas.si4.lab4.model.Fornecedor;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelRelatorio;
+import br.edu.univas.si4.lab4.view.fornecedor.TableModelFornecedor;
 
 public abstract class Comum extends JInternalFrame {
 
@@ -28,7 +31,7 @@ public abstract class Comum extends JInternalFrame {
 	private JPanel contentPane;
 	protected ButtonsPanelRelatorio buttonsPanelRelatorio;
 
-	public Comum(String title, String titleContentPane, TableModel model) {
+	public Comum(String title, String titleContentPane) {
 		this.setTitle(title);
 		this.titleContentPane = titleContentPane;
 //		this.columnNames = columnNames;
@@ -84,6 +87,12 @@ public abstract class Comum extends JInternalFrame {
 			tableScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		}
 		return tableScroll;
+	}
+	
+	public void updateModel(ArrayList<Fornecedor> list) {
+		TableModelFornecedor tmFornecedor = new TableModelFornecedor(list);
+		
+		getTable().setModel(tmFornecedor);
 	}
 
 	public abstract ButtonsPanelRelatorio getButtonsPanelRelatorio();

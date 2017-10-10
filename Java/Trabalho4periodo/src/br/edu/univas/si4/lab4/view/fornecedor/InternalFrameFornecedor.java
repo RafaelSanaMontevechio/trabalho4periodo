@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JOptionPane;
 
+import br.edu.univas.si4.lab4.controller.FornecedorController;
 import br.edu.univas.si4.lab4.dao.FornecedorDao;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListenerRelatorios;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListernerFiltroPesquisa;
@@ -20,7 +21,7 @@ public class InternalFrameFornecedor extends Comum {
 	static TableModelFornecedor tmFornecedor;
 
 	public InternalFrameFornecedor() {
-		super("Consulta de fornecedores cadastrados", "Fornecedores Cadastrados", getTmFornecedor());
+		super("Consulta de fornecedores cadastrados", "Fornecedores Cadastrados");
 
 		add(getButtonsFiltroFornecedor(), BorderLayout.WEST);
 		pack();
@@ -88,20 +89,19 @@ public class InternalFrameFornecedor extends Comum {
 		} else if (buttonsFiltroFornecedor.getJrbRazao().isSelected()) {
 
 		} else {
-			/*
-			 * List<Fornecedor> fornecedores = new ArrayList<Fornecedor>(); try {
-			 * fornecedores = new FornecedorDao().listAllFornecedores(); for (Fornecedor
-			 * fornecedor : fornecedores) { System.out.println(fornecedor.getCnpj() + " - "
-			 * + fornecedor.getNomeRazao() + " - " + fornecedor.getFantasia() + "\n"); } }
-			 * catch (SQLException e) { System.out.println("Erro!"); e.printStackTrace(); }
-			 */
-		}
-	}
 
-	public static TableModelFornecedor getTmFornecedor() {
-		if (tmFornecedor == null) {
-			tmFornecedor = new TableModelFornecedor();
+//			List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+//			try {
+//				fornecedores = new FornecedorDao().listAllFornecedores();
+//				for (Fornecedor fornecedor : fornecedores) {
+//					System.out.println(fornecedor.getCnpj() + " - " + fornecedor.getNomeRazao() + " - "
+//							+ fornecedor.getFantasia() + "\n");
+//				}
+//			} catch (SQLException e) {
+//				System.out.println("Erro!");
+//				e.printStackTrace();
+//			}
+			new FornecedorController().addData();
 		}
-		return tmFornecedor;
 	}
 }

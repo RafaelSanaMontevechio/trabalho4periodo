@@ -23,29 +23,31 @@ public class FornecedorDao {
 
 	public void insertNewFornecedor(Fornecedor fornecedor) throws SQLException {
 
-		// String para fazer o insert de novo fornecedor no banco
 		String sentence = "INSERT INTO FORNECEDOR " + " (cnpj, razao_social, nome_fantasia) " + " VALUES (?, ?, ?)";
 
-		// Abre a conexão com o banco
-		Connection conn = DBUtil.openConnection();
+		Connection conn = null;
 
-		// Prepara a String
-		PreparedStatement prepStat = conn.prepareStatement(sentence);
+		try {
 
-		// Configura os parametros da sentença
-		prepStat.setLong(1, fornecedor.getCnpj());
-		prepStat.setString(2, fornecedor.getNomeRazao());
-		prepStat.setString(3, fornecedor.getFantasia());
+			conn = DBUtil.openConnection();
+			PreparedStatement prepStat = conn.prepareStatement(sentence);
 
-		// Executa a sentença
-		prepStat.execute();
+			prepStat.setLong(1, fornecedor.getCnpj());
+			prepStat.setString(2, fornecedor.getNomeRazao());
+			prepStat.setString(3, fornecedor.getFantasia());
 
-		// Fecha a conexão
-		conn.close();
+			prepStat.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (conn != null) {
+			conn.close();
+		}
 	}
 
 	public List<Fornecedor> listAllFornecedores() throws SQLException {
-		List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+		ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
 
 		Connection conn = DBUtil.openConnection();
 
