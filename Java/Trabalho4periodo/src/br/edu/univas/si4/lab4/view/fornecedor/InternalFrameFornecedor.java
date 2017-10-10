@@ -1,6 +1,9 @@
 package br.edu.univas.si4.lab4.view.fornecedor;
 
 import java.awt.BorderLayout;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -8,6 +11,7 @@ import br.edu.univas.si4.lab4.controller.FornecedorController;
 import br.edu.univas.si4.lab4.dao.FornecedorDao;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListenerRelatorios;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListernerFiltroPesquisa;
+import br.edu.univas.si4.lab4.to.FornecedorTO;
 import br.edu.univas.si4.lab4.view.Comum;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelRelatorio;
 
@@ -17,7 +21,6 @@ public class InternalFrameFornecedor extends Comum {
 
 	private FrameCadastroFornecedor fCadFornecedor;
 	private ButtonsPanelFiltroFornecedor buttonsFiltroFornecedor;
-	FornecedorDao fDAO = new FornecedorDao();
 	static TableModelFornecedor tmFornecedor;
 
 	public InternalFrameFornecedor() {
@@ -90,10 +93,10 @@ public class InternalFrameFornecedor extends Comum {
 
 		} else {
 
-//			List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+//			List<FornecedorTO> fornecedores = new ArrayList<FornecedorTO>();
 //			try {
 //				fornecedores = new FornecedorDao().listAllFornecedores();
-//				for (Fornecedor fornecedor : fornecedores) {
+//				for (FornecedorTO fornecedor : fornecedores) {
 //					System.out.println(fornecedor.getCnpj() + " - " + fornecedor.getNomeRazao() + " - "
 //							+ fornecedor.getFantasia() + "\n");
 //				}
@@ -101,7 +104,14 @@ public class InternalFrameFornecedor extends Comum {
 //				System.out.println("Erro!");
 //				e.printStackTrace();
 //			}
-			new FornecedorController().addData();
+			List<FornecedorTO> fornecedores = new ArrayList<FornecedorTO>();
+			try {
+				fornecedores = new FornecedorDao().listAllFornecedores();
+				this.updateModel(fornecedores);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }

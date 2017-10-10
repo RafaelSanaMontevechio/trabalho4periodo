@@ -2,7 +2,7 @@ package br.edu.univas.si4.lab4.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
@@ -36,7 +36,7 @@ public abstract class Comum extends JInternalFrame {
 		this.titleContentPane = titleContentPane;
 //		this.columnNames = columnNames;
 //		this.tableData = tableData;
-		this.model = model;
+
 	
 
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -89,7 +89,7 @@ public abstract class Comum extends JInternalFrame {
 		return tableScroll;
 	}
 	
-	public void updateModel(ArrayList<FornecedorTO> list) {
+	public void updateModel(List<FornecedorTO> list) {
 		TableModelFornecedor tmFornecedor = new TableModelFornecedor(list);
 		
 		getTable().setModel(tmFornecedor);

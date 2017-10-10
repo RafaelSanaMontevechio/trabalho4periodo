@@ -13,7 +13,7 @@ public class DBUtil {
 
 			String url = "jdbc:postgresql://localhost:5432/estoqueSimples";
 			String username = "postgres";
-			String password = "postgres";
+			String password = "POSTGRES";
 
 			Connection conn = DriverManager.getConnection(url, username, password);
 

@@ -6,22 +6,12 @@ import java.util.List;
 
 import br.edu.univas.si4.lab4.dao.FornecedorDao;
 import br.edu.univas.si4.lab4.to.FornecedorTO;
+import br.edu.univas.si4.lab4.view.fornecedor.InternalFrameFornecedor;
 import br.edu.univas.si4.lab4.view.fornecedor.TableModelFornecedor;
 
 public class FornecedorController {
 
-	private FornecedorTO fornecedor = new FornecedorTO();
-	TableModelFornecedor tmForneceddor;
-
-	public void newFornecedor(String cnpj, String razaoSocial, String nomeFantasia) {
-
-		cnpj = removeMask(cnpj);
-
-		long cnpjInt = Long.parseLong(cnpj);
-
-		fornecedor.setCnpj(cnpjInt);
-		fornecedor.setNomeRazao(razaoSocial);
-		fornecedor.setFantasia(nomeFantasia);
+	public void newFornecedor(FornecedorTO fornecedor) {
 
 		try {
 			new FornecedorDao().insertNewFornecedor(fornecedor);
@@ -31,18 +21,25 @@ public class FornecedorController {
 	}
 
 	public void addData() {
-		List<FornecedorTO> fornecedores = new ArrayList<FornecedorTO>();
+		List<FornecedorTO> fornecedores = null;
+		FornecedorDao fDAO = null;
 
 		try {
-			fornecedores = new FornecedorDao().listAllFornecedores();
+			fornecedores = new ArrayList<FornecedorTO>();
+			fDAO = new FornecedorDao();
 			
+			fornecedores = fDAO.listAllFornecedores();
+			
+			InternalFrameFornecedor ifFornecedor = new InternalFrameFornecedor();
+			
+			ifFornecedor.updateModel(fornecedores);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	// Remove mask do cnpj
-	private String removeMask(String cnpj) {
+	public String removeMask(String cnpj) {
 
 		cnpj = cnpj.replace(".", "");
 		cnpj = cnpj.replace(".", "");

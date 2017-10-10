@@ -6,6 +6,7 @@ import javax.swing.JDialog;
 
 import br.edu.univas.si4.lab4.controller.FornecedorController;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
+import br.edu.univas.si4.lab4.to.FornecedorTO;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelCadastros;
 
 public class FrameCadastroFornecedor extends JDialog {
@@ -13,6 +14,7 @@ public class FrameCadastroFornecedor extends JDialog {
 	private PanelCadastroFornecedor panelCadFornecedor;
 	private ButtonsPanelCadastros buttonsCadastro;
 	private FornecedorController fornecedorController = new FornecedorController();
+	private FornecedorTO fornecedorTO = new FornecedorTO();
 
 	private static final long serialVersionUID = 8703398655774672349L;
 
@@ -58,9 +60,14 @@ public class FrameCadastroFornecedor extends JDialog {
 
 	private void salvarClicked() {
 
-		 fornecedorController.newFornecedor(panelCadFornecedor.getJtCnpj().getText(),
-		 panelCadFornecedor.getJtNomeRazao().getText(),
-		 panelCadFornecedor.getJtFantasia().getText());		
+		long cnpjInt = Long.parseLong(fornecedorController.removeMask(panelCadFornecedor.getJtCnpj().getText()));
+
+		fornecedorTO.setCnpj(cnpjInt);
+		fornecedorTO.setNomeRazao(panelCadFornecedor.getJtNomeRazao().getText());
+		fornecedorTO.setFantasia(panelCadFornecedor.getJtFantasia().getText());
+
+		fornecedorController.newFornecedor(fornecedorTO);
+
 	}
 
 	private void cancelarClicked() {
