@@ -1,11 +1,11 @@
-package br.edu.univas.si4.lab4.model;
+package br.edu.univas.si4.lab4.to;
 
-public abstract class Produto {
+public abstract class ProdutoTO {
 
 	private int codigo;
 	private String nome;
 	private int quantidade;
-	private Fornecedor fornecedor;
+	private FornecedorTO fornecedor;
 
 	public int getCodigo() {
 		return codigo;
@@ -31,11 +31,11 @@ public abstract class Produto {
 		this.quantidade = quantidade;
 	}
 
-	public Fornecedor getFornecedor() {
+	public FornecedorTO getFornecedor() {
 		return fornecedor;
 	}
 
-	public void setFornecedor(Fornecedor fornecedor) {
+	public void setFornecedor(FornecedorTO fornecedor) {
 		this.fornecedor = fornecedor;
 	}
 

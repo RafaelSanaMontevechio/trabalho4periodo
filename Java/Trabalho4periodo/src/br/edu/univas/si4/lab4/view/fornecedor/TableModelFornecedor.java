@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import br.edu.univas.si4.lab4.model.Fornecedor;
+import br.edu.univas.si4.lab4.to.FornecedorTO;
 
 public class TableModelFornecedor extends AbstractTableModel {
 
@@ -19,16 +19,16 @@ public class TableModelFornecedor extends AbstractTableModel {
 	private static final int FANTASIA = 2;
 
 	// Lista de Fornecedores a serem exibidos na tabela
-	private List<Fornecedor> linhas;
+	private List<FornecedorTO> linhas;
 
 	// Cria um FornecedorTableModel sem nenhuma linha
 	public TableModelFornecedor() {
-		linhas = new ArrayList<Fornecedor>();
+		linhas = new ArrayList<FornecedorTO>();
 	}
 
 	// Cria um FornecedorTableModel contendo a lista recebida por parâmetro
-	public TableModelFornecedor(List<Fornecedor> listaDeFornecedores) {
-		linhas = new ArrayList<Fornecedor>(listaDeFornecedores);
+	public TableModelFornecedor(List<FornecedorTO> listaDeFornecedores) {
+		linhas = new ArrayList<FornecedorTO>(listaDeFornecedores);
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class TableModelFornecedor extends AbstractTableModel {
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		// Pega o fornecedor referente a linha especificada.
-		Fornecedor fornecedor = linhas.get(rowIndex);
+		FornecedorTO fornecedor = linhas.get(rowIndex);
 
 		switch (columnIndex) {
 		case CNPJ:
@@ -88,7 +88,7 @@ public class TableModelFornecedor extends AbstractTableModel {
 	@Override
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		// Pega o fornecedor referente a linha especificada.
-		Fornecedor fornecedor = linhas.get(rowIndex);
+		FornecedorTO fornecedor = linhas.get(rowIndex);
 
 		switch (columnIndex) {
 		case CNPJ:

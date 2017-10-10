@@ -8,20 +8,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.univas.si4.lab4.model.Fornecedor;
+import br.edu.univas.si4.lab4.to.FornecedorTO;
 
 public class FornecedorDao {
 
-	private Fornecedor fornecedor;
+	private FornecedorTO fornecedor;
 
-	public Fornecedor getFornecedor() {
+	public FornecedorTO getFornecedor() {
 		if (fornecedor == null) {
-			fornecedor = new Fornecedor();
+			fornecedor = new FornecedorTO();
 		}
 		return fornecedor;
 	}
 
-	public void insertNewFornecedor(Fornecedor fornecedor) throws SQLException {
+	public void insertNewFornecedor(FornecedorTO fornecedor) throws SQLException {
 
 		String sentence = "INSERT INTO FORNECEDOR " + " (cnpj, razao_social, nome_fantasia) " + " VALUES (?, ?, ?)";
 
@@ -46,8 +46,8 @@ public class FornecedorDao {
 		}
 	}
 
-	public List<Fornecedor> listAllFornecedores() throws SQLException {
-		ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+	public List<FornecedorTO> listAllFornecedores() throws SQLException {
+		ArrayList<FornecedorTO> fornecedores = new ArrayList<FornecedorTO>();
 
 		Connection conn = DBUtil.openConnection();
 
@@ -57,7 +57,7 @@ public class FornecedorDao {
 		ResultSet rs = stm.executeQuery(sentence);
 
 		while (rs.next()) {
-			fornecedor = new Fornecedor();
+			fornecedor = new FornecedorTO();
 			fornecedor.setCnpj(rs.getLong(1));
 			fornecedor.setNomeRazao(rs.getString(2));
 			fornecedor.setFantasia(rs.getString(3));

@@ -1,6 +1,6 @@
-package br.edu.univas.si4.lab4.model;
+package br.edu.univas.si4.lab4.to;
 
-public class Fornecedor {
+public class FornecedorTO {
 
 	private String nomeRazao = "";
 	private String fantasia = "";

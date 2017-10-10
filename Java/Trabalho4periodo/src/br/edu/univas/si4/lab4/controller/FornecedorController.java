@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.univas.si4.lab4.dao.FornecedorDao;
-import br.edu.univas.si4.lab4.model.Fornecedor;
+import br.edu.univas.si4.lab4.to.FornecedorTO;
 import br.edu.univas.si4.lab4.view.fornecedor.TableModelFornecedor;
 
 public class FornecedorController {
 
-	private Fornecedor fornecedor = new Fornecedor();
+	private FornecedorTO fornecedor = new FornecedorTO();
 	TableModelFornecedor tmForneceddor;
 
 	public void newFornecedor(String cnpj, String razaoSocial, String nomeFantasia) {
@@ -31,7 +31,7 @@ public class FornecedorController {
 	}
 
 	public void addData() {
-		List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+		List<FornecedorTO> fornecedores = new ArrayList<FornecedorTO>();
 
 		try {
 			fornecedores = new FornecedorDao().listAllFornecedores();

@@ -12,7 +12,7 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.TableModel;
 
-import br.edu.univas.si4.lab4.model.Fornecedor;
+import br.edu.univas.si4.lab4.to.FornecedorTO;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelRelatorio;
 import br.edu.univas.si4.lab4.view.fornecedor.TableModelFornecedor;
 
@@ -89,7 +89,7 @@ public abstract class Comum extends JInternalFrame {
 		return tableScroll;
 	}
 	
-	public void updateModel(ArrayList<Fornecedor> list) {
+	public void updateModel(ArrayList<FornecedorTO> list) {
 		TableModelFornecedor tmFornecedor = new TableModelFornecedor(list);
 		
 		getTable().setModel(tmFornecedor);
