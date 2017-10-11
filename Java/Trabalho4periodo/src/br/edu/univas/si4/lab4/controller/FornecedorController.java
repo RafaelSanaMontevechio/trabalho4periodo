@@ -6,11 +6,22 @@ import java.util.List;
 
 import br.edu.univas.si4.lab4.dao.FornecedorDao;
 import br.edu.univas.si4.lab4.to.FornecedorTO;
+import br.edu.univas.si4.lab4.view.fornecedor.FrameCadastroFornecedor;
 import br.edu.univas.si4.lab4.view.fornecedor.InternalFrameFornecedor;
-import br.edu.univas.si4.lab4.view.fornecedor.TableModelFornecedor;
 
 public class FornecedorController {
+	
+	private FrameCadastroFornecedor fCadFornecedor;
+	
+	private FrameCadastroFornecedor getfCadFornecedor() {
+		if (fCadFornecedor == null) {
+			fCadFornecedor = new FrameCadastroFornecedor();
+			fCadFornecedor.setLocationRelativeTo(null);
+		}
+		return fCadFornecedor;
+	}
 
+	// Passa para o FornecedorDAO os dados para cadastro
 	public void newFornecedor(FornecedorTO fornecedor) {
 
 		try {
@@ -20,22 +31,21 @@ public class FornecedorController {
 		}
 	}
 
-	public void addData() {
+	// Pega o retorno do select e popula o jtable
+	public void addData(InternalFrameFornecedor iFrameFornecedor) {
 		List<FornecedorTO> fornecedores = null;
-		FornecedorDao fDAO = null;
-
 		try {
 			fornecedores = new ArrayList<FornecedorTO>();
-			fDAO = new FornecedorDao();
-			
-			fornecedores = fDAO.listAllFornecedores();
-			
-			InternalFrameFornecedor ifFornecedor = new InternalFrameFornecedor();
-			
-			ifFornecedor.updateModel(fornecedores);
+			fornecedores = new FornecedorDao().listAllFornecedores();
+			iFrameFornecedor.updateModel(fornecedores);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	//Chama a tela para um novo cadastro
+	public void callScreenRegisterNewFornecedor() {
+		getfCadFornecedor().setVisible(true);
 	}
 
 	// Remove mask do cnpj

@@ -23,14 +23,14 @@ public class FornecedorDao {
 
 	public void insertNewFornecedor(FornecedorTO fornecedor) throws SQLException {
 
-		String sentence = "INSERT INTO FORNECEDOR " + " (cnpj, razao_social, nome_fantasia) " + " VALUES (?, ?, ?)";
+		String sql = "INSERT INTO FORNECEDOR " + " (cnpj, razao_social, nome_fantasia) " + " VALUES (?, ?, ?)";
 
 		Connection conn = null;
 
 		try {
 
 			conn = DBUtil.openConnection();
-			PreparedStatement prepStat = conn.prepareStatement(sentence);
+			PreparedStatement prepStat = conn.prepareStatement(sql);
 
 			prepStat.setLong(1, fornecedor.getCnpj());
 			prepStat.setString(2, fornecedor.getNomeRazao());
@@ -51,10 +51,10 @@ public class FornecedorDao {
 
 		Connection conn = DBUtil.openConnection();
 
-		String sentence = " SELECT * FROM FORNECEDOR ";
+		String sql = " SELECT * FROM FORNECEDOR ";
 
 		Statement stm = conn.createStatement();
-		ResultSet rs = stm.executeQuery(sentence);
+		ResultSet rs = stm.executeQuery(sql);
 
 		while (rs.next()) {
 			fornecedor = new FornecedorTO();

@@ -2,6 +2,7 @@ package br.edu.univas.si4.lab4.main;
 
 import javax.swing.UIManager;
 
+import br.edu.univas.si4.lab4.controller.MainController;
 import br.edu.univas.si4.lab4.view.Principal;
 
 public class MainTrabalho {
@@ -15,7 +16,11 @@ public class MainTrabalho {
 		}
 
 		Principal tela = new Principal();
-		tela.setVisible(true);
+		MainController mainControl = new MainController(tela);
+		mainControl.showMainScreen();
+
+		// Principal tela = new Principal();
+		// tela.setVisible(true);
 
 	}
 }

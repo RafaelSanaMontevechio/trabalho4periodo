@@ -17,9 +17,6 @@ public class InternalFrameEquipamentos extends Comum {
 	private FrameCadastroEquipamentos fCadEquipamentos;
 	private ButtonsPanelFiltrosPesquisas buttonsPanelPesquisa;
 
-	private static String[] columnNames = { "Codigo", "Nome", "Quantidade", "Fornecedor" };
-	private static Object[][] tableData = { { "90100123", "Equipamento 1", "20", "Fornecedor 1" } };
-
 	public InternalFrameEquipamentos() {
 		super("Consulta equipamentos em estoque", "Equipamentos cadastrados");
 

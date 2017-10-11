@@ -1,17 +1,12 @@
 package br.edu.univas.si4.lab4.view.fornecedor;
 
 import java.awt.BorderLayout;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.lab4.controller.FornecedorController;
-import br.edu.univas.si4.lab4.dao.FornecedorDao;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListenerRelatorios;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListernerFiltroPesquisa;
-import br.edu.univas.si4.lab4.to.FornecedorTO;
 import br.edu.univas.si4.lab4.view.Comum;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelRelatorio;
 
@@ -19,9 +14,9 @@ public class InternalFrameFornecedor extends Comum {
 
 	private static final long serialVersionUID = 7818698877376614841L;
 
-	private FrameCadastroFornecedor fCadFornecedor;
+	private FornecedorController fornecedorControll;
+	//private FrameCadastroFornecedor fCadFornecedor;
 	private ButtonsPanelFiltroFornecedor buttonsFiltroFornecedor;
-	static TableModelFornecedor tmFornecedor;
 
 	public InternalFrameFornecedor() {
 		super("Consulta de fornecedores cadastrados", "Fornecedores Cadastrados");
@@ -30,13 +25,20 @@ public class InternalFrameFornecedor extends Comum {
 		pack();
 	}
 
-	private FrameCadastroFornecedor getfCadFornecedor() {
-		if (fCadFornecedor == null) {
-			fCadFornecedor = new FrameCadastroFornecedor();
-			fCadFornecedor.setLocationRelativeTo(null);
+	public FornecedorController getFornecedorControll() {
+		if (fornecedorControll == null) {
+			fornecedorControll = new FornecedorController();
 		}
-		return fCadFornecedor;
+		return fornecedorControll;
 	}
+
+//	private FrameCadastroFornecedor getfCadFornecedor() {
+//		if (fCadFornecedor == null) {
+//			fCadFornecedor = new FrameCadastroFornecedor();
+//			fCadFornecedor.setLocationRelativeTo(null);
+//		}
+//		return fCadFornecedor;
+//	}
 
 	@Override
 	public ButtonsPanelRelatorio getButtonsPanelRelatorio() {
@@ -46,7 +48,7 @@ public class InternalFrameFornecedor extends Comum {
 
 				@Override
 				public void novoPerformed() {
-					getfCadFornecedor().setVisible(true);
+					getFornecedorControll().callScreenRegisterNewFornecedor();
 				}
 
 				@Override
@@ -92,26 +94,7 @@ public class InternalFrameFornecedor extends Comum {
 		} else if (buttonsFiltroFornecedor.getJrbRazao().isSelected()) {
 
 		} else {
-
-//			List<FornecedorTO> fornecedores = new ArrayList<FornecedorTO>();
-//			try {
-//				fornecedores = new FornecedorDao().listAllFornecedores();
-//				for (FornecedorTO fornecedor : fornecedores) {
-//					System.out.println(fornecedor.getCnpj() + " - " + fornecedor.getNomeRazao() + " - "
-//							+ fornecedor.getFantasia() + "\n");
-//				}
-//			} catch (SQLException e) {
-//				System.out.println("Erro!");
-//				e.printStackTrace();
-//			}
-			List<FornecedorTO> fornecedores = new ArrayList<FornecedorTO>();
-			try {
-				fornecedores = new FornecedorDao().listAllFornecedores();
-				this.updateModel(fornecedores);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			getFornecedorControll().addData(this);
 		}
 	}
 }

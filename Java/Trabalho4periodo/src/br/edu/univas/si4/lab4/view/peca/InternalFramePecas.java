@@ -17,10 +17,6 @@ public class InternalFramePecas extends Comum {
 	private FrameCadastroPeca fCadPeca;
 	private ButtonsPanelFiltrosPesquisas buttonsPanelPesquisa;
 
-	private static String[] columnNames = { "Codigo", "Nome   ", "Quantidade", "Tipo", "Equipamento", "Fornecedor  " };
-	private static Object[][] tableData = {
-			{ "001 ", "Teste 1", "        10", "Unidade", "Equipamento 1", "Fornecedor 1" } };
-
 	public InternalFramePecas() {
 		super("Consulta de peças em estoque", "Peças em estoque");
 
