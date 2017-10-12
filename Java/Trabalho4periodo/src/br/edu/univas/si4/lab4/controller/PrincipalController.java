@@ -2,15 +2,15 @@ package br.edu.univas.si4.lab4.controller;
 
 import br.edu.univas.si4.lab4.view.Principal;
 
-public class MainController {
+public class PrincipalController {
 	
 	private Principal principal;
 	
-	public MainController(Principal principal) {
-		this.principal = principal;	
+	public PrincipalController() {
+		principal = new Principal();
 	}
 	
-	public void showMainScreen() {
+	public void initialize() {
 		principal.setVisible(true);
 	}
 }
