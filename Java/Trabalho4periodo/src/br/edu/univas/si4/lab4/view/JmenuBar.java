@@ -10,12 +10,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import br.edu.univas.si4.lab4.controller.PrincipalController;
-import br.edu.univas.si4.lab4.view.equipamento.FrameCadastroEquipamentos;
 import br.edu.univas.si4.lab4.view.equipamento.InternalFrameEquipamentos;
-import br.edu.univas.si4.lab4.view.estoque.FrameEstoque;
-import br.edu.univas.si4.lab4.view.fornecedor.FrameCadastroFornecedor;
 import br.edu.univas.si4.lab4.view.fornecedor.InternalFrameFornecedor;
-import br.edu.univas.si4.lab4.view.peca.FrameCadastroPeca;
 import br.edu.univas.si4.lab4.view.peca.InternalFramePecas;
 
 public class JmenuBar extends JMenuBar {
@@ -167,9 +163,7 @@ public class JmenuBar extends JMenuBar {
 
 	public JMenuItem getJmiRetirarEstoque() {
 		if (jmiRetirarEstoque == null) {
-			jmiRetirarEstoque = new JMenuItem("Retirar do estoque");
-			ImageIcon iconMenos = new ImageIcon("imagens/menos.png");
-			jmiRetirarEstoque.setIcon(iconMenos);
+			jmiRetirarEstoque = new JMenuItem("Retirar do estoque",  new ImageIcon("imagens/menos.png"));
 		}
 		return jmiRetirarEstoque;
 	}
