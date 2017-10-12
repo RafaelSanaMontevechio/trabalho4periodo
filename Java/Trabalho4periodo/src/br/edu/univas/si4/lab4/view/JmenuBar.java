@@ -9,6 +9,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import br.edu.univas.si4.lab4.controller.PrincipalController;
 import br.edu.univas.si4.lab4.view.equipamento.FrameCadastroEquipamentos;
 import br.edu.univas.si4.lab4.view.equipamento.InternalFrameEquipamentos;
 import br.edu.univas.si4.lab4.view.estoque.FrameEstoque;
@@ -39,13 +40,9 @@ public class JmenuBar extends JMenuBar {
 	private InternalFramePecas iFramePeca;
 	private Principal principal;
 
-	private FrameCadastroFornecedor fCadFornecedor;
-	private FrameCadastroEquipamentos fCadEquipamento;
-	private FrameCadastroPeca fCadPeca;
-	private FrameEstoque fEstoque;
-
 	public JmenuBar(Principal principal) {
 		this.principal = principal;
+
 		criaJmenuBar();
 	}
 
@@ -63,7 +60,6 @@ public class JmenuBar extends JMenuBar {
 		getJmPesquisa().add(getJmiListaPecas());
 
 		getJmEstoque().add(getJmiInserirEstoque());
-		//getJmEstoque().add(getJmiRetirarEstoque());
 
 		getJmMenu().add(getJmCadastro());
 		getJmMenu().add(getJmPesquisa());
@@ -179,42 +175,6 @@ public class JmenuBar extends JMenuBar {
 	}
 
 	/**
-	 * Getters Frames de cadastros
-	 */
-
-	public FrameCadastroFornecedor getfCadFornecedor() {
-		if (fCadFornecedor == null) {
-			fCadFornecedor = new FrameCadastroFornecedor();
-			fCadFornecedor.setLocationRelativeTo(null);
-		}
-		return fCadFornecedor;
-	}
-
-	public FrameCadastroEquipamentos getfCadEquipamento() {
-		if (fCadEquipamento == null) {
-			fCadEquipamento = new FrameCadastroEquipamentos();
-			fCadEquipamento.setLocationRelativeTo(null);
-		}
-		return fCadEquipamento;
-	}
-
-	public FrameCadastroPeca getfCadPeca() {
-		if (fCadPeca == null) {
-			fCadPeca = new FrameCadastroPeca();
-			fCadPeca.setLocationRelativeTo(null);
-		}
-		return fCadPeca;
-	}
-
-	public FrameEstoque getfEstoque() {
-		if (fEstoque == null) {
-			fEstoque = new FrameEstoque();
-			fEstoque.setLocationRelativeTo(null);
-		}
-		return fEstoque;
-	}
-
-	/**
 	 * Getters Internal frames
 	 */
 	public InternalFrameFornecedor getiFrameFornecedor() {
@@ -257,11 +217,11 @@ public class JmenuBar extends JMenuBar {
 		@Override
 		public void actionPerformed(ActionEvent evt) {
 			if (evt.getSource() == jmiCadastroFornecedor) {
-				getfCadFornecedor().setVisible(true);
+				new PrincipalController().callScreenRegisterNewFornecedor();
 			} else if (evt.getSource() == jmiCadastroEquipamento) {
-				getfCadEquipamento().setVisible(true);
+				new PrincipalController().callScreenRegisterNewEquipamento();
 			} else {
-				getfCadPeca().setVisible(true);
+				new PrincipalController().callScreenRegisterNewPeca();
 			}
 		}
 	}
@@ -287,7 +247,7 @@ public class JmenuBar extends JMenuBar {
 		@Override
 		public void actionPerformed(ActionEvent evt) {
 			if (evt.getSource() == jmiInserirEstoque) {
-				getfEstoque().setVisible(true);
+				new PrincipalController().callScreenEstoque();
 			}
 		}
 	}
