@@ -13,9 +13,9 @@ import br.edu.univas.si4.lab4.view.fornecedor.FrameCadastroFornecedor;
 import br.edu.univas.si4.lab4.view.fornecedor.InternalFrameFornecedor;
 
 public class FornecedorController {
-	
+
 	private FrameCadastroFornecedor fCadFornecedor;
-	
+
 	private FrameCadastroFornecedor getfCadFornecedor() {
 		if (fCadFornecedor == null) {
 			fCadFornecedor = new FrameCadastroFornecedor();
@@ -29,19 +29,19 @@ public class FornecedorController {
 
 		try {
 			new FornecedorDao().insertNewFornecedor(fornecedor);
-			JOptionPane.showMessageDialog(null,"Sucesso!");
-			
+			JOptionPane.showMessageDialog(null, "Sucesso!");
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	//Passa ao FornecedorDAO o cnpj do fornecedor para ser deletado
+
+	// Passa ao FornecedorDAO o cnpj do fornecedor para ser deletado
 	public void removeFornecedor(String str) {
 		long cnpj = Long.parseLong(str);
 		try {
 			new FornecedorDao().deleteFornecedor(cnpj);
-			JOptionPane.showMessageDialog(null,"Fornecedor excluido!");
+			JOptionPane.showMessageDialog(null, "Fornecedor excluido!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -58,8 +58,8 @@ public class FornecedorController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Pega retorno do select por cnpj e popula jtable
+
+	// Pega retorno do select por cnpj e popula jtable
 	public void addDatabyCnpj(InternalFrameFornecedor iFrameFornecedor, String str) {
 		List<FornecedorTO> fornecedores = null;
 		long cnpj = Long.parseLong(str);
@@ -71,21 +71,21 @@ public class FornecedorController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Pega retorno do select por razao e popula jtable
+
+	// Pega retorno do select por razao e popula jtable
 	public void addByRazao(InternalFrameFornecedor iFrameFornecedor, String str) {
 		List<FornecedorTO> fornecedores = null;
 		try {
 			fornecedores = new ArrayList<FornecedorTO>();
 			fornecedores = new FornecedorDao().listByRazao(str);
 			iFrameFornecedor.updateModel(fornecedores);
-		
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	//Chama a tela para um novo cadastro
+
+	// Chama a tela para um novo cadastro
 	public void callScreenRegisterNewFornecedor() {
 		getfCadFornecedor().setVisible(true);
 	}
@@ -100,6 +100,4 @@ public class FornecedorController {
 
 		return cnpj;
 	}
-	
-	
 }

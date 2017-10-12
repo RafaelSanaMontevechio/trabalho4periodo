@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -24,8 +25,8 @@ public abstract class Comum extends JInternalFrame {
 	private JScrollPane tableScroll;
 	private JPanel panelCadastrados;
 	private String titleContentPane;
-	//private String[] columnNames;
-	//private Object[][] tableData;
+	// private String[] columnNames;
+	// private Object[][] tableData;
 	private TableModel model;
 
 	private JPanel contentPane;
@@ -34,10 +35,8 @@ public abstract class Comum extends JInternalFrame {
 	public Comum(String title, String titleContentPane) {
 		this.setTitle(title);
 		this.titleContentPane = titleContentPane;
-//		this.columnNames = columnNames;
-//		this.tableData = tableData;
-
-	
+		// this.columnNames = columnNames;
+		// this.tableData = tableData;
 
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setLayout(new BorderLayout());
@@ -54,7 +53,7 @@ public abstract class Comum extends JInternalFrame {
 		contentPane.setLayout(new BorderLayout());
 		contentPane.add(criaPanelCadastrados(), BorderLayout.CENTER);
 		contentPane.add(getButtonsPanelRelatorio(), BorderLayout.SOUTH);
-	
+
 		setContentPane(contentPane);
 
 	}
@@ -88,7 +87,7 @@ public abstract class Comum extends JInternalFrame {
 		}
 		return tableScroll;
 	}
-	
+
 	public void updateModel(List<FornecedorTO> list) {
 		TableModelFornecedor tmFornecedor = new TableModelFornecedor(list);
 		getTable().setModel(tmFornecedor);
@@ -99,5 +98,13 @@ public abstract class Comum extends JInternalFrame {
 	public void setPosicao() {
 		Dimension dimension = this.getDesktopPane().getSize();
 		this.setLocation((dimension.width - this.getSize().width) / 2, (dimension.height - this.getSize().height) / 2);
+	}
+
+	// Verifica String vazia
+	public boolean verifyEmptyString(String str) {
+		if (str.trim().equals("")) {
+			return false;
+		}
+		return true;
 	}
 }

@@ -107,19 +107,26 @@ public class InternalFrameFornecedor extends Comum {
 		String str = String.valueOf(obj);
 
 		new FornecedorController().removeFornecedor(str);
-
 	}
 
 	private void jrbCnpjSelected() {
 
 		String str = (buttonsFiltroFornecedor.getJtDados().getText());
-		getFornecedorControll().addDatabyCnpj(this, str);
-
+		if (verifyEmptyString(str)) {
+			getFornecedorControll().addDatabyCnpj(this, str);
+		} else {
+			JOptionPane.showMessageDialog(null, "CNPJ Invalido ou vazio!", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	private void jrbRazaoSelected() {
+
 		String str = (buttonsFiltroFornecedor.getJtDados().getText());
-		getFornecedorControll().addDatabyCnpj(this, str);
+		if (verifyEmptyString(str)) {
+			getFornecedorControll().addDatabyCnpj(this, str);
+		} else {
+			JOptionPane.showMessageDialog(null, "Razão Invalida ou vazio!", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	private void jrbTodos() {
