@@ -15,7 +15,7 @@ public class InternalFrameFornecedor extends Comum {
 	private static final long serialVersionUID = 7818698877376614841L;
 
 	private FornecedorController fornecedorControll;
-	//private FrameCadastroFornecedor fCadFornecedor;
+	// private FrameCadastroFornecedor fCadFornecedor;
 	private ButtonsPanelFiltroFornecedor buttonsFiltroFornecedor;
 
 	public InternalFrameFornecedor() {
@@ -32,13 +32,13 @@ public class InternalFrameFornecedor extends Comum {
 		return fornecedorControll;
 	}
 
-//	private FrameCadastroFornecedor getfCadFornecedor() {
-//		if (fCadFornecedor == null) {
-//			fCadFornecedor = new FrameCadastroFornecedor();
-//			fCadFornecedor.setLocationRelativeTo(null);
-//		}
-//		return fCadFornecedor;
-//	}
+	// private FrameCadastroFornecedor getfCadFornecedor() {
+	// if (fCadFornecedor == null) {
+	// fCadFornecedor = new FrameCadastroFornecedor();
+	// fCadFornecedor.setLocationRelativeTo(null);
+	// }
+	// return fCadFornecedor;
+	// }
 
 	@Override
 	public ButtonsPanelRelatorio getButtonsPanelRelatorio() {
@@ -59,8 +59,7 @@ public class InternalFrameFornecedor extends Comum {
 
 				@Override
 				public void deletarPerformed() {
-					JOptionPane.showMessageDialog(null, "Clicou botão deletar - Tela pesquisa fornecedor");
-
+					deleteClicked();
 				}
 
 				@Override
@@ -89,12 +88,41 @@ public class InternalFrameFornecedor extends Comum {
 	}
 
 	private void pesquisarClicked() {
+
 		if (buttonsFiltroFornecedor.getJrbCnpj().isSelected()) {
-
+			jrbCnpjSelected();
 		} else if (buttonsFiltroFornecedor.getJrbRazao().isSelected()) {
-
+			jrbRazaoSelected();
+		} else if (buttonsFiltroFornecedor.getJrbTodos().isSelected()) {
+			jrbTodos();
 		} else {
-			getFornecedorControll().addData(this);
+			JOptionPane.showMessageDialog(null, "Nenhum filtro selecionado!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+
+	private void deleteClicked() {
+
+		// Captura o valor da coluna selecionada pelo usuario
+		Object obj = getTable().getValueAt(getTable().getSelectedRow(), 1);
+		String str = String.valueOf(obj);
+
+		new FornecedorController().removeFornecedor(str);
+
+	}
+
+	private void jrbCnpjSelected() {
+
+		String str = (buttonsFiltroFornecedor.getJtDados().getText());
+		getFornecedorControll().addDatabyCnpj(this, str);
+
+	}
+
+	private void jrbRazaoSelected() {
+		String str = (buttonsFiltroFornecedor.getJtDados().getText());
+		getFornecedorControll().addDatabyCnpj(this, str);
+	}
+
+	private void jrbTodos() {
+		getFornecedorControll().addData(this);
 	}
 }

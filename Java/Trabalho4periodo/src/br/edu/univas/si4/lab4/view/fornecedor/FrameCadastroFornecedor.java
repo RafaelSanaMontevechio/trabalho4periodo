@@ -68,6 +68,10 @@ public class FrameCadastroFornecedor extends JDialog {
 
 		fornecedorController.newFornecedor(fornecedorTO);
 
+		panelCadFornecedor.getJtCnpj().setText("");
+		panelCadFornecedor.getJtNomeRazao().setText("");
+		panelCadFornecedor.getJtFantasia().setText("");
+
 	}
 
 	private void cancelarClicked() {

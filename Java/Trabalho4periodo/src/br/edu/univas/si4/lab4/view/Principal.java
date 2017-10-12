@@ -23,6 +23,7 @@ public class Principal extends JFrame {
 	}
 
 	public void addComponents() {
+		
 		desktopPane = new JDesktopPane();
 		setContentPane(desktopPane);
 	}

@@ -91,7 +91,6 @@ public abstract class Comum extends JInternalFrame {
 	
 	public void updateModel(List<FornecedorTO> list) {
 		TableModelFornecedor tmFornecedor = new TableModelFornecedor(list);
-		
 		getTable().setModel(tmFornecedor);
 	}
 

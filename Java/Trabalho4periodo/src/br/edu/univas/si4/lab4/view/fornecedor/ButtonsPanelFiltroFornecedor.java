@@ -122,7 +122,7 @@ public class ButtonsPanelFiltroFornecedor extends JPanel {
 		return jrbRazao;
 	}
 
-	private JRadioButton getJrbTodos() {
+	public JRadioButton getJrbTodos() {
 		if (jrbTodos == null) {
 			jrbTodos = new JRadioButton();
 		}
