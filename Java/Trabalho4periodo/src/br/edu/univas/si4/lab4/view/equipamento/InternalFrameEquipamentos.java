@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JOptionPane;
 
+import br.edu.univas.si4.lab4.controller.EquipamentoController;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListenerRelatorios;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListernerFiltroPesquisa;
 import br.edu.univas.si4.lab4.view.Comum;
@@ -16,11 +17,19 @@ public class InternalFrameEquipamentos extends Comum {
 
 	private FrameCadastroEquipamentos fCadEquipamentos;
 	private ButtonsPanelFiltrosPesquisas buttonsPanelPesquisa;
+	private EquipamentoController equipamentoControll;
 
 	public InternalFrameEquipamentos() {
 		super("Consulta equipamentos em estoque", "Equipamentos cadastrados");
 
 		add(getPanelFiltroPesquisas(), BorderLayout.WEST);
+	}
+
+	public EquipamentoController getEquipamentoControll() {
+		if (equipamentoControll == null) {
+			equipamentoControll = new EquipamentoController();
+		}
+		return equipamentoControll;
 	}
 
 	private FrameCadastroEquipamentos getfCadEquipamentos() {
@@ -44,18 +53,17 @@ public class InternalFrameEquipamentos extends Comum {
 
 				@Override
 				public void imprimirPerformed() {
-					JOptionPane.showMessageDialog(null, "Clicou botão imprimir - Tela pesquisa Equipamento");
+					
 				}
 
 				@Override
 				public void deletarPerformed() {
-					JOptionPane.showMessageDialog(null, "Clicou botão deletar - Tela pesquisa Equipamento");
+					
 				}
 
 				@Override
 				public void alterarPerformed() {
-					JOptionPane.showMessageDialog(null, "Clicou botão alterar - Tela pesquisa Equipamento");
-
+					
 				}
 			});
 		}
@@ -80,13 +88,15 @@ public class InternalFrameEquipamentos extends Comum {
 
 	private void pesquisarClicked() {
 		if (buttonsPanelPesquisa.getJrbCodigo().isSelected()) {
-			JOptionPane.showMessageDialog(null, "Filto: Código selecionado! - Equipamento");
+			
 		} else if (buttonsPanelPesquisa.getJrbNome().isSelected()) {
 			JOptionPane.showMessageDialog(null, "Filto: Nome selecionado!");
 		} else if (buttonsPanelPesquisa.getJrbFornecedor().isSelected()) {
 			JOptionPane.showMessageDialog(null, "Filto: Fornecedor selecionado!");
-		} else {
-			JOptionPane.showMessageDialog(null, "Filto: Todos selecionado!");
+		} else if (buttonsPanelPesquisa.getJrbTodos().isSelected()) {
+			getEquipamentoControll().addData(this);
+		}else {
+			JOptionPane.showMessageDialog(null, "Nenhum filtro selecionado!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

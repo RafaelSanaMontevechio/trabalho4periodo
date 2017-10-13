@@ -6,15 +6,16 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.TableModel;
 
+import br.edu.univas.si4.lab4.to.EquipamentoTO;
 import br.edu.univas.si4.lab4.to.FornecedorTO;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelRelatorio;
+import br.edu.univas.si4.lab4.view.equipamento.TableModelEquipamento;
 import br.edu.univas.si4.lab4.view.fornecedor.TableModelFornecedor;
 
 public abstract class Comum extends JInternalFrame {
@@ -25,8 +26,7 @@ public abstract class Comum extends JInternalFrame {
 	private JScrollPane tableScroll;
 	private JPanel panelCadastrados;
 	private String titleContentPane;
-	// private String[] columnNames;
-	// private Object[][] tableData;
+	
 	private TableModel model;
 
 	private JPanel contentPane;
@@ -35,8 +35,6 @@ public abstract class Comum extends JInternalFrame {
 	public Comum(String title, String titleContentPane) {
 		this.setTitle(title);
 		this.titleContentPane = titleContentPane;
-		// this.columnNames = columnNames;
-		// this.tableData = tableData;
 
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setLayout(new BorderLayout());
@@ -91,6 +89,11 @@ public abstract class Comum extends JInternalFrame {
 	public void updateModel(List<FornecedorTO> list) {
 		TableModelFornecedor tmFornecedor = new TableModelFornecedor(list);
 		getTable().setModel(tmFornecedor);
+	}
+	
+	public void updateModelEquipamento(List<EquipamentoTO> list) {
+		TableModelEquipamento tmEquipamento = new TableModelEquipamento(list);
+		getTable().setModel(tmEquipamento);
 	}
 
 	public abstract ButtonsPanelRelatorio getButtonsPanelRelatorio();

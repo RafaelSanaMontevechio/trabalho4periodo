@@ -3,6 +3,7 @@ package br.edu.univas.si4.lab4.view.equipamento;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -32,7 +33,7 @@ public class PanelCadastroEquipamento extends JPanel {
 	private GridBagConstraints jtQuantidadeConstraints;
 	private GridBagConstraints comboForncedoresConstraints;
 
-	String[] Fornecedores = new String[] { "Fornecedor 1", "Fornecedor 2", "Fornecedor 3" };
+	ArrayList<String> fornecedores;
 
 	public PanelCadastroEquipamento() {
 		addComponents();
@@ -84,33 +85,30 @@ public class PanelCadastroEquipamento extends JPanel {
 		return jlFornecedor;
 	}
 
-	private JTextField getJtCodigo() {
+	public JTextField getJtCodigo() {
 		if (jtCodigo == null) {
 			jtCodigo = new JTextField();
-			jtCodigo.setText("Codigo");
 		}
 		return jtCodigo;
 	}
 
-	private JTextField getJtNome() {
+	public JTextField getJtNome() {
 		if (jtNome == null) {
 			jtNome = new JTextField();
-			jtNome.setText("Nome");
 		}
 		return jtNome;
 	}
 
-	private JTextField getJtQuantidade() {
+	public JTextField getJtQuantidade() {
 		if (jtQuantidade == null) {
 			jtQuantidade = new JTextField();
-			jtQuantidade.setText("Quantidade");
 		}
 		return jtQuantidade;
 	}
 
-	private JComboBox<String> getComboForncedores() {
+	public JComboBox<String> getComboForncedores() {
 		if (comboForncedores == null) {
-			comboForncedores = new JComboBox<String>(Fornecedores);
+			comboForncedores = new JComboBox<String>();
 		}
 		return comboForncedores;
 	}
@@ -166,6 +164,7 @@ public class PanelCadastroEquipamento extends JPanel {
 			jtCodigoConstraints = new GridBagConstraints();
 			jtCodigoConstraints.gridx = 1;
 			jtCodigoConstraints.gridy = 0;
+			jtCodigoConstraints.ipadx = 100;
 			jtCodigoConstraints.insets = new Insets(5, 5, 5, 5);
 			jtCodigoConstraints.fill = GridBagConstraints.HORIZONTAL;
 		}
@@ -177,7 +176,9 @@ public class PanelCadastroEquipamento extends JPanel {
 			jtNomeConstraints = new GridBagConstraints();
 			jtNomeConstraints.gridx = 3;
 			jtNomeConstraints.gridy = 0;
-			jtNomeConstraints.ipadx = 100;
+			jtNomeConstraints.ipadx = 200;
+			jtNomeConstraints.gridwidth = 2;
+			jtNomeConstraints.anchor = GridBagConstraints.LINE_START;
 			jtNomeConstraints.insets = new Insets(5, 5, 5, 5);
 			jtNomeConstraints.fill = GridBagConstraints.HORIZONTAL;
 		}
@@ -189,6 +190,7 @@ public class PanelCadastroEquipamento extends JPanel {
 			jtQuantidadeConstraints = new GridBagConstraints();
 			jtQuantidadeConstraints.gridx = 1;
 			jtQuantidadeConstraints.gridy = 1;
+			jtQuantidadeConstraints.ipadx = 100;
 			jtQuantidadeConstraints.insets = new Insets(5, 5, 5, 5);
 		}
 		return jtQuantidadeConstraints;
@@ -199,6 +201,7 @@ public class PanelCadastroEquipamento extends JPanel {
 			comboForncedoresConstraints = new GridBagConstraints();
 			comboForncedoresConstraints.gridx = 3;
 			comboForncedoresConstraints.gridy = 1;
+			comboForncedoresConstraints.ipadx = 200;
 			comboForncedoresConstraints.insets = new Insets(5, 5, 5, 5);
 			comboForncedoresConstraints.fill = GridBagConstraints.BOTH;
 			comboForncedoresConstraints.anchor = GridBagConstraints.LINE_START;

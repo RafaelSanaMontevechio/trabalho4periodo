@@ -15,7 +15,6 @@ public class InternalFrameFornecedor extends Comum {
 	private static final long serialVersionUID = 7818698877376614841L;
 
 	private FornecedorController fornecedorControll;
-	// private FrameCadastroFornecedor fCadFornecedor;
 	private ButtonsPanelFiltroFornecedor buttonsFiltroFornecedor;
 
 	public InternalFrameFornecedor() {
@@ -32,14 +31,6 @@ public class InternalFrameFornecedor extends Comum {
 		return fornecedorControll;
 	}
 
-	// private FrameCadastroFornecedor getfCadFornecedor() {
-	// if (fCadFornecedor == null) {
-	// fCadFornecedor = new FrameCadastroFornecedor();
-	// fCadFornecedor.setLocationRelativeTo(null);
-	// }
-	// return fCadFornecedor;
-	// }
-
 	@Override
 	public ButtonsPanelRelatorio getButtonsPanelRelatorio() {
 		if (buttonsPanelRelatorio == null) {
@@ -53,8 +44,7 @@ public class InternalFrameFornecedor extends Comum {
 
 				@Override
 				public void imprimirPerformed() {
-					JOptionPane.showMessageDialog(null, "Clicou botão imprimir - Tela pesquisa fornecedor");
-
+					
 				}
 
 				@Override
@@ -64,8 +54,7 @@ public class InternalFrameFornecedor extends Comum {
 
 				@Override
 				public void alterarPerformed() {
-					JOptionPane.showMessageDialog(null, "Clicou botão alterar - Tela pesquisa fornecedor");
-
+					
 				}
 			});
 		}
@@ -101,9 +90,8 @@ public class InternalFrameFornecedor extends Comum {
 	}
 
 	private void deleteClicked() {
-
 		// Captura o valor da coluna selecionada pelo usuario
-		Object obj = getTable().getValueAt(getTable().getSelectedRow(), 1);
+		Object obj = getTable().getValueAt(getTable().getSelectedRow(), 0);
 		String str = String.valueOf(obj);
 
 		new FornecedorController().removeFornecedor(str);

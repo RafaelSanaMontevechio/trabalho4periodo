@@ -3,9 +3,10 @@ package br.edu.univas.si4.lab4.view.equipamento;
 import java.awt.BorderLayout;
 
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 
+import br.edu.univas.si4.lab4.controller.EquipamentoController;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
+import br.edu.univas.si4.lab4.to.EquipamentoTO;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelCadastros;
 
 public class FrameCadastroEquipamentos extends JDialog {
@@ -14,6 +15,9 @@ public class FrameCadastroEquipamentos extends JDialog {
 
 	private PanelCadastroEquipamento panelCadEquipamento;
 	private ButtonsPanelCadastros buttonsCadastro;
+
+	private EquipamentoController equipamentoControll;
+	private EquipamentoTO equipamentoTO;
 
 	public FrameCadastroEquipamentos() {
 		this.setTitle("Cadastro de equipamento");
@@ -28,6 +32,20 @@ public class FrameCadastroEquipamentos extends JDialog {
 	private void addComponents() {
 		add(getPanelCadEquipamento(), BorderLayout.CENTER);
 		add(getButtonsCadastro(), BorderLayout.SOUTH);
+	}
+	
+	private EquipamentoController getEquipamentoControll() {
+		if (equipamentoControll == null) {
+			equipamentoControll = new EquipamentoController();
+		}
+		return equipamentoControll;
+	}
+
+	private EquipamentoTO getEquipamentoTO() {
+		if (equipamentoTO == null) {
+			equipamentoTO = new EquipamentoTO();
+		}
+		return equipamentoTO;
 	}
 
 	private PanelCadastroEquipamento getPanelCadEquipamento() {
@@ -57,7 +75,16 @@ public class FrameCadastroEquipamentos extends JDialog {
 	}
 
 	private void salvarClicked() {
-		JOptionPane.showMessageDialog(null, "Clicou botão salvar - Tela cadastro equipamento");
+
+		int codigo = Integer.parseInt(getPanelCadEquipamento().getJtCodigo().getText());
+		int quantidade = Integer.parseInt(getPanelCadEquipamento().getJtQuantidade().getText());
+		getEquipamentoTO().setCodigo(codigo);
+		getEquipamentoTO().setNome(getPanelCadEquipamento().getJtNome().getText());
+		getEquipamentoTO().setQuantidade(quantidade);
+		getEquipamentoTO().setFornecedor(getPanelCadEquipamento().getComboForncedores().getSelectedItem().toString());
+		
+		getEquipamentoControll().newEquipamento(getEquipamentoTO());
+
 	}
 
 	private void cancelarClicked() {

@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.lab4.dao.FornecedorDao;
 import br.edu.univas.si4.lab4.to.FornecedorTO;
-import br.edu.univas.si4.lab4.view.Comum;
 import br.edu.univas.si4.lab4.view.fornecedor.FrameCadastroFornecedor;
 import br.edu.univas.si4.lab4.view.fornecedor.InternalFrameFornecedor;
 
@@ -30,7 +29,6 @@ public class FornecedorController {
 		try {
 			new FornecedorDao().insertNewFornecedor(fornecedor);
 			JOptionPane.showMessageDialog(null, "Sucesso!");
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -83,6 +81,22 @@ public class FornecedorController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	// Seleciona apenas nome fantasia
+	public ArrayList<String> listaFantasia() {
+		ArrayList<String> fantasia = new ArrayList<>();
+		try {
+			fantasia = new FornecedorDao().selectFantasia();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return fantasia;
+	}
+
+	// Altera registro
+	public void alterFornecedor(String cnpj, String razao, String fantasia) {
+
 	}
 
 	// Chama a tela para um novo cadastro

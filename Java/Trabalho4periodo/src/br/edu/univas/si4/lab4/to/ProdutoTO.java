@@ -5,7 +5,7 @@ public abstract class ProdutoTO {
 	private int codigo;
 	private String nome;
 	private int quantidade;
-	private FornecedorTO fornecedor;
+	private String fornecedor;
 
 	public int getCodigo() {
 		return codigo;
@@ -31,11 +31,11 @@ public abstract class ProdutoTO {
 		this.quantidade = quantidade;
 	}
 
-	public FornecedorTO getFornecedor() {
+	public String getFornecedor() {
 		return fornecedor;
 	}
 
-	public void setFornecedor(FornecedorTO fornecedor) {
+	public void setFornecedor(String fornecedor) {
 		this.fornecedor = fornecedor;
 	}
 

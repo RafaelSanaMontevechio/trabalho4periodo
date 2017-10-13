@@ -110,7 +110,6 @@ public class ButtonsPanelFiltroFornecedor extends JPanel {
 	public JRadioButton getJrbCnpj() {
 		if (jrbCnpj == null) {
 			jrbCnpj = new JRadioButton();
-			jrbCnpj.setSelected(true);
 		}
 		return jrbCnpj;
 	}

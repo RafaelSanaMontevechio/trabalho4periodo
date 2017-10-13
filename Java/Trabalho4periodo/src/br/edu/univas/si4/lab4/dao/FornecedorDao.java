@@ -113,7 +113,7 @@ public class FornecedorDao {
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM FORNECEDORES WHERE razao_social LIKE " + str;
+		String sql = " SELECT * FROM FORNECEDORES WHERE razao_social LIKE ? ";
 		
 		PreparedStatement prep = conn.prepareStatement(sql);
 		prep.setString(1, str);
@@ -130,5 +130,21 @@ public class FornecedorDao {
 		return fornecedores;
 	}
 	
+	//Select nome fantasia
+	public ArrayList<String> selectFantasia() throws SQLException {
+		ArrayList<String> fantasia = new ArrayList<String>();
+		
+		Connection conn = DBUtil.openConnection();
+
+		String sql = " SELECT nome_fantasia FROM FORNECEDOR ";
+		
+		Statement stm = conn.createStatement();
+		ResultSet rs = stm.executeQuery(sql);
 	
+		while (rs.next()) {
+			fantasia.add(getFornecedor().getFantasia());
+		}
+		conn.close();
+		return fantasia;
+	}
 }
