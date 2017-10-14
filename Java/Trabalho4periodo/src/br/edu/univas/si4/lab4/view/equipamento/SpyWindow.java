@@ -11,33 +11,23 @@ public class SpyWindow extends WindowAdapter {
 	private FornecedorController fornecedorControll;
 	private PanelCadastroEquipamento panelCadEquipamento;
 
+	public SpyWindow() {
+		fornecedorControll = new FornecedorController();
+		panelCadEquipamento = new PanelCadastroEquipamento();
+	}
+
 	public void windowOpened(WindowEvent e) {
 		System.out.println("A janela abriu!!! estamos espiado!" + e.getSource().getClass().getSimpleName());
 
-		ArrayList<String> fantasia = getFornecedorControll().listaFantasia();
-		fantasia = getFornecedorControll().listaFantasia();
+		ArrayList<String> fantasia = fornecedorControll.listaFantasia();
+		fantasia = fornecedorControll.listaFantasia();
 
 		for (String string : fantasia) {
-			getPanelCadEquipamento().getComboForncedores().addItem(string);
+			panelCadEquipamento.getComboForncedores().addItem(string);
 		}
 
 		for (String string : fantasia) {
 			System.out.println(string);
 		}
-
-	}
-
-	public FornecedorController getFornecedorControll() {
-		if (fornecedorControll == null) {
-			fornecedorControll = new FornecedorController();
-		}
-		return fornecedorControll;
-	}
-
-	public PanelCadastroEquipamento getPanelCadEquipamento() {
-		if (panelCadEquipamento == null) {
-			panelCadEquipamento = new PanelCadastroEquipamento();
-		}
-		return panelCadEquipamento;
 	}
 }

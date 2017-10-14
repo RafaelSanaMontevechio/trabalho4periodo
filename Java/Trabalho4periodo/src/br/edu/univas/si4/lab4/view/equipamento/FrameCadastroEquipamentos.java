@@ -33,7 +33,7 @@ public class FrameCadastroEquipamentos extends JDialog {
 		add(getPanelCadEquipamento(), BorderLayout.CENTER);
 		add(getButtonsCadastro(), BorderLayout.SOUTH);
 	}
-	
+
 	private EquipamentoController getEquipamentoControll() {
 		if (equipamentoControll == null) {
 			equipamentoControll = new EquipamentoController();
@@ -76,15 +76,12 @@ public class FrameCadastroEquipamentos extends JDialog {
 
 	private void salvarClicked() {
 
-		int codigo = Integer.parseInt(getPanelCadEquipamento().getJtCodigo().getText());
-		int quantidade = Integer.parseInt(getPanelCadEquipamento().getJtQuantidade().getText());
-		getEquipamentoTO().setCodigo(codigo);
+		getEquipamentoTO().setCodigo(Integer.parseInt(getPanelCadEquipamento().getJtCodigo().getText()));
 		getEquipamentoTO().setNome(getPanelCadEquipamento().getJtNome().getText());
-		getEquipamentoTO().setQuantidade(quantidade);
+		getEquipamentoTO().setQuantidade(Integer.parseInt(getPanelCadEquipamento().getJtQuantidade().getText()));
 		getEquipamentoTO().setFornecedor(getPanelCadEquipamento().getComboForncedores().getSelectedItem().toString());
-		
-		getEquipamentoControll().newEquipamento(getEquipamentoTO());
 
+		getEquipamentoControll().newEquipamento(getEquipamentoTO());
 	}
 
 	private void cancelarClicked() {

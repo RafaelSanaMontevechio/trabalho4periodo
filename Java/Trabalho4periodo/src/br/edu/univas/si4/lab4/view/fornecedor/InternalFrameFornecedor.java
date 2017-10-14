@@ -44,7 +44,7 @@ public class InternalFrameFornecedor extends Comum {
 
 				@Override
 				public void imprimirPerformed() {
-					
+
 				}
 
 				@Override
@@ -96,9 +96,9 @@ public class InternalFrameFornecedor extends Comum {
 
 		new FornecedorController().removeFornecedor(str);
 	}
-	
+
 	private void alterarClicked() {
-		//TODO : Implementar
+		// TODO : Implementar
 	}
 
 	private void jrbCnpjSelected() {
