@@ -226,7 +226,8 @@ public class JmenuBar extends JMenuBar {
 		@Override
 		public void actionPerformed(ActionEvent evt) {
 			if (evt.getSource() == jmiListaFornecedor) {
-				getiFrameFornecedor();
+				//getiFrameFornecedor();
+				new PrincipalController().addIframeFornecedor();
 			} else if (evt.getSource() == jmiListaEquipamento) {
 				getiFrameEquipamento();
 			} else {

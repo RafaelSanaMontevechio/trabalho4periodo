@@ -12,11 +12,15 @@ import br.edu.univas.si4.lab4.to.EquipamentoTO;
 public class EquipamentoDao {
 
 	private EquipamentoTO equipamento;
+	
+	public EquipamentoDao() {
+		equipamento = new EquipamentoTO();
+	}
 
 	public void insertNewEquipamento(EquipamentoTO equipamento) throws SQLException {
-
+		
 		// String para fazer o insert de novo fornecedor no banco
-		String sentence = "INSERT INTO EQUIPAMENTO " + " (codigo_equipamento, nome, quantidade, cnpj_fornecedor) "
+		String sentence = "INSERT INTO EQUIPAMENTO " + " (codigo_equipamento, nome, quantidade, fornecedor) "
 				+ " VALUES (?, ?, ?, ?)";
 
 		// Abre a conexão com o banco

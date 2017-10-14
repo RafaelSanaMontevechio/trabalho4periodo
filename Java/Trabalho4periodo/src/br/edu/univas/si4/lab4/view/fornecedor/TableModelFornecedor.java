@@ -64,7 +64,7 @@ public class TableModelFornecedor extends AbstractTableModel {
 	// Deixa as celulas não editaveis
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		return false;
+		return true;
 	}
 
 	@Override

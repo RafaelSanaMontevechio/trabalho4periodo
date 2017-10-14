@@ -21,13 +21,12 @@ public class SpyWindow extends WindowAdapter {
 
 		ArrayList<String> fantasia = fornecedorControll.listaFantasia();
 		fantasia = fornecedorControll.listaFantasia();
+		
 
 		for (String string : fantasia) {
 			panelCadEquipamento.getComboForncedores().addItem(string);
-		}
-
-		for (String string : fantasia) {
 			System.out.println(string);
+
 		}
 	}
 }

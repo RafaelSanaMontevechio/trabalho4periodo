@@ -109,6 +109,7 @@ public class PanelCadastroEquipamento extends JPanel {
 	public JComboBox<String> getComboForncedores() {
 		if (comboForncedores == null) {
 			comboForncedores = new JComboBox<String>();
+			//comboForncedores.addItem("Bematech");
 		}
 		return comboForncedores;
 	}
