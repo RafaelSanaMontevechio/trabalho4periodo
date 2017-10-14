@@ -2,6 +2,7 @@ package br.edu.univas.si4.lab4.controller;
 
 import br.edu.univas.si4.lab4.view.Principal;
 import br.edu.univas.si4.lab4.view.equipamento.FrameCadastroEquipamentos;
+import br.edu.univas.si4.lab4.view.equipamento.SpyWindow;
 import br.edu.univas.si4.lab4.view.estoque.FrameEstoque;
 import br.edu.univas.si4.lab4.view.fornecedor.FrameCadastroFornecedor;
 import br.edu.univas.si4.lab4.view.peca.FrameCadastroPeca;
@@ -31,6 +32,7 @@ public class PrincipalController {
 	public void callScreenRegisterNewEquipamento() {
 		fCadEquipamento = new FrameCadastroEquipamentos();
 		fCadEquipamento.setLocationRelativeTo(null);
+		fCadEquipamento.addWindowListener(new SpyWindow());
 		fCadEquipamento.setVisible(true);
 	}
 	

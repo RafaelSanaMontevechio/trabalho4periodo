@@ -54,7 +54,7 @@ public class InternalFrameFornecedor extends Comum {
 
 				@Override
 				public void alterarPerformed() {
-					
+					alterarClicked();
 				}
 			});
 		}
@@ -83,7 +83,7 @@ public class InternalFrameFornecedor extends Comum {
 		} else if (buttonsFiltroFornecedor.getJrbRazao().isSelected()) {
 			jrbRazaoSelected();
 		} else if (buttonsFiltroFornecedor.getJrbTodos().isSelected()) {
-			jrbTodos();
+			jrbTodosSelected();
 		} else {
 			JOptionPane.showMessageDialog(null, "Nenhum filtro selecionado!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -95,6 +95,10 @@ public class InternalFrameFornecedor extends Comum {
 		String str = String.valueOf(obj);
 
 		new FornecedorController().removeFornecedor(str);
+	}
+	
+	private void alterarClicked() {
+		//TODO : Implementar
 	}
 
 	private void jrbCnpjSelected() {
@@ -117,7 +121,7 @@ public class InternalFrameFornecedor extends Comum {
 		}
 	}
 
-	private void jrbTodos() {
+	private void jrbTodosSelected() {
 		getFornecedorControll().addData(this);
 	}
 }

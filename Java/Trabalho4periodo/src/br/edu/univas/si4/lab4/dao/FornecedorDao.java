@@ -83,19 +83,19 @@ public class FornecedorDao {
 		conn.close();
 		return fornecedores;
 	}
-	
-	//Seleciona por Cnpj
+
+	// Seleciona por Cnpj
 	public List<FornecedorTO> listByCnpj(Long cnpj) throws SQLException {
 		ArrayList<FornecedorTO> fornecedores = new ArrayList<FornecedorTO>();
 
 		Connection conn = DBUtil.openConnection();
 
 		String sql = " SELECT * FROM FORNECEDOR WHERE CNPJ = ? ";
-		
+
 		PreparedStatement prep = conn.prepareStatement(sql);
 		prep.setLong(1, cnpj);
 		ResultSet rs = prep.executeQuery();
-	
+
 		while (rs.next()) {
 			fornecedor = new FornecedorTO();
 			fornecedor.setCnpj(rs.getLong(1));
@@ -106,19 +106,19 @@ public class FornecedorDao {
 		conn.close();
 		return fornecedores;
 	}
-	
-	//Seleciona o fornecedor cujo nome contenha valor informado
+
+	// Seleciona o fornecedor cujo nome contenha valor informado
 	public List<FornecedorTO> listByRazao(String str) throws SQLException {
 		ArrayList<FornecedorTO> fornecedores = new ArrayList<FornecedorTO>();
 
 		Connection conn = DBUtil.openConnection();
 
 		String sql = " SELECT * FROM FORNECEDORES WHERE razao_social LIKE ? ";
-		
+
 		PreparedStatement prep = conn.prepareStatement(sql);
 		prep.setString(1, str);
 		ResultSet rs = prep.executeQuery();
-	
+
 		while (rs.next()) {
 			fornecedor = new FornecedorTO();
 			fornecedor.setCnpj(rs.getLong(1));
@@ -129,20 +129,20 @@ public class FornecedorDao {
 		conn.close();
 		return fornecedores;
 	}
-	
-	//Select nome fantasia
+
+	// Select nome fantasia
 	public ArrayList<String> selectFantasia() throws SQLException {
 		ArrayList<String> fantasia = new ArrayList<String>();
-		
+
 		Connection conn = DBUtil.openConnection();
 
 		String sql = " SELECT nome_fantasia FROM FORNECEDOR ";
-		
+
 		Statement stm = conn.createStatement();
 		ResultSet rs = stm.executeQuery(sql);
-	
+
 		while (rs.next()) {
-			fantasia.add(getFornecedor().getFantasia());
+			fantasia.add(rs.getString(1));
 		}
 		conn.close();
 		return fantasia;

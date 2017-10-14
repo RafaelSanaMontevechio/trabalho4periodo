@@ -114,7 +114,6 @@ public class PanelCadastroEquipamento extends JPanel {
 	}
 
 	// Constraints
-
 	private GridBagConstraints getJlCodigoConstraints() {
 		if (jlCodigoConstraints == null) {
 			jlCodigoConstraints = new GridBagConstraints();
