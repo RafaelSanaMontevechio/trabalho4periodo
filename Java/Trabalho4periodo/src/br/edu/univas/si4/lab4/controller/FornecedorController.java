@@ -71,7 +71,7 @@ public class FornecedorController {
 	}
 
 	// Pega retorno do select por razao e popula jtable
-	public void addByRazao(InternalFrameFornecedor iFrameFornecedor, String str) {
+	public void addDataByRazao(InternalFrameFornecedor iFrameFornecedor, String str) {
 		List<FornecedorTO> fornecedores = null;
 		try {
 			fornecedores = new ArrayList<FornecedorTO>();

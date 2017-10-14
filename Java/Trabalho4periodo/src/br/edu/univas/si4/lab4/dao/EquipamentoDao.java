@@ -11,10 +11,10 @@ import br.edu.univas.si4.lab4.to.EquipamentoTO;
 
 public class EquipamentoDao {
 
-	private EquipamentoTO equipamento;
+	private EquipamentoTO equipamentoTO;
 	
 	public EquipamentoDao() {
-		equipamento = new EquipamentoTO();
+		equipamentoTO = new EquipamentoTO();
 	}
 
 	public void insertNewEquipamento(EquipamentoTO equipamento) throws SQLException {
@@ -42,7 +42,7 @@ public class EquipamentoDao {
 		conn.close();
 	}
 
-	// Seleciona todos os fornecedores
+	// Seleciona todos os equipamentos
 	public ArrayList<EquipamentoTO> listAllEquipamentos() throws SQLException {
 		ArrayList<EquipamentoTO> equipamentos = new ArrayList<EquipamentoTO>();
 
@@ -54,14 +54,34 @@ public class EquipamentoDao {
 		ResultSet rs = stm.executeQuery(sql);
 
 		while (rs.next()) {
-			equipamento.setCodigo(rs.getInt(1));
-			equipamento.setNome(rs.getString(2));
-			equipamento.setQuantidade(rs.getInt(3));
-			equipamento.setFornecedor(rs.getString(4));
-			equipamentos.add(equipamento);
+			equipamentoTO.setCodigo(rs.getInt(1));
+			equipamentoTO.setNome(rs.getString(2));
+			equipamentoTO.setQuantidade(rs.getInt(3));
+			equipamentoTO.setFornecedor(rs.getString(4));
+			equipamentos.add(equipamentoTO);
 
 		}
 		conn.close();
 		return equipamentos;
 	}
+	
+	// Select nomes de equipamentos
+		public ArrayList<String> selectNomeEquipamento() throws SQLException {
+			ArrayList<String> nomeEquipamento = new ArrayList<String>();
+
+			Connection conn = DBUtil.openConnection();
+
+			String sql = " SELECT nome FROM EQUIPAMENTO ";
+
+			Statement stm = conn.createStatement();
+			ResultSet rs = stm.executeQuery(sql);
+
+			while (rs.next()) {
+				nomeEquipamento.add(rs.getString(1));
+			}
+			conn.close();
+			return nomeEquipamento;
+		}
+	
+	
 }

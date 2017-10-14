@@ -115,7 +115,7 @@ public class InternalFrameFornecedor extends Comum {
 
 		String str = (buttonsFiltroFornecedor.getJtDados().getText());
 		if (verifyEmptyString(str)) {
-			getFornecedorControll().addDatabyCnpj(this, str);
+			getFornecedorControll().addDataByRazao(this, str);
 		} else {
 			JOptionPane.showMessageDialog(null, "Razão Invalida ou vazio!", "Error", JOptionPane.ERROR_MESSAGE);
 		}

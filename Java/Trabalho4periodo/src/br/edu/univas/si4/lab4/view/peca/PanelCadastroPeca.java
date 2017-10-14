@@ -3,12 +3,16 @@ package br.edu.univas.si4.lab4.view.peca;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import br.edu.univas.si4.lab4.controller.EquipamentoController;
+import br.edu.univas.si4.lab4.controller.FornecedorController;
 
 public class PanelCadastroPeca extends JPanel {
 
@@ -28,8 +32,6 @@ public class PanelCadastroPeca extends JPanel {
 	private JComboBox<String> jcFornecedor;
 
 	private String[] tipos = { "Unidade", "Kit", "Conjunto", "Pacote", "Caixa" };
-	private String[] equipamentos = { "Equipamento 1", "Equipamento 2" };
-	private String[] fornecedores = { "Fornecedor 1", "Fornecedor 2", "Fornecedor 3" };
 
 	private GridBagConstraints jlCodigoConstraints;
 	private GridBagConstraints jlNomeConstraints;
@@ -140,14 +142,26 @@ public class PanelCadastroPeca extends JPanel {
 
 	private JComboBox<String> getJcEquipamento() {
 		if (jcEquipamento == null) {
-			jcEquipamento = new JComboBox<>(equipamentos);
+			jcEquipamento = new JComboBox<>();
+			ArrayList<String> nomeEquipamentos = new ArrayList<>();
+			nomeEquipamentos = new EquipamentoController().listaNomeEquipamentos();
+
+			for (String string : nomeEquipamentos) {
+				jcEquipamento.addItem(string);
+			}
 		}
 		return jcEquipamento;
 	}
 
 	private JComboBox<String> getJcFornecedor() {
 		if (jcFornecedor == null) {
-			jcFornecedor = new JComboBox<>(fornecedores);
+			ArrayList<String> fantasia = new ArrayList<>();
+			fantasia = new FornecedorController().listaFantasia();
+			jcFornecedor = new JComboBox<String>();
+
+			for (String string : fantasia) {
+				jcFornecedor.addItem(string);
+			}
 		}
 		return jcFornecedor;
 	}

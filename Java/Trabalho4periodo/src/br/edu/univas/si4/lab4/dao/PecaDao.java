@@ -11,7 +11,7 @@ public class PecaDao {
 
 		// String para fazer o insert de novo fornecedor no banco
 		String sentence = "INSERT INTO PECA "
-				+ " (codigo_peca, nome, quantidade, codigo_equipamento, cnpj_fornecedor) "
+				+ " (codigo_peca, nome, quantidade, equipamento, fornecedor) "
 				+ " VALUES (?, ?, ?, ?, ?)";
 
 		// Abre a conexão com o banco

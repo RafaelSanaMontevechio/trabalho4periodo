@@ -32,7 +32,7 @@ public class EquipamentoController {
 		}
 	}
 
-	// Adiciona todos os equipamentos cadastrados
+	// Retorna todos os equipamentos cadastrados
 	public void addData(InternalFrameEquipamentos iFrameEquipamento) {
 		List<EquipamentoTO> equipamentos = null;
 		try {
@@ -42,5 +42,16 @@ public class EquipamentoController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	// Seleciona apenas nome dos equipamentos
+	public ArrayList<String> listaNomeEquipamentos() {
+		ArrayList<String> nomeEquipamento = new ArrayList<>();
+		try {
+			nomeEquipamento = new EquipamentoDao().selectNomeEquipamento();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return nomeEquipamento;
 	}
 }

@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import br.edu.univas.si4.lab4.controller.FornecedorController;
+
 public class PanelCadastroEquipamento extends JPanel {
 
 	private static final long serialVersionUID = -1506685945811745749L;
@@ -33,10 +35,9 @@ public class PanelCadastroEquipamento extends JPanel {
 	private GridBagConstraints jtQuantidadeConstraints;
 	private GridBagConstraints comboForncedoresConstraints;
 
-	ArrayList<String> fornecedores;
-
 	public PanelCadastroEquipamento() {
 		addComponents();
+
 	}
 
 	private void addComponents() {
@@ -108,8 +109,13 @@ public class PanelCadastroEquipamento extends JPanel {
 
 	public JComboBox<String> getComboForncedores() {
 		if (comboForncedores == null) {
+			ArrayList<String> fantasia = new ArrayList<>();
+			fantasia = new FornecedorController().listaFantasia();
 			comboForncedores = new JComboBox<String>();
-			//comboForncedores.addItem("Bematech");
+
+			for (String string : fantasia) {
+				comboForncedores.addItem(string);
+			}
 		}
 		return comboForncedores;
 	}

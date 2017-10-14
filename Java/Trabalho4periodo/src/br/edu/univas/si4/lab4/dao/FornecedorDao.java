@@ -113,7 +113,7 @@ public class FornecedorDao {
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM FORNECEDORES WHERE razao_social LIKE ? ";
+		String sql = " SELECT * FROM FORNECEDOR WHERE razao_social = ? ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
 		prep.setString(1, str);

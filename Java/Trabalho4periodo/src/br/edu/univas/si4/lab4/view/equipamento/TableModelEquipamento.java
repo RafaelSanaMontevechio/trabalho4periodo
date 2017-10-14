@@ -104,8 +104,10 @@ public class TableModelEquipamento extends AbstractTableModel {
 			break;
 		case QUANTIDADE:
 			equipamento.setQuantidade((int) aValue);
+			break;
 		case FORNECEDOR:
-			return;
+			equipamento.setFornecedor((String) aValue);
+			break;
 		default:
 			// Não deve ocorrer, pois só existem 4 colunas
 			throw new IndexOutOfBoundsException("columnIndex out of bounds");
