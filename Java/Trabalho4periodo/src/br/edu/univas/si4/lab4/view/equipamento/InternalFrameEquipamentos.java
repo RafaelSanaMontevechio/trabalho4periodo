@@ -90,9 +90,9 @@ public class InternalFrameEquipamentos extends Comum {
 		if (buttonsPanelPesquisa.getJrbCodigo().isSelected()) {
 			
 		} else if (buttonsPanelPesquisa.getJrbNome().isSelected()) {
-			JOptionPane.showMessageDialog(null, "Filto: Nome selecionado!");
+			
 		} else if (buttonsPanelPesquisa.getJrbFornecedor().isSelected()) {
-			JOptionPane.showMessageDialog(null, "Filto: Fornecedor selecionado!");
+			
 		} else if (buttonsPanelPesquisa.getJrbTodos().isSelected()) {
 			getEquipamentoControll().addData(this);
 		}else {

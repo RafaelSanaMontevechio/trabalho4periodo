@@ -18,27 +18,21 @@ public class EquipamentoDao {
 	}
 
 	public void insertNewEquipamento(EquipamentoTO equipamento) throws SQLException {
-
-		// String para fazer o insert de novo fornecedor no banco
-		String sentence = "INSERT INTO EQUIPAMENTO " + " (codigo_equipamento, nome, quantidade, fornecedor) "
+		
+		String sql = "INSERT INTO EQUIPAMENTO " + " (codigo_equipamento, nome, quantidade, fornecedor) "
 				+ " VALUES (?, ?, ?, ?)";
 
-		// Abre a conexão com o banco
 		Connection conn = DBUtil.openConnection();
 
-		// Prepara a String
-		PreparedStatement prepStat = conn.prepareStatement(sentence);
+		PreparedStatement prepStat = conn.prepareStatement(sql);
 
-		// Configura os parametros da sentença
 		prepStat.setInt(1, equipamento.getCodigo());
 		prepStat.setString(2, equipamento.getNome());
 		prepStat.setInt(3, equipamento.getQuantidade());
 		prepStat.setString(4, equipamento.getFornecedor());
 
-		// Executa a sentença
 		prepStat.execute();
-
-		// Fecha a conexão
+		
 		conn.close();
 	}
 
@@ -54,6 +48,7 @@ public class EquipamentoDao {
 		ResultSet rs = stm.executeQuery(sql);
 
 		while (rs.next()) {
+			equipamentoTO = new EquipamentoTO();
 			equipamentoTO.setCodigo(rs.getInt(1));
 			equipamentoTO.setNome(rs.getString(2));
 			equipamentoTO.setQuantidade(rs.getInt(3));

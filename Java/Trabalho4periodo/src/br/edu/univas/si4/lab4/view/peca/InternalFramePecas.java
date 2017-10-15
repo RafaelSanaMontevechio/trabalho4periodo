@@ -1,11 +1,14 @@
 package br.edu.univas.si4.lab4.view.peca;
 
 import java.awt.BorderLayout;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import br.edu.univas.si4.lab4.controller.PecaController;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListenerRelatorios;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListernerFiltroPesquisa;
+import br.edu.univas.si4.lab4.to.PecaTO;
 import br.edu.univas.si4.lab4.view.Comum;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelFiltrosPesquisas;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelRelatorio;
@@ -44,19 +47,16 @@ public class InternalFramePecas extends Comum {
 
 				@Override
 				public void deletarPerformed() {
-					JOptionPane.showMessageDialog(null, "Clicou botão deletar - Tela pesquisa peças");
 
 				}
 
 				@Override
 				public void alterarPerformed() {
-					JOptionPane.showMessageDialog(null, "Clicou botão alterar - Tela pesquisa peças");
 
 				}
 
 				@Override
 				public void imprimirPerformed() {
-					// TODO Auto-generated method stub
 
 				}
 			});
@@ -86,8 +86,15 @@ public class InternalFramePecas extends Comum {
 			JOptionPane.showMessageDialog(null, "Filto: Nome selecionado!");
 		} else if (buttonsPanelPesquisa.getJrbFornecedor().isSelected()) {
 			JOptionPane.showMessageDialog(null, "Filto: Fornecedor selecionado!");
-		} else {
-			JOptionPane.showMessageDialog(null, "Filto: Todos selecionado!");
+		} else if(buttonsPanelPesquisa.getJrbTodos().isSelected()){
+			new PecaController().addData(this);
+		}else {
+			JOptionPane.showMessageDialog(null, "Nenhum filtro selecionado!");
 		}
+	}
+
+	public void updateModelPecas(List<PecaTO> pecas) {
+		TableModelPeca tmbPeca = new TableModelPeca(pecas);
+		getTable().setModel(tmbPeca);	
 	}
 }

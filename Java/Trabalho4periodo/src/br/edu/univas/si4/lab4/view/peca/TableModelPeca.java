@@ -1,35 +1,37 @@
-package br.edu.univas.si4.lab4.view.equipamento;
+package br.edu.univas.si4.lab4.view.peca;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import br.edu.univas.si4.lab4.to.EquipamentoTO;
+import br.edu.univas.si4.lab4.to.PecaTO;
 
-public class TableModelEquipamento extends AbstractTableModel {
+public class TableModelPeca extends AbstractTableModel {
 
-	private static final long serialVersionUID = 7993185046938027113L;
+	private static final long serialVersionUID = -3338458740900151250L;
 
-	private String[] columnNames = { "CODIGO", "NOME", "QUANTIDADE", "FORNECEDOR" };
+	private String[] columnNames = { "CODIGO", "NOME", "QUANTIDADE", "TIPO", "EQUIPAMENTO", "FORNECEDOR" };
 
 	// Constantes representando o índice das colunas
 	private static final int CODIGO = 0;
 	private static final int NOME = 1;
 	private static final int QUANTIDADE = 2;
-	private static final int FORNECEDOR = 3;
+	private static final int TIPO = 3;
+	private static final int EQUIPAMENTO = 4;
+	private static final int FORNECEDOR = 5;
 
 	// Lista de Fornecedores a serem exibidos na tabela
-	private List<EquipamentoTO> linhas;
+	private List<PecaTO> linhas;
 
 	// Cria um FornecedorTableModel sem nenhuma linha
-	public TableModelEquipamento() {
-		linhas = new ArrayList<EquipamentoTO>();
+	public TableModelPeca() {
+		linhas = new ArrayList<PecaTO>();
 	}
 
 	// Cria um FornecedorTableModel contendo a lista recebida por parâmetro
-	public TableModelEquipamento(List<EquipamentoTO> listaDeEquipamentos) {
-		linhas = new ArrayList<EquipamentoTO>(listaDeEquipamentos);
+	public TableModelPeca(List<PecaTO> listaDePecas) {
+		linhas = new ArrayList<PecaTO>(listaDePecas);
 	}
 
 	@Override
@@ -56,10 +58,14 @@ public class TableModelEquipamento extends AbstractTableModel {
 			return String.class;
 		case QUANTIDADE:
 			return int.class;
+		case TIPO:
+			return String.class;
+		case EQUIPAMENTO:
+			return String.class;
 		case FORNECEDOR:
 			return String.class;
 		default:
-			// Não deve ocorrer, pois só existem 3 colunas
+			// Não deve ocorrer, pois só existem 6 colunas
 			throw new IndexOutOfBoundsException("columnIndex out of bounds");
 		}
 	}
@@ -67,25 +73,29 @@ public class TableModelEquipamento extends AbstractTableModel {
 	// Deixa as celulas não editaveis
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		return false;
+		return true;
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		// Pega o fornecedor referente a linha especificada.
-		EquipamentoTO equipamento = linhas.get(rowIndex);
+		PecaTO peca = linhas.get(rowIndex);
 
 		switch (columnIndex) {
 		case CODIGO:
-			return equipamento.getCodigo();
+			return peca.getCodigo();
 		case NOME:
-			return equipamento.getNome();
+			return peca.getNome();
 		case QUANTIDADE:
-			return equipamento.getQuantidade();
+			return peca.getQuantidade();
+		case TIPO:
+			return peca.getTipo();
+		case EQUIPAMENTO:
+			return peca.getEquipamento();
 		case FORNECEDOR:
-			return equipamento.getFornecedor();
+			return peca.getFornecedor();
 		default:
-			// Não deve ocorrer, pois só existem 4 colunas
+			// Não deve ocorrer, pois só existem 3 colunas
 			throw new IndexOutOfBoundsException("columnIndex out of bounds");
 		}
 	}
@@ -93,27 +103,32 @@ public class TableModelEquipamento extends AbstractTableModel {
 	@Override
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		// Pega o fornecedor referente a linha especificada.
-		EquipamentoTO equipamento = linhas.get(rowIndex);
+		PecaTO peca = linhas.get(rowIndex);
 
 		switch (columnIndex) {
 		case CODIGO:
-			equipamento.setCodigo((int) aValue);
+			peca.setCodigo((int) aValue);
 			break;
 		case NOME:
-			equipamento.setNome((String) aValue);
+			peca.setNome((String) aValue);
 			break;
 		case QUANTIDADE:
-			equipamento.setQuantidade((int) aValue);
+			peca.setQuantidade((int) aValue);
+			break;
+		case TIPO:
+			peca.setTipo((String) aValue);
+			break;
+		case EQUIPAMENTO:
+			peca.setEquipamento((String) aValue);
 			break;
 		case FORNECEDOR:
-			equipamento.setFornecedor((String) aValue);
+			peca.setFornecedor((String) aValue);
 			break;
 		default:
-			// Não deve ocorrer, pois só existem 4 colunas
+			// Não deve ocorrer, pois só existem 6 colunas
 			throw new IndexOutOfBoundsException("columnIndex out of bounds");
 		}
 
 		fireTableCellUpdated(rowIndex, columnIndex); // Notifica a atualização da célula
 	}
-
 }

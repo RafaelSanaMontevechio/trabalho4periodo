@@ -292,6 +292,9 @@ public class PanelCadastroPeca extends JPanel {
 			jcFornecedorConstraints = new GridBagConstraints();
 			jcFornecedorConstraints.gridx = 3;
 			jcFornecedorConstraints.gridy = 2;
+			jcFornecedorConstraints.gridwidth = 3;
+			jcFornecedorConstraints.ipadx = 100;
+			jcFornecedorConstraints.anchor = GridBagConstraints.LINE_START;
 			jcFornecedorConstraints.insets = new Insets(5, 5, 5, 5);
 		}
 		return jcFornecedorConstraints;
