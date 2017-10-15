@@ -112,35 +112,35 @@ public class PanelCadastroPeca extends JPanel {
 		return jlFornecedor;
 	}
 
-	private JTextField getJtCodigo() {
+	public JTextField getJtCodigo() {
 		if (jtCodigo == null) {
 			jtCodigo = new JTextField();
 		}
 		return jtCodigo;
 	}
 
-	private JTextField getJtNome() {
+	public JTextField getJtNome() {
 		if (jtNome == null) {
 			jtNome = new JTextField();
 		}
 		return jtNome;
 	}
 
-	private JComboBox<String> getJcTipo() {
+	public JComboBox<String> getJcTipo() {
 		if (jcTipo == null) {
 			jcTipo = new JComboBox<>(tipos);
 		}
 		return jcTipo;
 	}
 
-	private JTextField getJtQuantidade() {
+	public JTextField getJtQuantidade() {
 		if (jtQuantidade == null) {
 			jtQuantidade = new JTextField();
 		}
 		return jtQuantidade;
 	}
 
-	private JComboBox<String> getJcEquipamento() {
+	public JComboBox<String> getJcEquipamento() {
 		if (jcEquipamento == null) {
 			jcEquipamento = new JComboBox<>();
 			ArrayList<String> nomeEquipamentos = new ArrayList<>();
@@ -153,7 +153,7 @@ public class PanelCadastroPeca extends JPanel {
 		return jcEquipamento;
 	}
 
-	private JComboBox<String> getJcFornecedor() {
+	public JComboBox<String> getJcFornecedor() {
 		if (jcFornecedor == null) {
 			ArrayList<String> fantasia = new ArrayList<>();
 			fantasia = new FornecedorController().listaFantasia();

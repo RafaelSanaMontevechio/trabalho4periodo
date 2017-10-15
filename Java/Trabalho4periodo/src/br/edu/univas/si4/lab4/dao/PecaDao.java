@@ -4,28 +4,29 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import br.edu.univas.si4.lab4.to.PecaTO;
+
 public class PecaDao {
 
-	public void insertNewPeca(int codigo, String nome, int quantidade, String equipamento, String fornecedor)
-			throws SQLException {
+	public void insertNewPeca(PecaTO pecaTO) throws SQLException {
 
-		// String para fazer o insert de novo fornecedor no banco
-		String sentence = "INSERT INTO PECA "
-				+ " (codigo_peca, nome, quantidade, equipamento, fornecedor) "
-				+ " VALUES (?, ?, ?, ?, ?)";
+		// String para fazer o insert de nova peca no banco
+		String sql = "INSERT INTO PECA " + " (codigo_peca, nome, quantidade, tipo, equipamento, fornecedor) "
+				+ " VALUES (?, ?, ?, ?, ?, ?)";
 
 		// Abre a conexão com o banco
 		Connection conn = DBUtil.openConnection();
 
 		// Prepara a String
-		PreparedStatement prepStat = conn.prepareStatement(sentence);
+		PreparedStatement prepStat = conn.prepareStatement(sql);
 
 		// Configura os parametros da sentença
-		prepStat.setInt(1, codigo);
-		prepStat.setString(2, nome);
-		prepStat.setInt(3, quantidade);
-		prepStat.setString(4, equipamento);
-		prepStat.setString(5, fornecedor);
+		prepStat.setInt(1, pecaTO.getCodigo());
+		prepStat.setString(2, pecaTO.getNome());
+		prepStat.setInt(3, pecaTO.getQuantidade());
+		prepStat.setString(4, pecaTO.getTipo());
+		prepStat.setString(5, pecaTO.getEquipamento());
+		prepStat.setString(6, pecaTO.getFornecedor());
 
 		// Executa a sentença
 		prepStat.execute();
@@ -33,5 +34,4 @@ public class PecaDao {
 		// Fecha a conexão
 		conn.close();
 	}
-
 }

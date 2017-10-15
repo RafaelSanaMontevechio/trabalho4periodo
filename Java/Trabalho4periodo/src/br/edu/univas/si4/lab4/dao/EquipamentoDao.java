@@ -12,13 +12,13 @@ import br.edu.univas.si4.lab4.to.EquipamentoTO;
 public class EquipamentoDao {
 
 	private EquipamentoTO equipamentoTO;
-	
+
 	public EquipamentoDao() {
 		equipamentoTO = new EquipamentoTO();
 	}
 
 	public void insertNewEquipamento(EquipamentoTO equipamento) throws SQLException {
-		
+
 		// String para fazer o insert de novo fornecedor no banco
 		String sentence = "INSERT INTO EQUIPAMENTO " + " (codigo_equipamento, nome, quantidade, fornecedor) "
 				+ " VALUES (?, ?, ?, ?)";
@@ -64,24 +64,22 @@ public class EquipamentoDao {
 		conn.close();
 		return equipamentos;
 	}
-	
+
 	// Select nomes de equipamentos
-		public ArrayList<String> selectNomeEquipamento() throws SQLException {
-			ArrayList<String> nomeEquipamento = new ArrayList<String>();
+	public ArrayList<String> selectNomeEquipamento() throws SQLException {
+		ArrayList<String> nomeEquipamento = new ArrayList<String>();
 
-			Connection conn = DBUtil.openConnection();
+		Connection conn = DBUtil.openConnection();
 
-			String sql = " SELECT nome FROM EQUIPAMENTO ";
+		String sql = " SELECT nome FROM EQUIPAMENTO ";
 
-			Statement stm = conn.createStatement();
-			ResultSet rs = stm.executeQuery(sql);
+		Statement stm = conn.createStatement();
+		ResultSet rs = stm.executeQuery(sql);
 
-			while (rs.next()) {
-				nomeEquipamento.add(rs.getString(1));
-			}
-			conn.close();
-			return nomeEquipamento;
+		while (rs.next()) {
+			nomeEquipamento.add(rs.getString(1));
 		}
-	
-	
+		conn.close();
+		return nomeEquipamento;
+	}
 }
