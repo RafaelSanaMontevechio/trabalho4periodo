@@ -49,7 +49,7 @@ public class InternalFrameEquipamentos extends Comum {
 
 				@Override
 				public void deletarPerformed() {
-
+					deleteClicked();
 				}
 
 				@Override
@@ -95,5 +95,12 @@ public class InternalFrameEquipamentos extends Comum {
 		} else {
 			JOptionPane.showMessageDialog(null, "Nenhum filtro selecionado!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	
+	private void deleteClicked() {
+		Object obj = getTable().getValueAt(getTable().getSelectedRow(), 0);
+		String codigo = String.valueOf(obj);
+		
+		new EquipamentoController().removeEquipamento(codigo);
 	}
 }

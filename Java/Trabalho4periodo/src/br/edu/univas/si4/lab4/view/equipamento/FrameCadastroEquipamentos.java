@@ -82,6 +82,10 @@ public class FrameCadastroEquipamentos extends JDialog {
 		getEquipamentoTO().setFornecedor(getPanelCadEquipamento().getComboForncedores().getSelectedItem().toString());
 
 		getEquipamentoControll().newEquipamento(getEquipamentoTO());
+
+		getPanelCadEquipamento().getJtCodigo().setText("");
+		getPanelCadEquipamento().getJtNome().setText("");
+		getPanelCadEquipamento().getJtQuantidade().setText("");
 	}
 
 	private void cancelarClicked() {

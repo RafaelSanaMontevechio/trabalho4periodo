@@ -154,4 +154,19 @@ public class EquipamentoDao {
 		conn.close();
 		return nomeEquipamento;
 	}
+
+	public void deleteEquipamento(int codigo) throws SQLException {
+		String sql = "DELETE FROM EQUIPAMENTO WHERE codigo_equipamento = ?";
+		Connection conn = null;
+		try {
+			conn = DBUtil.openConnection();
+			PreparedStatement prep = conn.prepareStatement(sql);
+			prep.setLong(1, codigo);
+			prep.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		conn.close();
+	}
+
 }

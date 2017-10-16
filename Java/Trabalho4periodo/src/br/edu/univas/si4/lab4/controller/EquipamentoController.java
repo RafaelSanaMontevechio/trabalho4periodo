@@ -105,4 +105,14 @@ public class EquipamentoController {
 		}
 		return nomeEquipamento;
 	}
+	
+	public void removeEquipamento(String cod) {
+		int codigo = Integer.parseInt(cod);
+		try {
+			new EquipamentoDao().deleteEquipamento(codigo);
+			JOptionPane.showMessageDialog(null, "Equipamento excluido!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
