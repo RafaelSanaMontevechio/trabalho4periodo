@@ -1,12 +1,14 @@
 package br.edu.univas.si4.lab4.view.fornecedor;
 
 import java.awt.BorderLayout;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.lab4.controller.FornecedorController;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListenerRelatorios;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListernerFiltroPesquisa;
+import br.edu.univas.si4.lab4.to.FornecedorTO;
 import br.edu.univas.si4.lab4.view.Comum;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelRelatorio;
 
@@ -29,6 +31,12 @@ public class InternalFrameFornecedor extends Comum {
 			fornecedorControll = new FornecedorController();
 		}
 		return fornecedorControll;
+	}
+	
+
+	public void updateModel(List<FornecedorTO> list) {
+		TableModelFornecedor tmFornecedor = new TableModelFornecedor(list);
+		getTable().setModel(tmFornecedor);
 	}
 
 	@Override
@@ -106,6 +114,7 @@ public class InternalFrameFornecedor extends Comum {
 		String str = (buttonsFiltroFornecedor.getJtDados().getText());
 		if (verifyEmptyString(str)) {
 			getFornecedorControll().addDatabyCnpj(this, str);
+			buttonsFiltroFornecedor.getJtDados().setText("");
 		} else {
 			JOptionPane.showMessageDialog(null, "CNPJ Invalido ou vazio!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -116,6 +125,7 @@ public class InternalFrameFornecedor extends Comum {
 		String str = (buttonsFiltroFornecedor.getJtDados().getText());
 		if (verifyEmptyString(str)) {
 			getFornecedorControll().addDataByRazao(this, str);
+			buttonsFiltroFornecedor.getJtDados().setText("");
 		} else {
 			JOptionPane.showMessageDialog(null, "Razão Invalida ou vazio!", "Error", JOptionPane.ERROR_MESSAGE);
 		}

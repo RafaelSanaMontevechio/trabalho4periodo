@@ -46,7 +46,7 @@ public class PecaDao {
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM PECA ";
+		String sql = " SELECT * FROM PECA ORDER BY FORNECEDOR ";
 
 		Statement stm = conn.createStatement();
 		ResultSet rs = stm.executeQuery(sql);

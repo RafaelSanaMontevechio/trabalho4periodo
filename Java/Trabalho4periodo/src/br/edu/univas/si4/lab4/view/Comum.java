@@ -13,21 +13,19 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.TableModel;
 
 import br.edu.univas.si4.lab4.to.EquipamentoTO;
-import br.edu.univas.si4.lab4.to.FornecedorTO;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelRelatorio;
 import br.edu.univas.si4.lab4.view.equipamento.TableModelEquipamento;
-import br.edu.univas.si4.lab4.view.fornecedor.TableModelFornecedor;
 
 public abstract class Comum extends JInternalFrame {
 
 	private static final long serialVersionUID = 7859729951608406473L;
 
-	private JTable table;
-	private JScrollPane tableScroll;
+	protected JTable table;
+	protected JScrollPane tableScroll;
 	private JPanel panelCadastrados;
 	private String titleContentPane;
-	
-	private TableModel model;
+
+	protected TableModel model;
 
 	private JPanel contentPane;
 	protected ButtonsPanelRelatorio buttonsPanelRelatorio;
@@ -72,12 +70,12 @@ public abstract class Comum extends JInternalFrame {
 	 */
 	public JTable getTable() {
 		if (table == null) {
-			table = new JTable(model);
+			table = new JTable();
 		}
 		return table;
 	}
 
-	public JScrollPane getTableScroll() {
+	JScrollPane getTableScroll() {
 		if (tableScroll == null) {
 			tableScroll = new JScrollPane();
 			tableScroll = new JScrollPane(getTable());
@@ -86,11 +84,6 @@ public abstract class Comum extends JInternalFrame {
 		return tableScroll;
 	}
 
-	public void updateModel(List<FornecedorTO> list) {
-		TableModelFornecedor tmFornecedor = new TableModelFornecedor(list);
-		getTable().setModel(tmFornecedor);
-	}
-	
 	public void updateModelEquipamento(List<EquipamentoTO> list) {
 		TableModelEquipamento tmEquipamento = new TableModelEquipamento(list);
 		getTable().setModel(tmEquipamento);

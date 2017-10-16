@@ -15,7 +15,6 @@ public class InternalFrameEquipamentos extends Comum {
 
 	private static final long serialVersionUID = 4727354562815126822L;
 
-	private FrameCadastroEquipamentos fCadEquipamentos;
 	private ButtonsPanelFiltrosPesquisas buttonsPanelPesquisa;
 	private EquipamentoController equipamentoControll;
 
@@ -32,14 +31,6 @@ public class InternalFrameEquipamentos extends Comum {
 		return equipamentoControll;
 	}
 
-	private FrameCadastroEquipamentos getfCadEquipamentos() {
-		if (fCadEquipamentos == null) {
-			fCadEquipamentos = new FrameCadastroEquipamentos();
-			fCadEquipamentos.setLocationRelativeTo(null);
-		}
-		return fCadEquipamentos;
-	}
-
 	@Override
 	public ButtonsPanelRelatorio getButtonsPanelRelatorio() {
 		if (buttonsPanelRelatorio == null) {
@@ -48,22 +39,22 @@ public class InternalFrameEquipamentos extends Comum {
 
 				@Override
 				public void novoPerformed() {
-					getfCadEquipamentos().setVisible(true);
+					getEquipamentoControll().callRegisterNewEquipamento();
 				}
 
 				@Override
 				public void imprimirPerformed() {
-					
+
 				}
 
 				@Override
 				public void deletarPerformed() {
-					
+
 				}
 
 				@Override
 				public void alterarPerformed() {
-					
+
 				}
 			});
 		}
@@ -87,17 +78,22 @@ public class InternalFrameEquipamentos extends Comum {
 	}
 
 	private void pesquisarClicked() {
-		if (buttonsPanelPesquisa.getJrbCodigo().isSelected()) {
-			
-		} else if (buttonsPanelPesquisa.getJrbNome().isSelected()) {
-			
-		} else if (buttonsPanelPesquisa.getJrbFornecedor().isSelected()) {
-			
-		} else if (buttonsPanelPesquisa.getJrbTodos().isSelected()) {
-			getEquipamentoControll().addData(this);
-		}else {
+		if (getPanelFiltroPesquisas().getJrbCodigo().isSelected()) {
+			int codigo = Integer.parseInt(getPanelFiltroPesquisas().getJtDados().getText());
+			getEquipamentoControll().addDataByCodigo(this, codigo);
+			getPanelFiltroPesquisas().getJtDados().setText("");
+		} else if (getPanelFiltroPesquisas().getJrbNome().isSelected()) {
+			String name = getPanelFiltroPesquisas().getJtDados().getText();
+			getEquipamentoControll().addDataByName(this, name);
+			getPanelFiltroPesquisas().getJtDados().setText("");
+		} else if (getPanelFiltroPesquisas().getJrbFornecedor().isSelected()) {
+			String fornecedor = getPanelFiltroPesquisas().getJtDados().getText();
+			getEquipamentoControll().addDataByFornecedor(this, fornecedor);
+			getPanelFiltroPesquisas().getJtDados().setText("");
+		} else if (getPanelFiltroPesquisas().getJrbTodos().isSelected()) {
+			getEquipamentoControll().addDataAll(this);
+		} else {
 			JOptionPane.showMessageDialog(null, "Nenhum filtro selecionado!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
 }

@@ -90,7 +90,7 @@ public class JmenuBar extends JMenuBar {
 		if (jmPesquisa == null) {
 			ImageIcon iconListar = new ImageIcon("imagens/listar.png");
 			jmPesquisa = new JMenu();
-			jmPesquisa.setText("Listar");
+			jmPesquisa.setText("Relatorios");
 			jmPesquisa.setIcon(iconListar);
 		}
 		return jmPesquisa;
@@ -163,7 +163,7 @@ public class JmenuBar extends JMenuBar {
 
 	public JMenuItem getJmiRetirarEstoque() {
 		if (jmiRetirarEstoque == null) {
-			jmiRetirarEstoque = new JMenuItem("Retirar do estoque",  new ImageIcon("imagens/menos.png"));
+			jmiRetirarEstoque = new JMenuItem("Retirar do estoque", new ImageIcon("imagens/menos.png"));
 		}
 		return jmiRetirarEstoque;
 	}
