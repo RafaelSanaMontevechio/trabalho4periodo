@@ -65,4 +65,85 @@ public class PecaDao {
 		conn.close();
 		return pecas;
 	}
+
+	// Select o equipamento pelo codigo
+	public ArrayList<PecaTO> selectPecabyCodigo(int codigo) throws SQLException {
+		ArrayList<PecaTO> pecas = new ArrayList<PecaTO>();
+
+		Connection conn = DBUtil.openConnection();
+
+		String sql = " SELECT * FROM PECA WHERE codigo_peca = ? ";
+
+		PreparedStatement prep = conn.prepareStatement(sql);
+		prep.setInt(1, codigo);
+		ResultSet rs = prep.executeQuery();
+
+		while (rs.next()) {
+			peca = new PecaTO();
+			peca.setCodigo(rs.getInt(1));
+			peca.setNome(rs.getString(2));
+			peca.setQuantidade(rs.getInt(3));
+			peca.setTipo(rs.getString(4));
+			peca.setEquipamento(rs.getString(5));
+			peca.setFornecedor(rs.getString(6));
+			pecas.add(peca);
+
+		}
+		conn.close();
+		return pecas;
+	}
+
+	// Select o equipamento pelo nome
+	public ArrayList<PecaTO> selectPecabyName(String name) throws SQLException {
+		ArrayList<PecaTO> pecas = new ArrayList<PecaTO>();
+
+		Connection conn = DBUtil.openConnection();
+
+		String sql = " SELECT * FROM PECA WHERE nome = ? ";
+
+		PreparedStatement prep = conn.prepareStatement(sql);
+		prep.setString(1, name);
+		ResultSet rs = prep.executeQuery();
+
+		while (rs.next()) {
+			peca = new PecaTO();
+			peca.setCodigo(rs.getInt(1));
+			peca.setNome(rs.getString(2));
+			peca.setQuantidade(rs.getInt(3));
+			peca.setTipo(rs.getString(4));
+			peca.setEquipamento(rs.getString(5));
+			peca.setFornecedor(rs.getString(6));
+			pecas.add(peca);
+
+		}
+		conn.close();
+		return pecas;
+	}
+
+	// Select o equipamento pelo fornecedor
+	public ArrayList<PecaTO> selectPecabyFornecedor(String fornecedor) throws SQLException {
+		ArrayList<PecaTO> pecas = new ArrayList<PecaTO>();
+
+		Connection conn = DBUtil.openConnection();
+
+		String sql = " SELECT * FROM PECA WHERE fornecedor = ? ";
+
+		PreparedStatement prep = conn.prepareStatement(sql);
+		prep.setString(1, fornecedor);
+		ResultSet rs = prep.executeQuery();
+
+		while (rs.next()) {
+			peca = new PecaTO();
+			peca.setCodigo(rs.getInt(1));
+			peca.setNome(rs.getString(2));
+			peca.setQuantidade(rs.getInt(3));
+			peca.setTipo(rs.getString(4));
+			peca.setEquipamento(rs.getString(5));
+			peca.setFornecedor(rs.getString(6));
+			pecas.add(peca);
+
+		}
+		conn.close();
+		return pecas;
+	}
 }

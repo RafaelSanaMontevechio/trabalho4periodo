@@ -81,20 +81,26 @@ public class InternalFramePecas extends Comum {
 
 	private void pesquisarClicked() {
 		if (buttonsPanelPesquisa.getJrbCodigo().isSelected()) {
-			JOptionPane.showMessageDialog(null, "Filto: Código selecionado! - Peça");
+			int codigo = Integer.parseInt(getPanelFiltroPesquisas().getJtDados().getText());
+			new PecaController().addDataByCodigo(this, codigo);
+			getPanelFiltroPesquisas().getJtDados().setText("");
 		} else if (buttonsPanelPesquisa.getJrbNome().isSelected()) {
-			JOptionPane.showMessageDialog(null, "Filto: Nome selecionado!");
+			String name = getPanelFiltroPesquisas().getJtDados().getText();
+			new PecaController().addDataByName(this, name);
+			getPanelFiltroPesquisas().getJtDados().setText("");
 		} else if (buttonsPanelPesquisa.getJrbFornecedor().isSelected()) {
-			JOptionPane.showMessageDialog(null, "Filto: Fornecedor selecionado!");
-		} else if(buttonsPanelPesquisa.getJrbTodos().isSelected()){
-			new PecaController().addData(this);
-		}else {
+			String fornecedor = getPanelFiltroPesquisas().getJtDados().getText();
+			new PecaController().addDataByFornecedor(this, fornecedor);
+			getPanelFiltroPesquisas().getJtDados().setText("");
+		} else if (buttonsPanelPesquisa.getJrbTodos().isSelected()) {
+			new PecaController().addDataAll(this);
+		} else {
 			JOptionPane.showMessageDialog(null, "Nenhum filtro selecionado!");
 		}
 	}
 
 	public void updateModelPecas(List<PecaTO> pecas) {
 		TableModelPeca tmbPeca = new TableModelPeca(pecas);
-		getTable().setModel(tmbPeca);	
+		getTable().setModel(tmbPeca);
 	}
 }
