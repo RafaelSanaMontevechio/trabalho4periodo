@@ -27,11 +27,11 @@ public class PecaDao {
 
 		// Configura os parametros da sentença
 		prepStat.setInt(1, pecaTO.getCodigo());
-		prepStat.setString(2, pecaTO.getNome());
+		prepStat.setString(2, pecaTO.getNome().toUpperCase());
 		prepStat.setInt(3, pecaTO.getQuantidade());
-		prepStat.setString(4, pecaTO.getTipo());
-		prepStat.setString(5, pecaTO.getEquipamento());
-		prepStat.setString(6, pecaTO.getFornecedor());
+		prepStat.setString(4, pecaTO.getTipo().toUpperCase().toUpperCase());
+		prepStat.setString(5, pecaTO.getEquipamento().toUpperCase());
+		prepStat.setString(6, pecaTO.getFornecedor().toUpperCase());
 
 		// Executa a sentença
 		prepStat.execute();
