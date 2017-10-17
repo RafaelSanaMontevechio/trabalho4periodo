@@ -99,7 +99,7 @@ public class PecaDao {
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM PECA WHERE nome LIKE '%?%' ";
+		String sql = " SELECT * FROM PECA WHERE nome LIKE ? ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
 		prep.setString(1,'%'+name+'%');
@@ -126,10 +126,10 @@ public class PecaDao {
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM PECA WHERE fornecedor = ? ";
+		String sql = " SELECT * FROM PECA WHERE fornecedor LIKE ? ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
-		prep.setString(1, fornecedor);
+		prep.setString(1, '%'+fornecedor+'%');
 		ResultSet rs = prep.executeQuery();
 
 		while (rs.next()) {
