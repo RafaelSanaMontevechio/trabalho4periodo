@@ -99,10 +99,10 @@ public class PecaDao {
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM PECA WHERE nome = ? ";
+		String sql = " SELECT * FROM PECA WHERE nome LIKE '%?%' ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
-		prep.setString(1, name);
+		prep.setString(1,'%'+name+'%');
 		ResultSet rs = prep.executeQuery();
 
 		while (rs.next()) {
