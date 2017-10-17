@@ -102,7 +102,7 @@ public class PecaDao {
 		String sql = " SELECT * FROM PECA WHERE nome LIKE ? ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
-		prep.setString(1,'%'+name+'%');
+		prep.setString(1,'%'+name.toUpperCase()+'%');
 		ResultSet rs = prep.executeQuery();
 
 		while (rs.next()) {
@@ -129,7 +129,7 @@ public class PecaDao {
 		String sql = " SELECT * FROM PECA WHERE fornecedor LIKE ? ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
-		prep.setString(1, '%'+fornecedor+'%');
+		prep.setString(1, '%'+fornecedor.toUpperCase()+'%');
 		ResultSet rs = prep.executeQuery();
 
 		while (rs.next()) {

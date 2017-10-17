@@ -92,10 +92,10 @@ public class EquipamentoDao {
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM EQUIPAMENTO WHERE nome = ? ";
+		String sql = " SELECT * FROM EQUIPAMENTO WHERE nome LIKE ? ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
-		prep.setString(1, name);
+		prep.setString(1, '%'+name.toUpperCase()+'%');
 		ResultSet rs = prep.executeQuery();
 
 		while (rs.next()) {
@@ -117,10 +117,10 @@ public class EquipamentoDao {
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM EQUIPAMENTO WHERE fornecedor = ? ";
+		String sql = " SELECT * FROM EQUIPAMENTO WHERE fornecedor LIKE ? ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
-		prep.setString(1, fornecedor);
+		prep.setString(1, '%'+fornecedor.toUpperCase()+'%');
 		ResultSet rs = prep.executeQuery();
 
 		while (rs.next()) {

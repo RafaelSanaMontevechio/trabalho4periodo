@@ -34,8 +34,8 @@ public class FornecedorDao {
 			PreparedStatement prepStat = conn.prepareStatement(sql);
 
 			prepStat.setLong(1, fornecedor.getCnpj());
-			prepStat.setString(2, fornecedor.getNomeRazao());
-			prepStat.setString(3, fornecedor.getFantasia());
+			prepStat.setString(2, fornecedor.getNomeRazao().toUpperCase());
+			prepStat.setString(3, fornecedor.getFantasia().toUpperCase());
 
 			prepStat.execute();
 		} catch (Exception e) {
@@ -113,10 +113,10 @@ public class FornecedorDao {
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM FORNECEDOR WHERE razao_social = ? ";
+		String sql = " SELECT * FROM FORNECEDOR WHERE razao_social LIKE ? ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
-		prep.setString(1, str);
+		prep.setString(1, '%'+str.toUpperCase()+'%');
 		ResultSet rs = prep.executeQuery();
 
 		while (rs.next()) {
