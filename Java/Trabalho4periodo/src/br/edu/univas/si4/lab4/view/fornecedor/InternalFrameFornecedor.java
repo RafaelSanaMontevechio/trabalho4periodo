@@ -132,6 +132,6 @@ public class InternalFrameFornecedor extends Comum {
 	}
 
 	private void jrbTodosSelected() {
-		getFornecedorControll().addData(this);
+		getFornecedorControll().addDataAll(this);
 	}
 }

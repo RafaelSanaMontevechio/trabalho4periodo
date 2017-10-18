@@ -60,8 +60,11 @@ public class JmenuBar extends JMenuBar {
 		getJmMenu().add(getJmCadastro());
 		getJmMenu().add(getJmPesquisa());
 		getJmMenu().add(getJmEstoque());
-
-		add(getJmMenu());
+		
+		add(getJmCadastro());
+		add(getJmPesquisa());
+		add(getJmEstoque());
+		//add(getJmMenu());
 	}
 
 	/**
@@ -81,6 +84,7 @@ public class JmenuBar extends JMenuBar {
 		if (jmCadastro == null) {
 			jmCadastro = new JMenu("Cadastros");
 			ImageIcon iconCadastro = new ImageIcon("imagens/cadastro2.png");
+			jmCadastro.setFont(new Font("SansSerif", Font.PLAIN, 17));
 			jmCadastro.setIcon(iconCadastro);
 		}
 		return jmCadastro;
@@ -91,6 +95,7 @@ public class JmenuBar extends JMenuBar {
 			ImageIcon iconListar = new ImageIcon("imagens/listar.png");
 			jmPesquisa = new JMenu();
 			jmPesquisa.setText("Relatorios");
+			jmPesquisa.setFont(new Font("SansSerif", Font.PLAIN, 17));
 			jmPesquisa.setIcon(iconListar);
 		}
 		return jmPesquisa;
@@ -101,6 +106,7 @@ public class JmenuBar extends JMenuBar {
 			jmEstoque = new JMenu("Estoque");
 			ImageIcon iconEstoque = new ImageIcon("imagens/estoque.png");
 			jmEstoque.setIcon(iconEstoque);
+			jmEstoque.setFont(new Font("SansSerif", Font.PLAIN, 17));
 		}
 		return jmEstoque;
 	}

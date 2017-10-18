@@ -46,7 +46,7 @@ public class FornecedorController {
 	}
 
 	// Pega o retorno do select e popula o jtable com todos os fornecedores
-	public void addData(InternalFrameFornecedor iFrameFornecedor) {
+	public void addDataAll(InternalFrameFornecedor iFrameFornecedor) {
 		List<FornecedorTO> fornecedores = null;
 		try {
 			fornecedores = new ArrayList<FornecedorTO>();

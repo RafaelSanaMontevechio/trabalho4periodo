@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
@@ -23,8 +25,10 @@ public class PanelEstoque extends JPanel {
 	private JLabel jlQuantidade;
 	private JLabel jlRetirar;
 	private JLabel jlAdicionar;
+	private JLabel jlData;
 	private JTextField jtCodigo;
 	private JTextField jtQuantidade;
+	private JTextField jtData;
 	private JRadioButton jrbEquipamento;
 	private JRadioButton jrbPeca;
 	private JRadioButton jrbRetirar;
@@ -39,8 +43,10 @@ public class PanelEstoque extends JPanel {
 	private GridBagConstraints jlQuantidadeConstraints;
 	private GridBagConstraints jlRetirarConstraints;
 	private GridBagConstraints jlAdicionarConstraints;
+	private GridBagConstraints jlDataConstraints;
 	private GridBagConstraints jtCodigoConstraints;
 	private GridBagConstraints jtQuantidadeConstraints;
+	private GridBagConstraints jtDataConstraints;
 	private GridBagConstraints jrbEquipamentoConstraints;
 	private GridBagConstraints jrbPecaConstraints;
 	private GridBagConstraints jrbRetirarConstraints;
@@ -74,7 +80,10 @@ public class PanelEstoque extends JPanel {
 		add(getJlQuantidade(), getJlQuantidadeConstraints());
 		add(getJtQuantidade(), getJtQuantidadeConstraints());
 		
-		//ButtonsGroup
+		add(getJlData(), getJlDataConstraints());
+		add(getJtData(), getJtDataConstraints());
+
+		// ButtonsGroup
 		getGroupAcao().add(getJrbAdicionar());
 		getGroupAcao().add(getJrbRetirar());
 
@@ -123,6 +132,15 @@ public class PanelEstoque extends JPanel {
 
 		return jlQuantidade;
 	}
+	
+
+	private JLabel getJlData() {
+		if (jlData == null) {
+			jlData = new JLabel();
+			jlData.setText("Data:");
+		}
+		return jlData;
+	}
 
 	public JLabel getJlRetirar() {
 		if (jlRetirar == null) {
@@ -152,6 +170,16 @@ public class PanelEstoque extends JPanel {
 			jtQuantidade = new JTextField();
 		}
 		return jtQuantidade;
+	}
+	
+	public JTextField getJtData() {
+		if (jtData == null) {
+			jtData = new JTextField();
+			jtData.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date(
+					System.currentTimeMillis())));
+			jtData.setEditable(false);
+		}
+		return jtData;
 	}
 
 	public JRadioButton getJrbEquipamento() {
@@ -281,6 +309,7 @@ public class PanelEstoque extends JPanel {
 		return jlAdicionarConstraints;
 	}
 
+
 	public GridBagConstraints getJtCodigoConstraints() {
 		if (jtCodigoConstraints == null) {
 			jtCodigoConstraints = new GridBagConstraints();
@@ -346,5 +375,28 @@ public class PanelEstoque extends JPanel {
 			jrbAdicionarConstraints.anchor = GridBagConstraints.LINE_END;
 		}
 		return jrbAdicionarConstraints;
+	}
+
+	private GridBagConstraints getJlDataConstraints() {
+		if (jlDataConstraints == null) {
+			jlDataConstraints = new GridBagConstraints();
+			jlDataConstraints.gridx = 0;
+			jlDataConstraints.gridy = 5;
+			jlDataConstraints.insets = new Insets(5, 5, 5, 5);
+			jlDataConstraints.anchor = GridBagConstraints.LINE_START;
+		}
+		return jlDataConstraints;
+	}
+
+	private GridBagConstraints getJtDataConstraints() {
+		if (jtDataConstraints == null) {
+			jtDataConstraints = new GridBagConstraints();
+			jtDataConstraints.gridx = 1;
+			jtDataConstraints.gridy = 5;
+			jtDataConstraints.ipadx = 35;
+			jtDataConstraints.insets = new Insets(5, 5, 5, 5);
+			jtDataConstraints.anchor = GridBagConstraints.LINE_START;
+		}
+		return jtDataConstraints;
 	}
 }

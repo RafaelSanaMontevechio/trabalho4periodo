@@ -3,8 +3,8 @@ package br.edu.univas.si4.lab4.view.estoque;
 import java.awt.BorderLayout;
 
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 
+import br.edu.univas.si4.lab4.controller.EstoqueController;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelCadastros;
 
@@ -57,17 +57,23 @@ public class FrameEstoque extends JDialog {
 	}
 
 	private void salvarClicked() {
-		if (panelEstoque.getJrbAdicionar().isSelected() && panelEstoque.getJrbEquipamento().isSelected()) {
-			JOptionPane.showMessageDialog(null, "Adicionar equipamento ao estoque");
+		if (getPanelEstoque().getJrbAdicionar().isSelected() && getPanelEstoque().getJrbEquipamento().isSelected()) {
+			
 		} 
-		else if (panelEstoque.getJrbAdicionar().isSelected() && panelEstoque.getJrbPeca().isSelected()) {
-			JOptionPane.showMessageDialog(null, "Adicionar peça ao estoque");
+		else if (getPanelEstoque().getJrbAdicionar().isSelected() && getPanelEstoque().getJrbPeca().isSelected()) {
+			getPanelEstoque().getJtCodigo().getText();
+			getPanelEstoque().getJtQuantidade().getText();
+			getPanelEstoque().getJtData().getText();
 		} 
-		else if (panelEstoque.getJrbRetirar().isSelected() && panelEstoque.getJrbEquipamento().isSelected()) {
-			JOptionPane.showMessageDialog(null, "Retirar equipamento ao estoque");
+		else if (getPanelEstoque().getJrbRetirar().isSelected()
+				&& getPanelEstoque().getJrbEquipamento().isSelected()) {
+			new EstoqueController().addEquipamento(getPanelEstoque().getJtCodigo().getText(),
+					getPanelEstoque().getJtQuantidade().getText(), getPanelEstoque().getJtData().getText());
 		} 
-		else if (panelEstoque.getJrbRetirar().isSelected() && panelEstoque.getJrbPeca().isSelected()) {
-			JOptionPane.showMessageDialog(null, "Retirar peças ao estoque");
+		else if (getPanelEstoque().getJrbRetirar().isSelected() && getPanelEstoque().getJrbPeca().isSelected()) {
+			getPanelEstoque().getJtCodigo().getText();
+			getPanelEstoque().getJtQuantidade().getText();
+			getPanelEstoque().getJtData().getText();
 		}
 	}
 

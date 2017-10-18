@@ -28,7 +28,7 @@ public class EquipamentoDao {
 		PreparedStatement prepStat = conn.prepareStatement(sql);
 
 		prepStat.setInt(1, equipamento.getCodigo());
-		prepStat.setString(2, equipamento.getNome());
+		prepStat.setString(2, equipamento.getNome().toUpperCase());
 		prepStat.setInt(3, equipamento.getQuantidade());
 		prepStat.setString(4, equipamento.getFornecedor());
 
