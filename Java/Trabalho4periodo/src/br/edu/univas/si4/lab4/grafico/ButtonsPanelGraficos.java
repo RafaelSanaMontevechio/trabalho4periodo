@@ -1,4 +1,4 @@
-package br.edu.univas.si4.lab4.view.ButtonsPanels;
+package br.edu.univas.si4.lab4.grafico;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

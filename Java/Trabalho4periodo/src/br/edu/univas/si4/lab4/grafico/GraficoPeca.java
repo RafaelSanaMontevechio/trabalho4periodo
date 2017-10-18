@@ -5,7 +5,6 @@ import java.awt.BorderLayout;
 import javax.swing.JInternalFrame;
 
 import br.edu.univas.si4.lab4.interfaces.ButtonsListenerGrafico;
-import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelGraficos;
 
 public class GraficoPeca extends JInternalFrame {
 
