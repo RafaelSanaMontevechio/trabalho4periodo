@@ -4,12 +4,17 @@ import java.awt.BorderLayout;
 
 import javax.swing.JInternalFrame;
 
-public class GraficoPeca extends JInternalFrame{
+import br.edu.univas.si4.lab4.interfaces.ButtonsListenerGrafico;
+import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelGraficos;
+
+public class GraficoPeca extends JInternalFrame {
 
 	private static final long serialVersionUID = 5397677075760892691L;
-	
+
+	private ButtonsPanelGraficos buttonsGrafico;
+
 	public GraficoPeca() {
-		setTitle("Grafico de peças");
+		setTitle("Gráfico de peças");
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setLayout(new BorderLayout());
 		setClosable(true);// Se o frame vai poder ser fechado pelo botão fechar
@@ -17,5 +22,25 @@ public class GraficoPeca extends JInternalFrame{
 		setResizable(true);// Pemite editar o tamanho.
 		setMaximizable(true);
 		setBorder(null);
+
+		add(getButtonsGrafico(), BorderLayout.SOUTH);
+	}
+
+	public ButtonsPanelGraficos getButtonsGrafico() {
+		if (buttonsGrafico == null) {
+			buttonsGrafico = new ButtonsPanelGraficos();
+			buttonsGrafico.addButtonsListenerGrafico(new ButtonsListenerGrafico() {
+
+				@Override
+				public void gerarPerformed() {
+					gerarClicked();
+				}
+			});
+		}
+		return buttonsGrafico;
+	}
+
+	private void gerarClicked() {
+		// TODO : Implementar
 	}
 }

@@ -10,6 +10,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import br.edu.univas.si4.lab4.controller.PrincipalController;
+import br.edu.univas.si4.lab4.grafico.GraficoPeca;
 import br.edu.univas.si4.lab4.view.equipamento.InternalFrameEquipamentos;
 import br.edu.univas.si4.lab4.view.fornecedor.InternalFrameFornecedor;
 import br.edu.univas.si4.lab4.view.peca.InternalFramePecas;
@@ -36,6 +37,7 @@ public class JmenuBar extends JMenuBar {
 	private InternalFrameFornecedor iFrameFornecedor;
 	private InternalFrameEquipamentos iFrameEquipamento;
 	private InternalFramePecas iFramePeca;
+	private GraficoPeca iFrameGraficoPeca;
 	private Principal principal;
 
 	public JmenuBar(Principal principal) {
@@ -58,7 +60,7 @@ public class JmenuBar extends JMenuBar {
 		getJmPesquisa().add(getJmiListaPecas());
 
 		getJmEstoque().add(getJmiInserirEstoque());
-		
+
 		getJmGrafico().add(getJmiGraficoPeca());
 
 		getJmMenu().add(getJmCadastro());
@@ -119,7 +121,7 @@ public class JmenuBar extends JMenuBar {
 	public JMenu getJmGrafico() {
 		if (jmGrafico == null) {
 			jmGrafico = new JMenu();
-			jmGrafico.setText("Graficos");
+			jmGrafico.setText("Gráficos");
 			jmGrafico.setFont(new Font("SansSerif", Font.PLAIN, 17));
 		}
 		return jmGrafico;
@@ -191,6 +193,7 @@ public class JmenuBar extends JMenuBar {
 	public JMenuItem getJmiGraficoPeca() {
 		if (jmiGraficoPeca == null) {
 			jmiGraficoPeca = new JMenuItem("Grafico peça");
+			jmiGraficoPeca.addActionListener(new ListenerJmenuGrafico());
 		}
 		return jmiGraficoPeca;
 	}
@@ -226,6 +229,16 @@ public class JmenuBar extends JMenuBar {
 		}
 		iFramePeca.setVisible(true);
 		return iFramePeca;
+	}
+
+	public GraficoPeca getiFrameGraficoPeca() {
+		if (iFrameGraficoPeca == null) {
+			iFrameGraficoPeca = new GraficoPeca();
+			principal.addInternalFrame(iFrameGraficoPeca);
+			principal.mazimizeFrame(iFrameGraficoPeca);
+		}
+		iFrameGraficoPeca.setVisible(true);
+		return iFrameGraficoPeca;
 	}
 
 	/***
@@ -269,6 +282,17 @@ public class JmenuBar extends JMenuBar {
 		public void actionPerformed(ActionEvent evt) {
 			if (evt.getSource() == jmiInserirEstoque) {
 				new PrincipalController().callScreenEstoque();
+			}
+		}
+	}
+
+	// inner class controla eventos jmenu graficos
+	private class ListenerJmenuGrafico implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent evt) {
+			if (evt.getSource() == jmiGraficoPeca) {
+				getiFrameGraficoPeca();
 			}
 		}
 	}
