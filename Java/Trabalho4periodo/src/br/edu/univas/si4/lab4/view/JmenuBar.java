@@ -22,6 +22,7 @@ public class JmenuBar extends JMenuBar {
 	private JMenu jmCadastro;
 	private JMenu jmPesquisa;
 	private JMenu jmEstoque;
+	private JMenu jmGrafico;
 	private JMenuItem jmiCadastroFornecedor;
 	private JMenuItem jmiCadastroEquipamento;
 	private JMenuItem jmiCadastroPeca;
@@ -30,6 +31,7 @@ public class JmenuBar extends JMenuBar {
 	private JMenuItem jmiListaPecas;
 	private JMenuItem jmiInserirEstoque;
 	private JMenuItem jmiRetirarEstoque;
+	private JMenuItem jmiGraficoPeca;
 
 	private InternalFrameFornecedor iFrameFornecedor;
 	private InternalFrameEquipamentos iFrameEquipamento;
@@ -56,15 +58,18 @@ public class JmenuBar extends JMenuBar {
 		getJmPesquisa().add(getJmiListaPecas());
 
 		getJmEstoque().add(getJmiInserirEstoque());
+		
+		getJmGrafico().add(getJmiGraficoPeca());
 
 		getJmMenu().add(getJmCadastro());
 		getJmMenu().add(getJmPesquisa());
 		getJmMenu().add(getJmEstoque());
-		
+
 		add(getJmCadastro());
 		add(getJmPesquisa());
 		add(getJmEstoque());
-		//add(getJmMenu());
+		add(getJmGrafico());
+		// add(getJmMenu());
 	}
 
 	/**
@@ -109,6 +114,15 @@ public class JmenuBar extends JMenuBar {
 			jmEstoque.setFont(new Font("SansSerif", Font.PLAIN, 17));
 		}
 		return jmEstoque;
+	}
+
+	public JMenu getJmGrafico() {
+		if (jmGrafico == null) {
+			jmGrafico = new JMenu();
+			jmGrafico.setText("Graficos");
+			jmGrafico.setFont(new Font("SansSerif", Font.PLAIN, 17));
+		}
+		return jmGrafico;
 	}
 
 	public JMenuItem getJmiCadastroFornecedor() {
@@ -172,6 +186,13 @@ public class JmenuBar extends JMenuBar {
 			jmiRetirarEstoque = new JMenuItem("Retirar do estoque", new ImageIcon("imagens/menos.png"));
 		}
 		return jmiRetirarEstoque;
+	}
+
+	public JMenuItem getJmiGraficoPeca() {
+		if (jmiGraficoPeca == null) {
+			jmiGraficoPeca = new JMenuItem("Grafico peça");
+		}
+		return jmiGraficoPeca;
 	}
 
 	/**
