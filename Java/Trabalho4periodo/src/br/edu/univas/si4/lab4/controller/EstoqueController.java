@@ -4,13 +4,14 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import br.edu.univas.si4.lab4.dao.EstoqueDao;
+import br.edu.univas.si4.lab4.to.EstoqueTO;
 
 public class EstoqueController {
 
-	public void addEquipamento(String cod, String qtd, String data) {
+	public void addEquipamento(EstoqueTO estoqueTO) {
 		
 		try {
-			new EstoqueDao().addEquipment(cod, qtd, data);
+			new EstoqueDao().addEquipment(estoqueTO);
 		} catch (SQLException | ParseException e) {
 			e.printStackTrace();
 		}
