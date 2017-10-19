@@ -42,11 +42,11 @@ public class PecaController {
 	}
 
 	// Recebe o retorno da pesquisa pelo codigo
-	public void addDataByCodigo(InternalFramePecas iFramePecas, int codigo) {
+	public void addDataByCodigo(InternalFramePecas iFramePecas, String str) {
 		List<PecaTO> pecas = null;
 		try {
 			pecas = new ArrayList<PecaTO>();
-			pecas = new PecaDao().selectPecabyCodigo(codigo);
+			pecas = new PecaDao().selectPecabyCodigo(str);
 			iFramePecas.updateModelPecas(pecas);
 		} catch (SQLException e) {
 			e.printStackTrace();

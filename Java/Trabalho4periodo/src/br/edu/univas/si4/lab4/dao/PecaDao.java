@@ -16,10 +16,10 @@ public class PecaDao {
 	private PecaTO peca;
 
 	public void insertNewPeca(PecaTO pecaTO) throws SQLException {
-		
+
 		String sql = "INSERT INTO PECA " + " (codigo_peca, nome, quantidade, tipo, equipamento, fornecedor) "
 				+ " VALUES (?, ?, ?, ?, ?, ?)";
-		
+
 		Connection conn = DBUtil.openConnection();
 
 		PreparedStatement prepStat = conn.prepareStatement(sql);
@@ -30,7 +30,7 @@ public class PecaDao {
 		prepStat.setString(4, pecaTO.getTipo().toUpperCase().toUpperCase());
 		prepStat.setString(5, pecaTO.getEquipamento().toUpperCase());
 		prepStat.setString(6, pecaTO.getFornecedor().toUpperCase());
-		
+
 		prepStat.execute();
 		conn.close();
 	}
@@ -62,29 +62,37 @@ public class PecaDao {
 	}
 
 	// Select a peça pelo codigo
-	public ArrayList<PecaTO> selectPecabyCodigo(int codigo) throws SQLException {
+	public ArrayList<PecaTO> selectPecabyCodigo(String str) throws SQLException {
 		ArrayList<PecaTO> pecas = new ArrayList<PecaTO>();
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM PECA WHERE codigo_peca = ? ";
+		int codigo;
 
-		PreparedStatement prep = conn.prepareStatement(sql);
-		prep.setInt(1, codigo);
-		ResultSet rs = prep.executeQuery();
+		try {
+			codigo = Integer.parseInt(str);
+			String sql = " SELECT * FROM PECA WHERE codigo_peca = ? ";
 
-		while (rs.next()) {
-			peca = new PecaTO();
-			peca.setCodigo(rs.getInt(1));
-			peca.setNome(rs.getString(2));
-			peca.setQuantidade(rs.getInt(3));
-			peca.setTipo(rs.getString(4));
-			peca.setEquipamento(rs.getString(5));
-			peca.setFornecedor(rs.getString(6));
-			pecas.add(peca);
+			PreparedStatement prep = conn.prepareStatement(sql);
+			prep.setInt(1, codigo);
+			ResultSet rs = prep.executeQuery();
 
+			while (rs.next()) {
+				peca = new PecaTO();
+				peca.setCodigo(rs.getInt(1));
+				peca.setNome(rs.getString(2));
+				peca.setQuantidade(rs.getInt(3));
+				peca.setTipo(rs.getString(4));
+				peca.setEquipamento(rs.getString(5));
+				peca.setFornecedor(rs.getString(6));
+				pecas.add(peca);
+
+			}
+			conn.close();
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "Código incorreto!\n " + e.getMessage(), "Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
-		conn.close();
 		return pecas;
 	}
 
@@ -199,18 +207,18 @@ public class PecaDao {
 			conn.close();
 		}
 	}
-	
-	//Atualiza a quantidade de peça no estoque já cadastrada
-	public void updateQtdPecaAdd(PecaTO pecaTO) throws SQLException{
+
+	// Atualiza a quantidade de peça no estoque já cadastrada
+	public void updateQtdPecaAdd(PecaTO pecaTO) throws SQLException {
 		Connection conn = null;
 		int qtd = 0;
 		String sql = "UPDATE peca SET quantidade = ? WHERE codigo_peca = ? ";
 		qtd = (selectQtd(pecaTO.getCodigo()) + pecaTO.getQuantidade());
-		
+
 		try {
 			conn = DBUtil.openConnection();
 			PreparedStatement prep = conn.prepareStatement(sql);
-			prep.setInt(1,  qtd);
+			prep.setInt(1, qtd);
 			prep.setInt(2, pecaTO.getCodigo());
 			prep.execute();
 		} catch (SQLException e) {
@@ -219,7 +227,7 @@ public class PecaDao {
 		conn.close();
 	}
 
-	// Deleta peça 
+	// Deleta peça
 	public void deletePeca(int codigo) throws SQLException {
 		String sql = "DELETE FROM peca WHERE codigo_peca = ?";
 		Connection conn = null;

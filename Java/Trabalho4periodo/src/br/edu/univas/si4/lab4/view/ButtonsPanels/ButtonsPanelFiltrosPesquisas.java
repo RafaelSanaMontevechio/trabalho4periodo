@@ -314,6 +314,4 @@ public class ButtonsPanelFiltrosPesquisas extends JPanel {
 			listener.pesquisarPerformed();
 		}
 	}
-
-
 }

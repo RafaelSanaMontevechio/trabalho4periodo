@@ -84,8 +84,7 @@ public class InternalFramePecas extends Comum {
 
 	private void pesquisarClicked() {
 		if (buttonsPanelPesquisa.getJrbCodigo().isSelected()) {
-			new PecaController().addDataByCodigo(this, Integer.parseInt(getPanelFiltroPesquisas().getJtDados().getText()));
-			getPanelFiltroPesquisas().getJtDados().setText("");
+			jrbCodigoSelected();
 		} else if (buttonsPanelPesquisa.getJrbNome().isSelected()) {
 			new PecaController().addDataByName(this,getPanelFiltroPesquisas().getJtDados().getText());
 			getPanelFiltroPesquisas().getJtDados().setText("");
@@ -96,6 +95,16 @@ public class InternalFramePecas extends Comum {
 			new PecaController().addDataAll(this);
 		} else {
 			JOptionPane.showMessageDialog(null, "Nenhum filtro selecionado!");
+		}
+	}
+	
+	private void jrbCodigoSelected() {
+		String str = getPanelFiltroPesquisas().getJtDados().getText();
+		if(verifyEmptyString(str)) {
+			pecaControll.addDataByCodigo(this,str);
+			clearText();
+		}else {
+			JOptionPane.showMessageDialog(null, "Código não informado!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -114,5 +123,9 @@ public class InternalFramePecas extends Comum {
 		getTable().getColumnModel().getColumn(3).setPreferredWidth(20);
 		getTable().getColumnModel().getColumn(4).setPreferredWidth(20);
 		getTable().getColumnModel().getColumn(5).setPreferredWidth(20);
+	}
+	
+	private void clearText() {
+		getPanelFiltroPesquisas().getJtDados().setText("");
 	}
 }
