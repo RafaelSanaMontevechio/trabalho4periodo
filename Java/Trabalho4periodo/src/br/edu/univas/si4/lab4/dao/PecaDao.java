@@ -16,29 +16,22 @@ public class PecaDao {
 	private PecaTO peca;
 
 	public void insertNewPeca(PecaTO pecaTO) throws SQLException {
-
-		// String para fazer o insert de nova peca no banco
+		
 		String sql = "INSERT INTO PECA " + " (codigo_peca, nome, quantidade, tipo, equipamento, fornecedor) "
 				+ " VALUES (?, ?, ?, ?, ?, ?)";
-
-		// Abre a conexão com o banco
+		
 		Connection conn = DBUtil.openConnection();
 
-		// Prepara a String
 		PreparedStatement prepStat = conn.prepareStatement(sql);
 
-		// Configura os parametros da sentença
 		prepStat.setInt(1, pecaTO.getCodigo());
 		prepStat.setString(2, pecaTO.getNome().toUpperCase());
 		prepStat.setInt(3, pecaTO.getQuantidade());
 		prepStat.setString(4, pecaTO.getTipo().toUpperCase().toUpperCase());
 		prepStat.setString(5, pecaTO.getEquipamento().toUpperCase());
 		prepStat.setString(6, pecaTO.getFornecedor().toUpperCase());
-
-		// Executa a sentença
+		
 		prepStat.execute();
-
-		// Fecha a conexão
 		conn.close();
 	}
 
@@ -149,7 +142,7 @@ public class PecaDao {
 		return pecas;
 	}
 
-	// Busca a quantiade no banco referente ao codigo informado
+	// Busca a quantidade no banco referente ao codigo informado
 	private int selectQtd(int cod) {
 		int qtd = 0;
 		String sql = "SELECT quantidade FROM peca WHERE codigo_peca = ? ";
@@ -175,7 +168,7 @@ public class PecaDao {
 		return qtd;
 	}
 
-	// Compare quantidade
+	// Verifica se a quantidade cadastrada e maior ou igual a que será retirada
 	private boolean compareQtd(PecaTO pecaTO) {
 		if (selectQtd(pecaTO.getCodigo()) >= pecaTO.getQuantidade()) {
 			return true;
@@ -207,15 +200,17 @@ public class PecaDao {
 		}
 	}
 	
-	//Atualiza a quantidade de peça no estoque
+	//Atualiza a quantidade de peça no estoque já cadastrada
 	public void updateQtdPecaAdd(PecaTO pecaTO) throws SQLException{
 		Connection conn = null;
+		int qtd = 0;
 		String sql = "UPDATE peca SET quantidade = ? WHERE codigo_peca = ? ";
+		qtd = (selectQtd(pecaTO.getCodigo()) + pecaTO.getQuantidade());
 		
 		try {
 			conn = DBUtil.openConnection();
 			PreparedStatement prep = conn.prepareStatement(sql);
-			prep.setInt(1, pecaTO.getQuantidade());
+			prep.setInt(1,  qtd);
 			prep.setInt(2, pecaTO.getCodigo());
 			prep.execute();
 		} catch (SQLException e) {
@@ -224,7 +219,7 @@ public class PecaDao {
 		conn.close();
 	}
 
-	// Deleta peça cadastrada
+	// Deleta peça 
 	public void deletePeca(int codigo) throws SQLException {
 		String sql = "DELETE FROM peca WHERE codigo_peca = ?";
 		Connection conn = null;

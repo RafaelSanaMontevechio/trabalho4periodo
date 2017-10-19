@@ -15,12 +15,9 @@ public class EquipamentoController {
 
 	private EquipamentoDao equipamentoDAO;
 	private FrameCadastroEquipamentos fCadEquipamentos;
-
-	private EquipamentoDao getEquipamentoDAO() {
-		if (equipamentoDAO == null) {
-			equipamentoDAO = new EquipamentoDao();
-		}
-		return equipamentoDAO;
+	
+	public EquipamentoController() {
+		equipamentoDAO = new EquipamentoDao();
 	}
 	
 	private FrameCadastroEquipamentos getfCadEquipamentos() {
@@ -40,7 +37,7 @@ public class EquipamentoController {
 	public void newEquipamento(EquipamentoTO equipamento) {
 
 		try {
-			getEquipamentoDAO().insertNewEquipamento(equipamento);
+			equipamentoDAO.insertNewEquipamento(equipamento);
 			JOptionPane.showMessageDialog(null, "Sucesso!");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -106,10 +103,32 @@ public class EquipamentoController {
 		return nomeEquipamento;
 	}
 	
+	// Retira peca
+		public void updatePeca(EquipamentoTO equipamentoTO) {
+
+			try {
+				equipamentoDAO.TakeOffEquipamento(equipamentoTO);
+			} catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, "Erro ao atualizar a quantidade" + e.getMessage());
+			}
+		}
+
+		// Adiciona peca
+		public void alteraQtdPecaAdd(EquipamentoTO equipamentoTO) {
+			try {
+				equipamentoDAO.updateQtdEquipamentoAdd(equipamentoTO);
+				JOptionPane.showMessageDialog(null, "Adicionado com sucesso!");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	
+	//Deleta
 	public void removeEquipamento(String cod) {
 		int codigo = Integer.parseInt(cod);
 		try {
-			new EquipamentoDao().deleteEquipamento(codigo);
+			equipamentoDAO.deleteEquipamento(codigo);
 			JOptionPane.showMessageDialog(null, "Equipamento excluido!");
 		} catch (SQLException e) {
 			e.printStackTrace();

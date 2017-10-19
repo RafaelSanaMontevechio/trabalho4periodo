@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import br.edu.univas.si4.lab4.to.EquipamentoTO;
 
 public class EquipamentoDao {
@@ -95,7 +97,7 @@ public class EquipamentoDao {
 		String sql = " SELECT * FROM EQUIPAMENTO WHERE nome LIKE ? ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
-		prep.setString(1, '%'+name.toUpperCase()+'%');
+		prep.setString(1, '%' + name.toUpperCase() + '%');
 		ResultSet rs = prep.executeQuery();
 
 		while (rs.next()) {
@@ -120,7 +122,7 @@ public class EquipamentoDao {
 		String sql = " SELECT * FROM EQUIPAMENTO WHERE fornecedor LIKE ? ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
-		prep.setString(1, '%'+fornecedor.toUpperCase()+'%');
+		prep.setString(1, '%' + fornecedor.toUpperCase() + '%');
 		ResultSet rs = prep.executeQuery();
 
 		while (rs.next()) {
@@ -155,6 +157,84 @@ public class EquipamentoDao {
 		return nomeEquipamento;
 	}
 
+	// Busca a quantidade no banco referente ao codigo informado
+	private int selectQtd(int cod) {
+		int qtd = 0;
+		String sql = "SELECT quantidade FROM equipamento WHERE codigo_equipamento = ? ";
+
+		Connection conn = null;
+		try {
+			conn = DBUtil.openConnection();
+			PreparedStatement prep = conn.prepareStatement(sql);
+			prep.setInt(1, cod);
+			ResultSet rs = prep.executeQuery();
+			while (rs.next()) {
+				qtd = (rs.getInt(1));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return qtd;
+	}
+
+	// Verifica se a quantidade cadastrada e maior ou igual a que será retirada
+	private boolean compareQtd(EquipamentoTO equipamentoTO) {
+		if (selectQtd(equipamentoTO.getCodigo()) >= equipamentoTO.getQuantidade()) {
+			return true;
+		} else {
+			JOptionPane.showMessageDialog(null, "Quantidade em estoque insuficiente!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+	}
+	
+	// Retira peça do estoque
+		public void TakeOffEquipamento(EquipamentoTO equipamentoTO) throws SQLException {
+			Connection conn = null;
+			if (compareQtd(equipamentoTO)) {
+				int qtd = 0;
+				String sql = "UPDATE equipamento SET quantidade = ? WHERE codigo_equipamento = ? ";
+				qtd = (selectQtd(equipamentoTO.getCodigo()) - equipamentoTO.getQuantidade());
+
+				try {
+					conn = DBUtil.openConnection();
+					PreparedStatement prep = conn.prepareStatement(sql);
+					prep.setInt(1, qtd);
+					prep.setInt(2, equipamentoTO.getCodigo());
+					prep.execute();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				conn.close();
+			}
+		}
+		
+		//Atualiza a quantidade de peça no estoque já cadastrada
+		public void updateQtdEquipamentoAdd(EquipamentoTO equipamentoTO) throws SQLException{
+			Connection conn = null;
+			int qtd = 0;
+			String sql = "UPDATE equipamento SET quantidade = ? WHERE codigo_equipamento = ? ";
+			qtd = (selectQtd(equipamentoTO.getCodigo()) + equipamentoTO.getQuantidade());
+			
+			try {
+				conn = DBUtil.openConnection();
+				PreparedStatement prep = conn.prepareStatement(sql);
+				prep.setInt(1,  qtd);
+				prep.setInt(2, equipamentoTO.getCodigo());
+				prep.execute();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			conn.close();
+		}
+
+	// Deleta equipamento
 	public void deleteEquipamento(int codigo) throws SQLException {
 		String sql = "DELETE FROM EQUIPAMENTO WHERE codigo_equipamento = ?";
 		Connection conn = null;
