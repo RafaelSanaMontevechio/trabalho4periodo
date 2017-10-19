@@ -5,27 +5,30 @@ import java.awt.BorderLayout;
 import javax.swing.JDialog;
 
 import br.edu.univas.si4.lab4.controller.EstoqueController;
+import br.edu.univas.si4.lab4.controller.PecaController;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
 import br.edu.univas.si4.lab4.to.PecaTO;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelCadastros;
 
 public class FrameEstoque extends JDialog {
 
+	private static final long serialVersionUID = -4897376368273018326L;
+
 	private PanelEstoque panelEstoque;
 	private ButtonsPanelCadastros buttonsPanel;
 	private PecaTO pecaTO;
-
-	private static final long serialVersionUID = -4897376368273018326L;
-
 	private EstoqueController estoqueControll;
+	private PecaController pecaControll;
 
 	public FrameEstoque() {
 		this.setTitle("Adicionar e remover item do estoque");
 		this.setModal(true);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
-
+		
 		pecaTO = new PecaTO();
+		estoqueControll = new EstoqueController();
+		pecaControll = new PecaController();
 
 		addComponents();
 		pack();
@@ -78,7 +81,8 @@ public class FrameEstoque extends JDialog {
 			addEquipamentoSelected();
 		} else if (getPanelEstoque().getJrbAdicionar().isSelected() && getPanelEstoque().getJrbPeca().isSelected()) {
 			addPecaSelected();
-		} else if (getPanelEstoque().getJrbRetirar().isSelected() && getPanelEstoque().getJrbEquipamento().isSelected()) {
+		} else if (getPanelEstoque().getJrbRetirar().isSelected()
+				&& getPanelEstoque().getJrbEquipamento().isSelected()) {
 			retirarEquipamentoSelected();
 		} else if (getPanelEstoque().getJrbRetirar().isSelected() && getPanelEstoque().getJrbPeca().isSelected()) {
 			retirarPecaSelected();
@@ -86,11 +90,11 @@ public class FrameEstoque extends JDialog {
 	}
 
 	private void addPecaSelected() {
-
+		pecaControll.alteraQtdPecaAdd(takeDataView());		
 	}
 
 	private void retirarPecaSelected() {
-
+		pecaControll.updatePeca(takeDataView());
 	}
 
 	private void addEquipamentoSelected() {
@@ -101,8 +105,9 @@ public class FrameEstoque extends JDialog {
 
 	}
 	
-	private void takeData() {
-		pecaTO.setCodigo(Integer.parseInt(getPanelEstoque().getJtCodigo().getText()));
+	private PecaTO takeDataView() {
+		pecaTO.setCodigo(Integer.parseInt(getPanelEstoque().getJtCodigo().getText())); 
 		pecaTO.setQuantidade(Integer.parseInt(getPanelEstoque().getJtQuantidade().getText()));
+		return pecaTO;
 	}
 }

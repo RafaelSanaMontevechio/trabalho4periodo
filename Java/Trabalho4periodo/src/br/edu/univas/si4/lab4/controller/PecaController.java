@@ -77,16 +77,24 @@ public class PecaController {
 		}
 	}
 
-	// Chama metodo para atualizar a quantidade da peça já cadastrada
-	public boolean updatePeca(PecaTO pecaTO) {
+	// Retira peca
+	public void updatePeca(PecaTO pecaTO) {
+
 		try {
-			if (pecaDAO.updateQtdPeca(pecaTO)) {
-				return true;
-			}
+			pecaDAO.TakeOffPeca(pecaTO);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Erro ao atualizar a quantidade" + e.getMessage());
 		}
-		return false;
+	}
+
+	// Adiciona peca
+	public void alteraQtdPecaAdd(PecaTO pecaTO) {
+		try {
+			pecaDAO.updateQtdPecaAdd(pecaTO);
+			JOptionPane.showMessageDialog(null, "Adicionado com sucesso!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	// Delete peça

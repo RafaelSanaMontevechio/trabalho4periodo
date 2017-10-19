@@ -186,8 +186,8 @@ public class PecaDao {
 		}
 	}
 
-	// Alter a quantidade da peça ja cadastrada
-	public boolean updateQtdPeca(PecaTO pecaTO) throws SQLException {
+	// Retira peça do estoque
+	public void TakeOffPeca(PecaTO pecaTO) throws SQLException {
 		Connection conn = null;
 		if (compareQtd(pecaTO)) {
 			int qtd = 0;
@@ -200,13 +200,28 @@ public class PecaDao {
 				prep.setInt(1, qtd);
 				prep.setInt(2, pecaTO.getCodigo());
 				prep.execute();
-				return true;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 			conn.close();
 		}
-		return false;
+	}
+	
+	//Atualiza a quantidade de peça no estoque
+	public void updateQtdPecaAdd(PecaTO pecaTO) throws SQLException{
+		Connection conn = null;
+		String sql = "UPDATE peca SET quantidade = ? WHERE codigo_peca = ? ";
+		
+		try {
+			conn = DBUtil.openConnection();
+			PreparedStatement prep = conn.prepareStatement(sql);
+			prep.setInt(1, pecaTO.getQuantidade());
+			prep.setInt(2, pecaTO.getCodigo());
+			prep.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		conn.close();
 	}
 
 	// Deleta peça cadastrada
