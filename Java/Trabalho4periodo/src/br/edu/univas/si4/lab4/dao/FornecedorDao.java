@@ -111,7 +111,7 @@ public class FornecedorDao {
 			}
 			conn.close();
 		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(null, "Valores inseridos inválidos!\n " + e.getMessage(), "Error",
+			JOptionPane.showMessageDialog(null, "CNPJ Informado está incorreto!\n " + e.getMessage(), "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
 
