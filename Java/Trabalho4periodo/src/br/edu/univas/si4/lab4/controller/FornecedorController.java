@@ -60,10 +60,9 @@ public class FornecedorController {
 	// Pega retorno do select por cnpj e popula jtable
 	public void addDatabyCnpj(InternalFrameFornecedor iFrameFornecedor, String str) {
 		List<FornecedorTO> fornecedores = null;
-		long cnpj = Long.parseLong(str);
 		try {
 			fornecedores = new ArrayList<FornecedorTO>();
-			fornecedores = new FornecedorDao().listByCnpj(cnpj);
+			fornecedores = new FornecedorDao().listByCnpj(str);
 			iFrameFornecedor.updateModel(fornecedores);
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import br.edu.univas.si4.lab4.to.FornecedorTO;
 
 public class FornecedorDao {
@@ -51,6 +53,7 @@ public class FornecedorDao {
 	public void deleteFornecedor(Long cnpj) throws SQLException {
 		String sql = "DELETE FROM FORNECEDOR WHERE CNPJ = ?";
 		Connection conn = null;
+
 		try {
 			conn = DBUtil.openConnection();
 			PreparedStatement prep = conn.prepareStatement(sql);
@@ -85,25 +88,33 @@ public class FornecedorDao {
 	}
 
 	// Seleciona por Cnpj
-	public List<FornecedorTO> listByCnpj(Long cnpj) throws SQLException {
+	public List<FornecedorTO> listByCnpj(String str) throws SQLException, ClassCastException {
 		ArrayList<FornecedorTO> fornecedores = new ArrayList<FornecedorTO>();
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM FORNECEDOR WHERE CNPJ = ? ";
+		long cnpj;
+		try {
+			cnpj = Long.parseLong(str);
+			String sql = " SELECT * FROM FORNECEDOR WHERE CNPJ = ? ";
 
-		PreparedStatement prep = conn.prepareStatement(sql);
-		prep.setLong(1, cnpj);
-		ResultSet rs = prep.executeQuery();
+			PreparedStatement prep = conn.prepareStatement(sql);
+			prep.setLong(1, cnpj);
+			ResultSet rs = prep.executeQuery();
 
-		while (rs.next()) {
-			fornecedor = new FornecedorTO();
-			fornecedor.setCnpj(rs.getLong(1));
-			fornecedor.setNomeRazao(rs.getString(2));
-			fornecedor.setFantasia(rs.getString(3));
-			fornecedores.add(fornecedor);
+			while (rs.next()) {
+				fornecedor = new FornecedorTO();
+				fornecedor.setCnpj(rs.getLong(1));
+				fornecedor.setNomeRazao(rs.getString(2));
+				fornecedor.setFantasia(rs.getString(3));
+				fornecedores.add(fornecedor);
+			}
+			conn.close();
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "Valores inseridos inválidos!\n " + e.getMessage(), "Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
-		conn.close();
+
 		return fornecedores;
 	}
 
@@ -116,7 +127,7 @@ public class FornecedorDao {
 		String sql = " SELECT * FROM FORNECEDOR WHERE razao_social LIKE ? ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
-		prep.setString(1, '%'+str.toUpperCase()+'%');
+		prep.setString(1, '%' + str.toUpperCase() + '%');
 		ResultSet rs = prep.executeQuery();
 
 		while (rs.next()) {
