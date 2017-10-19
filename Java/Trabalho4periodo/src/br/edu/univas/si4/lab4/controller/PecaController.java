@@ -12,6 +12,12 @@ import br.edu.univas.si4.lab4.view.peca.InternalFramePecas;
 
 public class PecaController {
 
+	private PecaDao pecaDAO;
+
+	public PecaController() {
+		pecaDAO = new PecaDao();
+	}
+
 	// Passa para o FornecedorDAO os dados para novo cadastro
 	public void newPeca(PecaTO pecaTO) {
 
@@ -66,6 +72,29 @@ public class PecaController {
 			pecas = new ArrayList<PecaTO>();
 			pecas = new PecaDao().selectPecabyFornecedor(fornecedor);
 			iFramePecas.updateModelPecas(pecas);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// Chama metodo para atualizar a quantidade da peça já cadastrada
+	public boolean updatePeca(PecaTO pecaTO) {
+		try {
+			if (pecaDAO.updateQtdPeca(pecaTO)) {
+				return true;
+			}
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar a quantidade" + e.getMessage());
+		}
+		return false;
+	}
+
+	// Delete peça
+	public void removePeca(String cod) {
+		int codigo = Integer.parseInt(cod);
+		try {
+			new PecaDao().deletePeca(codigo);
+			JOptionPane.showMessageDialog(null, "Peça excluido!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -121,6 +121,8 @@ public class JmenuBar extends JMenuBar {
 	public JMenu getJmGrafico() {
 		if (jmGrafico == null) {
 			jmGrafico = new JMenu();
+			ImageIcon iconGraph = new ImageIcon("imagens/graph.png");
+			jmGrafico.setIcon(iconGraph);
 			jmGrafico.setText("Gráficos");
 			jmGrafico.setFont(new Font("SansSerif", Font.PLAIN, 17));
 		}

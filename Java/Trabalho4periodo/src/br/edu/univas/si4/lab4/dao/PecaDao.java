@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import br.edu.univas.si4.lab4.to.PecaTO;
 
 public class PecaDao {
@@ -40,7 +42,7 @@ public class PecaDao {
 		conn.close();
 	}
 
-	// Seleciona todos os equipamentos
+	// Seleciona todas peças cadastrados
 	public ArrayList<PecaTO> listAllPecas() throws SQLException {
 		ArrayList<PecaTO> pecas = new ArrayList<PecaTO>();
 
@@ -66,7 +68,7 @@ public class PecaDao {
 		return pecas;
 	}
 
-	// Select o equipamento pelo codigo
+	// Select a peça pelo codigo
 	public ArrayList<PecaTO> selectPecabyCodigo(int codigo) throws SQLException {
 		ArrayList<PecaTO> pecas = new ArrayList<PecaTO>();
 
@@ -93,7 +95,7 @@ public class PecaDao {
 		return pecas;
 	}
 
-	// Select o equipamento pelo nome
+	// Select a peça pelo nome
 	public ArrayList<PecaTO> selectPecabyName(String name) throws SQLException {
 		ArrayList<PecaTO> pecas = new ArrayList<PecaTO>();
 
@@ -102,7 +104,7 @@ public class PecaDao {
 		String sql = " SELECT * FROM PECA WHERE nome LIKE ? ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
-		prep.setString(1,'%'+name.toUpperCase()+'%');
+		prep.setString(1, '%' + name.toUpperCase() + '%');
 		ResultSet rs = prep.executeQuery();
 
 		while (rs.next()) {
@@ -120,7 +122,7 @@ public class PecaDao {
 		return pecas;
 	}
 
-	// Select o equipamento pelo fornecedor
+	// Select a peça pelo fornecedor
 	public ArrayList<PecaTO> selectPecabyFornecedor(String fornecedor) throws SQLException {
 		ArrayList<PecaTO> pecas = new ArrayList<PecaTO>();
 
@@ -129,7 +131,7 @@ public class PecaDao {
 		String sql = " SELECT * FROM PECA WHERE fornecedor LIKE ? ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
-		prep.setString(1, '%'+fornecedor.toUpperCase()+'%');
+		prep.setString(1, '%' + fornecedor.toUpperCase() + '%');
 		ResultSet rs = prep.executeQuery();
 
 		while (rs.next()) {
@@ -145,5 +147,80 @@ public class PecaDao {
 		}
 		conn.close();
 		return pecas;
+	}
+
+	// Busca a quantiade no banco referente ao codigo informado
+	private int selectQtd(int cod) {
+		int qtd = 0;
+		String sql = "SELECT quantidade FROM peca WHERE codigo_peca = ? ";
+
+		Connection conn = null;
+		try {
+			conn = DBUtil.openConnection();
+			PreparedStatement prep = conn.prepareStatement(sql);
+			prep.setInt(1, cod);
+			ResultSet rs = prep.executeQuery();
+			while (rs.next()) {
+				qtd = (rs.getInt(1));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return qtd;
+	}
+
+	// Compare quantidade
+	private boolean compareQtd(PecaTO pecaTO) {
+		if (selectQtd(pecaTO.getCodigo()) >= pecaTO.getQuantidade()) {
+			return true;
+		} else {
+			JOptionPane.showMessageDialog(null, "Quantidade em estoque insuficiente!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+	}
+
+	// Alter a quantidade da peça ja cadastrada
+	public boolean updateQtdPeca(PecaTO pecaTO) throws SQLException {
+		Connection conn = null;
+		if (compareQtd(pecaTO)) {
+			int qtd = 0;
+			String sql = "UPDATE peca SET quantidade = ? WHERE codigo_peca = ? ";
+			qtd = (selectQtd(pecaTO.getCodigo()) - pecaTO.getQuantidade());
+
+			try {
+				conn = DBUtil.openConnection();
+				PreparedStatement prep = conn.prepareStatement(sql);
+				prep.setInt(1, qtd);
+				prep.setInt(2, pecaTO.getCodigo());
+				prep.execute();
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			conn.close();
+		}
+		return false;
+	}
+
+	// Deleta peça cadastrada
+	public void deletePeca(int codigo) throws SQLException {
+		String sql = "DELETE FROM peca WHERE codigo_peca = ?";
+		Connection conn = null;
+		try {
+			conn = DBUtil.openConnection();
+			PreparedStatement prep = conn.prepareStatement(sql);
+			prep.setLong(1, codigo);
+			prep.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		conn.close();
 	}
 }

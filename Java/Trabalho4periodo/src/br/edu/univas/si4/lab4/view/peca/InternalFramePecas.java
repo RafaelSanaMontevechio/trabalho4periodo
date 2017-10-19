@@ -19,9 +19,12 @@ public class InternalFramePecas extends Comum {
 
 	private FrameCadastroPeca fCadPeca;
 	private ButtonsPanelFiltrosPesquisas buttonsPanelPesquisa;
+	private PecaController pecaControll;
 
 	public InternalFramePecas() {
 		super("Consulta de peças em estoque", "Peças em estoque");
+		
+		pecaControll = new PecaController();
 
 		add(getPanelFiltroPesquisas(), BorderLayout.WEST);
 	}
@@ -47,7 +50,7 @@ public class InternalFramePecas extends Comum {
 
 				@Override
 				public void deletarPerformed() {
-
+					deleteClicked();
 				}
 
 				@Override
@@ -81,22 +84,25 @@ public class InternalFramePecas extends Comum {
 
 	private void pesquisarClicked() {
 		if (buttonsPanelPesquisa.getJrbCodigo().isSelected()) {
-			int codigo = Integer.parseInt(getPanelFiltroPesquisas().getJtDados().getText());
-			new PecaController().addDataByCodigo(this, codigo);
+			new PecaController().addDataByCodigo(this, Integer.parseInt(getPanelFiltroPesquisas().getJtDados().getText()));
 			getPanelFiltroPesquisas().getJtDados().setText("");
 		} else if (buttonsPanelPesquisa.getJrbNome().isSelected()) {
-			String name = getPanelFiltroPesquisas().getJtDados().getText();
-			new PecaController().addDataByName(this, name);
+			new PecaController().addDataByName(this,getPanelFiltroPesquisas().getJtDados().getText());
 			getPanelFiltroPesquisas().getJtDados().setText("");
 		} else if (buttonsPanelPesquisa.getJrbFornecedor().isSelected()) {
-			String fornecedor = getPanelFiltroPesquisas().getJtDados().getText();
-			new PecaController().addDataByFornecedor(this, fornecedor);
+			new PecaController().addDataByFornecedor(this,  getPanelFiltroPesquisas().getJtDados().getText());
 			getPanelFiltroPesquisas().getJtDados().setText("");
 		} else if (buttonsPanelPesquisa.getJrbTodos().isSelected()) {
 			new PecaController().addDataAll(this);
 		} else {
 			JOptionPane.showMessageDialog(null, "Nenhum filtro selecionado!");
 		}
+	}
+	
+	private void deleteClicked() {
+		Object obj = getTable().getValueAt(getTable().getSelectedRow(), 0);
+		String codigo = String.valueOf(obj);
+		pecaControll.removePeca(codigo);
 	}
 
 	public void updateModelPecas(List<PecaTO> pecas) {
