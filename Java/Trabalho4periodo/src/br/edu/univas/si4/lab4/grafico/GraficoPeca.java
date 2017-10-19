@@ -13,7 +13,7 @@ public class GraficoPeca extends JInternalFrame {
 	private ButtonsPanelGraficos buttonsGrafico;
 
 	public GraficoPeca() {
-		setTitle("Gráfico comparativo de peças que tem mais saida do estoque");
+		setTitle("Gráfico de saida de peças");
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setLayout(new BorderLayout());
 		setClosable(true);// Se o frame vai poder ser fechado pelo botão fechar

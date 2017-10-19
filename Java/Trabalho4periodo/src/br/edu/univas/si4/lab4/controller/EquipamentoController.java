@@ -108,8 +108,9 @@ public class EquipamentoController {
 
 			try {
 				equipamentoDAO.TakeOffEquipamento(equipamentoTO);
+				JOptionPane.showMessageDialog(null, "Sucesso!");
 			} catch (SQLException e) {
-				JOptionPane.showMessageDialog(null, "Erro ao atualizar a quantidade" + e.getMessage());
+				JOptionPane.showMessageDialog(null, "Erro ao retirar equipamento" + e.getMessage());
 			}
 		}
 

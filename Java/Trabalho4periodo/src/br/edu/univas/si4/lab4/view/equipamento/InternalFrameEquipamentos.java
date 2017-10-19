@@ -82,12 +82,10 @@ public class InternalFrameEquipamentos extends Comum {
 			getEquipamentoControll().addDataByCodigo(this, getPanelFiltroPesquisas().getJtDados().getText());
 			getPanelFiltroPesquisas().getJtDados().setText("");
 		} else if (getPanelFiltroPesquisas().getJrbNome().isSelected()) {
-			String name = getPanelFiltroPesquisas().getJtDados().getText();
-			getEquipamentoControll().addDataByName(this, name);
+			getEquipamentoControll().addDataByName(this, getPanelFiltroPesquisas().getJtDados().getText());
 			getPanelFiltroPesquisas().getJtDados().setText("");
 		} else if (getPanelFiltroPesquisas().getJrbFornecedor().isSelected()) {
-			String fornecedor = getPanelFiltroPesquisas().getJtDados().getText();
-			getEquipamentoControll().addDataByFornecedor(this, fornecedor);
+			getEquipamentoControll().addDataByFornecedor(this, getPanelFiltroPesquisas().getJtDados().getText());
 			getPanelFiltroPesquisas().getJtDados().setText("");
 		} else if (getPanelFiltroPesquisas().getJrbTodos().isSelected()) {
 			getEquipamentoControll().addDataAll(this);

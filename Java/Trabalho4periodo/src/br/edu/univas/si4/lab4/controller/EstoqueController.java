@@ -7,5 +7,4 @@ public class EstoqueController {
 	public EstoqueController() {
 		
 	}
-	
 }

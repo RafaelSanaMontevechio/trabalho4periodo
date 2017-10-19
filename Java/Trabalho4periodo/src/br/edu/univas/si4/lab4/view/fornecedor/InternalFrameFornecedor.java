@@ -116,7 +116,7 @@ public class InternalFrameFornecedor extends Comum {
 			getFornecedorControll().addDatabyCnpj(this, str);
 			buttonsFiltroFornecedor.getJtDados().setText("");
 		} else {
-			JOptionPane.showMessageDialog(null, "CNPJ Invalido ou vazio!", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "CNPJ não informado", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -127,7 +127,7 @@ public class InternalFrameFornecedor extends Comum {
 			getFornecedorControll().addDataByRazao(this, str);
 			buttonsFiltroFornecedor.getJtDados().setText("");
 		} else {
-			JOptionPane.showMessageDialog(null, "Razão Invalida ou vazio!", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Razão social não informada!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
