@@ -69,11 +69,11 @@ public class EquipamentoController {
 	}
 
 	// Recebe o retorno da pesquisa pelo codigo
-	public void addDataByCodigo(InternalFrameEquipamentos iFrameEquipamento, int codigo) {
+	public void addDataByCodigo(InternalFrameEquipamentos iFrameEquipamento, String str) {
 		List<EquipamentoTO> equipamentos = null;
 		try {
 			equipamentos = new ArrayList<EquipamentoTO>();
-			equipamentos = new EquipamentoDao().selectEquipamentobyCodigo(codigo);
+			equipamentos = new EquipamentoDao().selectEquipamentobyCodigo(str);
 			iFrameEquipamento.updateModelEquipamento(equipamentos);
 		} catch (SQLException e) {
 			e.printStackTrace();

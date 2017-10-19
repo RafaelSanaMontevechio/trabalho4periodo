@@ -79,8 +79,7 @@ public class InternalFrameEquipamentos extends Comum {
 
 	private void pesquisarClicked() {
 		if (getPanelFiltroPesquisas().getJrbCodigo().isSelected()) {
-			int codigo = Integer.parseInt(getPanelFiltroPesquisas().getJtDados().getText());
-			getEquipamentoControll().addDataByCodigo(this, codigo);
+			getEquipamentoControll().addDataByCodigo(this, getPanelFiltroPesquisas().getJtDados().getText());
 			getPanelFiltroPesquisas().getJtDados().setText("");
 		} else if (getPanelFiltroPesquisas().getJrbNome().isSelected()) {
 			String name = getPanelFiltroPesquisas().getJtDados().getText();

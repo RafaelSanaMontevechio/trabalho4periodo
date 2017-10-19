@@ -64,27 +64,33 @@ public class EquipamentoDao {
 	}
 
 	// Select o equipamento pelo codigo
-	public ArrayList<EquipamentoTO> selectEquipamentobyCodigo(int codigo) throws SQLException {
+	public ArrayList<EquipamentoTO> selectEquipamentobyCodigo(String str) throws SQLException {
 		ArrayList<EquipamentoTO> equipamentos = new ArrayList<EquipamentoTO>();
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM EQUIPAMENTO WHERE codigo_equipamento = ? ";
+		int codigo;
+		try {
+			codigo = Integer.parseInt(str);
+			String sql = " SELECT * FROM EQUIPAMENTO WHERE codigo_equipamento = ? ";
 
-		PreparedStatement prep = conn.prepareStatement(sql);
-		prep.setInt(1, codigo);
-		ResultSet rs = prep.executeQuery();
+			PreparedStatement prep = conn.prepareStatement(sql);
+			prep.setInt(1, codigo);
+			ResultSet rs = prep.executeQuery();
 
-		while (rs.next()) {
-			equipamentoTO = new EquipamentoTO();
-			equipamentoTO.setCodigo(rs.getInt(1));
-			equipamentoTO.setNome(rs.getString(2));
-			equipamentoTO.setQuantidade(rs.getInt(3));
-			equipamentoTO.setFornecedor(rs.getString(4));
-			equipamentos.add(equipamentoTO);
-
+			while (rs.next()) {
+				equipamentoTO = new EquipamentoTO();
+				equipamentoTO.setCodigo(rs.getInt(1));
+				equipamentoTO.setNome(rs.getString(2));
+				equipamentoTO.setQuantidade(rs.getInt(3));
+				equipamentoTO.setFornecedor(rs.getString(4));
+				equipamentos.add(equipamentoTO);
+			}
+			conn.close();
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "Código incorreto!\n " + e.getMessage(), "Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
-		conn.close();
 		return equipamentos;
 	}
 
@@ -193,39 +199,19 @@ public class EquipamentoDao {
 			return false;
 		}
 	}
-	
-	// Retira peça do estoque
-		public void TakeOffEquipamento(EquipamentoTO equipamentoTO) throws SQLException {
-			Connection conn = null;
-			if (compareQtd(equipamentoTO)) {
-				int qtd = 0;
-				String sql = "UPDATE equipamento SET quantidade = ? WHERE codigo_equipamento = ? ";
-				qtd = (selectQtd(equipamentoTO.getCodigo()) - equipamentoTO.getQuantidade());
 
-				try {
-					conn = DBUtil.openConnection();
-					PreparedStatement prep = conn.prepareStatement(sql);
-					prep.setInt(1, qtd);
-					prep.setInt(2, equipamentoTO.getCodigo());
-					prep.execute();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				conn.close();
-			}
-		}
-		
-		//Atualiza a quantidade de peça no estoque já cadastrada
-		public void updateQtdEquipamentoAdd(EquipamentoTO equipamentoTO) throws SQLException{
-			Connection conn = null;
+	// Retira peça do estoque
+	public void TakeOffEquipamento(EquipamentoTO equipamentoTO) throws SQLException {
+		Connection conn = null;
+		if (compareQtd(equipamentoTO)) {
 			int qtd = 0;
 			String sql = "UPDATE equipamento SET quantidade = ? WHERE codigo_equipamento = ? ";
-			qtd = (selectQtd(equipamentoTO.getCodigo()) + equipamentoTO.getQuantidade());
-			
+			qtd = (selectQtd(equipamentoTO.getCodigo()) - equipamentoTO.getQuantidade());
+
 			try {
 				conn = DBUtil.openConnection();
 				PreparedStatement prep = conn.prepareStatement(sql);
-				prep.setInt(1,  qtd);
+				prep.setInt(1, qtd);
 				prep.setInt(2, equipamentoTO.getCodigo());
 				prep.execute();
 			} catch (SQLException e) {
@@ -233,6 +219,26 @@ public class EquipamentoDao {
 			}
 			conn.close();
 		}
+	}
+
+	// Atualiza a quantidade de peça no estoque já cadastrada
+	public void updateQtdEquipamentoAdd(EquipamentoTO equipamentoTO) throws SQLException {
+		Connection conn = null;
+		int qtd = 0;
+		String sql = "UPDATE equipamento SET quantidade = ? WHERE codigo_equipamento = ? ";
+		qtd = (selectQtd(equipamentoTO.getCodigo()) + equipamentoTO.getQuantidade());
+
+		try {
+			conn = DBUtil.openConnection();
+			PreparedStatement prep = conn.prepareStatement(sql);
+			prep.setInt(1, qtd);
+			prep.setInt(2, equipamentoTO.getCodigo());
+			prep.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		conn.close();
+	}
 
 	// Deleta equipamento
 	public void deleteEquipamento(int codigo) throws SQLException {
