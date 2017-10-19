@@ -80,8 +80,8 @@ public class PanelEstoque extends JPanel {
 		add(getJlQuantidade(), getJlQuantidadeConstraints());
 		add(getJtQuantidade(), getJtQuantidadeConstraints());
 		
-		add(getJlData(), getJlDataConstraints());
-		add(getJtData(), getJtDataConstraints());
+		//add(getJlData(), getJlDataConstraints());
+		//add(getJtData(), getJtDataConstraints());
 
 		// ButtonsGroup
 		getGroupAcao().add(getJrbAdicionar());

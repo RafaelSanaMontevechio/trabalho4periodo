@@ -1,15 +1,11 @@
 package br.edu.univas.si4.lab4.view.estoque;
 
 import java.awt.BorderLayout;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.lab4.controller.EstoqueController;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
-import br.edu.univas.si4.lab4.to.EstoqueTO;
 import br.edu.univas.si4.lab4.to.PecaTO;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelCadastros;
 
@@ -17,20 +13,18 @@ public class FrameEstoque extends JDialog {
 
 	private PanelEstoque panelEstoque;
 	private ButtonsPanelCadastros buttonsPanel;
-	private EstoqueTO estoqueTO;
 	private PecaTO pecaTO;
 
 	private static final long serialVersionUID = -4897376368273018326L;
 
 	private EstoqueController estoqueControll;
 
-
 	public FrameEstoque() {
 		this.setTitle("Adicionar e remover item do estoque");
 		this.setModal(true);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
-		
+
 		pecaTO = new PecaTO();
 
 		addComponents();
@@ -47,13 +41,6 @@ public class FrameEstoque extends JDialog {
 			panelEstoque = new PanelEstoque();
 		}
 		return panelEstoque;
-	}
-
-	public EstoqueTO getEstoqueTO() {
-		if (estoqueTO == null) {
-			estoqueTO = new EstoqueTO();
-		}
-		return estoqueTO;
 	}
 
 	public EstoqueController getEstoqueControll() {
@@ -82,39 +69,40 @@ public class FrameEstoque extends JDialog {
 		return buttonsPanel;
 	}
 
+	private void cancelarClicked() {
+		this.dispose();
+	}
+
 	private void salvarClicked() {
 		if (getPanelEstoque().getJrbAdicionar().isSelected() && getPanelEstoque().getJrbEquipamento().isSelected()) {
-
+			addEquipamentoSelected();
 		} else if (getPanelEstoque().getJrbAdicionar().isSelected() && getPanelEstoque().getJrbPeca().isSelected()) {
-
-		} else if (getPanelEstoque().getJrbRetirar().isSelected()
-				&& getPanelEstoque().getJrbEquipamento().isSelected()) {
-
+			addPecaSelected();
+		} else if (getPanelEstoque().getJrbRetirar().isSelected() && getPanelEstoque().getJrbEquipamento().isSelected()) {
+			retirarEquipamentoSelected();
 		} else if (getPanelEstoque().getJrbRetirar().isSelected() && getPanelEstoque().getJrbPeca().isSelected()) {
 			retirarPecaSelected();
 		}
 	}
 
-	private void cancelarClicked() {
-		this.dispose();
+	private void addPecaSelected() {
+
 	}
 
 	private void retirarPecaSelected() {
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
-		getEstoqueTO().setCodigo(Integer.parseInt(getPanelEstoque().getJtCodigo().getText()));
-		getEstoqueTO().setQuantidade(Integer.parseInt(getPanelEstoque().getJtQuantidade().getText()));
+	}
+
+	private void addEquipamentoSelected() {
+
+	}
+
+	private void retirarEquipamentoSelected() {
+
+	}
+	
+	private void takeData() {
 		pecaTO.setCodigo(Integer.parseInt(getPanelEstoque().getJtCodigo().getText()));
 		pecaTO.setQuantidade(Integer.parseInt(getPanelEstoque().getJtQuantidade().getText()));
-		try {
-			getEstoqueTO().setData(formato.parse(getPanelEstoque().getJtData().getText()));
-		} catch (ParseException e) {
-			JOptionPane.showMessageDialog(null, "Erro ao converter data para java.Util.Date: " + e.getMessage());
-		}
-		if (getEstoqueControll().callIsRegistro(Integer.parseInt(getPanelEstoque().getJtCodigo().getText()))) {
-			getEstoqueControll().updatePeca(getEstoqueTO(), pecaTO);	
-		} else {
-			getEstoqueControll().addPeca(getEstoqueTO(), pecaTO);
-		}
 	}
 }
