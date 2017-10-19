@@ -81,28 +81,54 @@ public class InternalFrameEquipamentos extends Comum {
 
 	private void pesquisarClicked() {
 		if (getPanelFiltroPesquisas().getJrbCodigo().isSelected()) {
-			getEquipamentoControll().addDataByCodigo(this, getPanelFiltroPesquisas().getJtDados().getText());
-			getPanelFiltroPesquisas().getJtDados().setText("");
+			jrbCodigoSelected();
 		} else if (getPanelFiltroPesquisas().getJrbNome().isSelected()) {
-			getEquipamentoControll().addDataByName(this, getPanelFiltroPesquisas().getJtDados().getText());
-			getPanelFiltroPesquisas().getJtDados().setText("");
+			jrbNomeSelected();
 		} else if (getPanelFiltroPesquisas().getJrbFornecedor().isSelected()) {
-			getEquipamentoControll().addDataByFornecedor(this, getPanelFiltroPesquisas().getJtDados().getText());
-			getPanelFiltroPesquisas().getJtDados().setText("");
+			jrbFornecedorSelected();
 		} else if (getPanelFiltroPesquisas().getJrbTodos().isSelected()) {
 			getEquipamentoControll().addDataAll(this);
 		} else {
 			JOptionPane.showMessageDialog(null, "Nenhum filtro selecionado!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
+
+	private void jrbCodigoSelected() {
+		String str = getPanelFiltroPesquisas().getJtDados().getText();
+		if (verifyEmptyString(str)) {
+			getEquipamentoControll().addDataByCodigo(this, str);
+			getPanelFiltroPesquisas().getJtDados().setText("");
+		} else {
+			JOptionPane.showMessageDialog(null, "Código não informado!", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	private void jrbNomeSelected() {
+		String str = getPanelFiltroPesquisas().getJtDados().getText();
+		if (verifyEmptyString(str)) {
+			getEquipamentoControll().addDataByName(this, str);
+			getPanelFiltroPesquisas().getJtDados().setText("");
+		} else {
+			JOptionPane.showMessageDialog(null, "Nome não informado!", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	private void jrbFornecedorSelected() {
+		String str = getPanelFiltroPesquisas().getJtDados().getText();
+		if (verifyEmptyString(str)) {
+			getEquipamentoControll().addDataByFornecedor(this, str);
+			getPanelFiltroPesquisas().getJtDados().setText("");
+		} else {
+			JOptionPane.showMessageDialog(null, "Fornecedor não informado!", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
 	private void deleteClicked() {
 		Object obj = getTable().getValueAt(getTable().getSelectedRow(), 0);
 		String codigo = String.valueOf(obj);
-		
+
 		new EquipamentoController().removeEquipamento(codigo);
 	}
-	
 
 	public void updateModelEquipamento(List<EquipamentoTO> list) {
 		TableModelEquipamento tmEquipamento = new TableModelEquipamento(list);
