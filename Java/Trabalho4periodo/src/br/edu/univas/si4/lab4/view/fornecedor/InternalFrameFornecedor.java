@@ -33,12 +33,6 @@ public class InternalFrameFornecedor extends Comum {
 		return fornecedorControll;
 	}
 	
-
-	public void updateModel(List<FornecedorTO> list) {
-		TableModelFornecedor tmFornecedor = new TableModelFornecedor(list);
-		getTable().setModel(tmFornecedor);
-	}
-
 	@Override
 	public ButtonsPanelRelatorio getButtonsPanelRelatorio() {
 		if (buttonsPanelRelatorio == null) {
@@ -134,4 +128,15 @@ public class InternalFrameFornecedor extends Comum {
 	private void jrbTodosSelected() {
 		getFornecedorControll().addDataAll(this);
 	}
+	
+	
+
+	public void updateModel(List<FornecedorTO> list) {
+		TableModelFornecedor tmFornecedor = new TableModelFornecedor(list);
+		getTable().setModel(tmFornecedor);
+		getTable().getColumnModel().getColumn(0).setPreferredWidth(20);
+		getTable().getColumnModel().getColumn(1).setPreferredWidth(570);
+		getTable().getColumnModel().getColumn(2).setPreferredWidth(30);
+	}
+
 }

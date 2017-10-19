@@ -1,12 +1,14 @@
 package br.edu.univas.si4.lab4.view.equipamento;
 
 import java.awt.BorderLayout;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.lab4.controller.EquipamentoController;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListenerRelatorios;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListernerFiltroPesquisa;
+import br.edu.univas.si4.lab4.to.EquipamentoTO;
 import br.edu.univas.si4.lab4.view.Comum;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelFiltrosPesquisas;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelRelatorio;
@@ -99,5 +101,15 @@ public class InternalFrameEquipamentos extends Comum {
 		String codigo = String.valueOf(obj);
 		
 		new EquipamentoController().removeEquipamento(codigo);
+	}
+	
+
+	public void updateModelEquipamento(List<EquipamentoTO> list) {
+		TableModelEquipamento tmEquipamento = new TableModelEquipamento(list);
+		getTable().setModel(tmEquipamento);
+		getTable().getColumnModel().getColumn(0).setPreferredWidth(20);
+		getTable().getColumnModel().getColumn(1).setPreferredWidth(450);
+		getTable().getColumnModel().getColumn(2).setPreferredWidth(20);
+		getTable().getColumnModel().getColumn(3).setPreferredWidth(20);
 	}
 }

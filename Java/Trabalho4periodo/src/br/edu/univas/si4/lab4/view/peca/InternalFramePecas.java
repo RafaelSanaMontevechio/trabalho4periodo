@@ -108,5 +108,11 @@ public class InternalFramePecas extends Comum {
 	public void updateModelPecas(List<PecaTO> pecas) {
 		TableModelPeca tmbPeca = new TableModelPeca(pecas);
 		getTable().setModel(tmbPeca);
+		getTable().getColumnModel().getColumn(0).setPreferredWidth(10);
+		getTable().getColumnModel().getColumn(1).setPreferredWidth(450);
+		getTable().getColumnModel().getColumn(2).setPreferredWidth(20);
+		getTable().getColumnModel().getColumn(3).setPreferredWidth(20);
+		getTable().getColumnModel().getColumn(4).setPreferredWidth(20);
+		getTable().getColumnModel().getColumn(5).setPreferredWidth(20);
 	}
 }

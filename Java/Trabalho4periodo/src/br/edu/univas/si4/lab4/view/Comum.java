@@ -2,7 +2,6 @@ package br.edu.univas.si4.lab4.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
@@ -12,9 +11,7 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.TableModel;
 
-import br.edu.univas.si4.lab4.to.EquipamentoTO;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelRelatorio;
-import br.edu.univas.si4.lab4.view.equipamento.TableModelEquipamento;
 
 public abstract class Comum extends JInternalFrame {
 
@@ -75,18 +72,13 @@ public abstract class Comum extends JInternalFrame {
 		return table;
 	}
 
-	JScrollPane getTableScroll() {
+	public JScrollPane getTableScroll() {
 		if (tableScroll == null) {
 			tableScroll = new JScrollPane();
 			tableScroll = new JScrollPane(getTable());
 			tableScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		}
 		return tableScroll;
-	}
-
-	public void updateModelEquipamento(List<EquipamentoTO> list) {
-		TableModelEquipamento tmEquipamento = new TableModelEquipamento(list);
-		getTable().setModel(tmEquipamento);
 	}
 
 	public abstract ButtonsPanelRelatorio getButtonsPanelRelatorio();
