@@ -88,7 +88,7 @@ public class FornecedorDao {
 	}
 
 	// Seleciona por Cnpj
-	public List<FornecedorTO> listByCnpj(String str) throws SQLException, ClassCastException {
+	public List<FornecedorTO> listByCnpj(String str) throws SQLException {
 		ArrayList<FornecedorTO> fornecedores = new ArrayList<FornecedorTO>();
 
 		Connection conn = DBUtil.openConnection();
