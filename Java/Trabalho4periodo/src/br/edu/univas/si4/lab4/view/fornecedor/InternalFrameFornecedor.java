@@ -32,7 +32,7 @@ public class InternalFrameFornecedor extends Comum {
 		}
 		return fornecedorControll;
 	}
-	
+
 	@Override
 	public ButtonsPanelRelatorio getButtonsPanelRelatorio() {
 		if (buttonsPanelRelatorio == null) {
@@ -106,11 +106,15 @@ public class InternalFrameFornecedor extends Comum {
 	private void jrbCnpjSelected() {
 
 		String str = (buttonsFiltroFornecedor.getJtDados().getText());
-		if (verifyEmptyString(str)) {
-			getFornecedorControll().addDatabyCnpj(this, str);
-			buttonsFiltroFornecedor.getJtDados().setText("");
+		if (str.length() != 14) {
+			JOptionPane.showMessageDialog(null, "CNPJ deve ter 14 digitos", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
-			JOptionPane.showMessageDialog(null, "CNPJ não informado", "Error", JOptionPane.ERROR_MESSAGE);
+			if (verifyEmptyString(str)) {
+				getFornecedorControll().addDatabyCnpj(this, str);
+				buttonsFiltroFornecedor.getJtDados().setText("");
+			} else {
+				JOptionPane.showMessageDialog(null, "CNPJ não informado", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 
@@ -128,8 +132,6 @@ public class InternalFrameFornecedor extends Comum {
 	private void jrbTodosSelected() {
 		getFornecedorControll().addDataAll(this);
 	}
-	
-	
 
 	public void updateModel(List<FornecedorTO> list) {
 		TableModelFornecedor tmFornecedor = new TableModelFornecedor(list);
