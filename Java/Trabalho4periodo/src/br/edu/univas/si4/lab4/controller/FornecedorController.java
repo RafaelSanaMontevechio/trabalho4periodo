@@ -36,9 +36,8 @@ public class FornecedorController {
 
 	// Passa ao FornecedorDAO o cnpj do fornecedor para ser deletado
 	public void removeFornecedor(String str) {
-		long cnpj = Long.parseLong(str);
 		try {
-			new FornecedorDao().deleteFornecedor(cnpj);
+			new FornecedorDao().deleteFornecedor(str);
 			JOptionPane.showMessageDialog(null, "Fornecedor excluido!");
 		} catch (SQLException e) {
 			e.printStackTrace();
