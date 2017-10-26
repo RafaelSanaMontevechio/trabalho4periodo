@@ -23,7 +23,7 @@ public class InternalFramePecas extends Comum {
 
 	public InternalFramePecas() {
 		super("Consulta de peças em estoque", "Peças em estoque");
-		
+
 		pecaControll = new PecaController();
 
 		add(getPanelFiltroPesquisas(), BorderLayout.WEST);
@@ -86,28 +86,46 @@ public class InternalFramePecas extends Comum {
 		if (buttonsPanelPesquisa.getJrbCodigo().isSelected()) {
 			jrbCodigoSelected();
 		} else if (buttonsPanelPesquisa.getJrbNome().isSelected()) {
-			new PecaController().addDataByName(this,getPanelFiltroPesquisas().getJtDados().getText());
-			getPanelFiltroPesquisas().getJtDados().setText("");
+			jrbNomeSelected();
 		} else if (buttonsPanelPesquisa.getJrbFornecedor().isSelected()) {
-			new PecaController().addDataByFornecedor(this,  getPanelFiltroPesquisas().getJtDados().getText());
-			getPanelFiltroPesquisas().getJtDados().setText("");
+			jrbFornecedorSelected();
 		} else if (buttonsPanelPesquisa.getJrbTodos().isSelected()) {
 			new PecaController().addDataAll(this);
 		} else {
 			JOptionPane.showMessageDialog(null, "Nenhum filtro selecionado!");
 		}
 	}
-	
+
 	private void jrbCodigoSelected() {
 		String str = getPanelFiltroPesquisas().getJtDados().getText();
-		if(verifyEmptyString(str)) {
-			pecaControll.addDataByCodigo(this,str);
+		if (verifyEmptyString(str)) {
+			pecaControll.addDataByName(this, str);
 			clearText();
-		}else {
+		} else {
 			JOptionPane.showMessageDialog(null, "Código não informado!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+
+	private void jrbNomeSelected() {
+		String str = getPanelFiltroPesquisas().getJtDados().getText();
+		if (verifyEmptyString(str)) {
+			pecaControll.addDataByName(this, str);
+			clearText();
+		} else {
+			JOptionPane.showMessageDialog(null, "Nome não informado!", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
 	
+	private void jrbFornecedorSelected() {
+		String str = getPanelFiltroPesquisas().getJtDados().getText();
+		if (verifyEmptyString(str)) {
+			pecaControll.addDataByFornecedor(this, str);
+			clearText();
+		} else {
+			JOptionPane.showMessageDialog(null, "Fornecedor não informado!", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
 	private void deleteClicked() {
 		Object obj = getTable().getValueAt(getTable().getSelectedRow(), 0);
 		String codigo = String.valueOf(obj);
@@ -124,7 +142,7 @@ public class InternalFramePecas extends Comum {
 		getTable().getColumnModel().getColumn(4).setPreferredWidth(20);
 		getTable().getColumnModel().getColumn(5).setPreferredWidth(20);
 	}
-	
+
 	private void clearText() {
 		getPanelFiltroPesquisas().getJtDados().setText("");
 	}
