@@ -99,7 +99,7 @@ public class InternalFramePecas extends Comum {
 	private void jrbCodigoSelected() {
 		String str = getPanelFiltroPesquisas().getJtDados().getText();
 		if (verifyEmptyString(str)) {
-			pecaControll.addDataByName(this, str);
+			pecaControll.addDataByCodigo(this, str);
 			clearText();
 		} else {
 			JOptionPane.showMessageDialog(null, "Código não informado!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -115,8 +115,7 @@ public class InternalFramePecas extends Comum {
 			JOptionPane.showMessageDialog(null, "Nome não informado!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
-<<<<<<< HEAD
+
 	private void jrbFornecedorSelected() {
 		String str = getPanelFiltroPesquisas().getJtDados().getText();
 		if (verifyEmptyString(str)) {
@@ -127,28 +126,6 @@ public class InternalFramePecas extends Comum {
 		}
 	}
 
-=======
-	private void jrbNomeSelected() {
-		String str = getPanelFiltroPesquisas().getJtDados().getText();
-		if(verifyEmptyString(str)) {
-			pecaControll.addDataByName(this,str);
-			clearText();
-		}else {
-			JOptionPane.showMessageDialog(null, "Nome não informado!", "Error", JOptionPane.ERROR_MESSAGE);
-		}
-	}
-	
-	private void jrbFornecedorSelected() {
-		String str = getPanelFiltroPesquisas().getJtDados().getText();
-		if(verifyEmptyString(str)) {
-			pecaControll.addDataByFornecedor(this,str);
-			clearText();
-		}else {
-			JOptionPane.showMessageDialog(null, "Fornecedor não informado!", "Error", JOptionPane.ERROR_MESSAGE);
-		}
-	}
-	
->>>>>>> eea9f30fec62d1b87cb3f75023751671c54ab1e3
 	private void deleteClicked() {
 		Object obj = getTable().getValueAt(getTable().getSelectedRow(), 0);
 		String codigo = String.valueOf(obj);
