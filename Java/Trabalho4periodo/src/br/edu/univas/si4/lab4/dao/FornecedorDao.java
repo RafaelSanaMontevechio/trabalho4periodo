@@ -27,7 +27,6 @@ public class FornecedorDao {
 	public void insertNewFornecedor(FornecedorTO fornecedor) throws SQLException {
 
 		String sql = "INSERT INTO FORNECEDOR " + " (cnpj, razao_social, nome_fantasia) " + " VALUES (?, ?, ?)";
-
 		Connection conn = null;
 
 		try {
@@ -43,7 +42,6 @@ public class FornecedorDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		if (conn != null) {
 			conn.close();
 		}
@@ -71,13 +69,13 @@ public class FornecedorDao {
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM FORNECEDOR ";
+		String sql = " SELECT cnpj, razao_social, nome_fantasia FROM FORNECEDOR ";
 
 		Statement stm = conn.createStatement();
 		ResultSet rs = stm.executeQuery(sql);
 
 		while (rs.next()) {
-			fornecedor = new FornecedorTO();
+			//fornecedor = new FornecedorTO();
 			fornecedor.setCnpj(rs.getLong(1));
 			fornecedor.setNomeRazao(rs.getString(2));
 			fornecedor.setFantasia(rs.getString(3));
@@ -90,14 +88,11 @@ public class FornecedorDao {
 	// Seleciona por Cnpj
 	public List<FornecedorTO> listByCnpj(String str) throws SQLException {
 		ArrayList<FornecedorTO> fornecedores = new ArrayList<FornecedorTO>();
-
 		Connection conn = DBUtil.openConnection();
 
-		long cnpj;
 		try {
-			cnpj = Long.parseLong(str);
-			String sql = " SELECT * FROM FORNECEDOR WHERE CNPJ = ? ";
-
+			long cnpj = Long.parseLong(str);
+			String sql = " SELECT cnpj, razao_social, nome_fantasia FROM FORNECEDOR WHERE CNPJ = ? ";
 			PreparedStatement prep = conn.prepareStatement(sql);
 			prep.setLong(1, cnpj);
 			ResultSet rs = prep.executeQuery();
@@ -114,7 +109,6 @@ public class FornecedorDao {
 			JOptionPane.showMessageDialog(null, "CNPJ Informado está incorreto!\n " + e.getMessage(), "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
-
 		return fornecedores;
 	}
 
@@ -124,7 +118,7 @@ public class FornecedorDao {
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM FORNECEDOR WHERE razao_social LIKE ? ";
+		String sql = " SELECT cnpj, razao_social, nome_fantasia FROM FORNECEDOR WHERE razao_social LIKE ? ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
 		prep.setString(1, '%' + str.toUpperCase() + '%');

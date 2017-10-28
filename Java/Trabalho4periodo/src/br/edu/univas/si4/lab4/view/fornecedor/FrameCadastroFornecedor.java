@@ -13,8 +13,8 @@ public class FrameCadastroFornecedor extends JDialog {
 
 	private PanelCadastroFornecedor panelCadFornecedor;
 	private ButtonsPanelCadastros buttonsCadastro;
-	private FornecedorController fornecedorController = new FornecedorController();
-	private FornecedorTO fornecedorTO = new FornecedorTO();
+	private FornecedorController fornecedorController;
+	private FornecedorTO fornecedorTO;
 
 	private static final long serialVersionUID = 8703398655774672349L;
 
@@ -22,7 +22,10 @@ public class FrameCadastroFornecedor extends JDialog {
 		this.setTitle("Cadastro de Fornecedor");
 		this.setModal(true);
 		this.setResizable(false);
-
+		
+		fornecedorController = new FornecedorController();
+		fornecedorTO = new FornecedorTO();
+		
 		addComponents();
 		pack();
 	}
@@ -58,22 +61,26 @@ public class FrameCadastroFornecedor extends JDialog {
 		return buttonsCadastro;
 	}
 
+	// Passa os dados capturados para o controller
 	private void salvarClicked() {
 
-		long cnpjInt = Long.parseLong(fornecedorController.removeMask(panelCadFornecedor.getJtCnpj().getText()));
-
-		fornecedorTO.setCnpj(cnpjInt);
-		fornecedorTO.setNomeRazao(panelCadFornecedor.getJtNomeRazao().getText());
-		fornecedorTO.setFantasia(panelCadFornecedor.getJtFantasia().getText());
-
-		fornecedorController.newFornecedor(fornecedorTO);
-
+		fornecedorController.newFornecedor(takeDataView());
 		panelCadFornecedor.getJtCnpj().setText("");
 		panelCadFornecedor.getJtNomeRazao().setText("");
 		panelCadFornecedor.getJtFantasia().setText("");
-
 	}
 
+	// Captura os dados da tela
+	private FornecedorTO takeDataView() {
+		
+			fornecedorTO.setCnpj(Long.parseLong(fornecedorController.removeMask(panelCadFornecedor.getJtCnpj().getText())));
+			fornecedorTO.setNomeRazao(panelCadFornecedor.getJtNomeRazao().getText());
+			fornecedorTO.setFantasia(panelCadFornecedor.getJtFantasia().getText());
+		
+		return fornecedorTO;
+	}
+
+	// Fecha a tela
 	private void cancelarClicked() {
 		this.dispose();
 	}
