@@ -3,7 +3,6 @@ package br.edu.univas.si4.lab4.view.estoque;
 import java.awt.BorderLayout;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
