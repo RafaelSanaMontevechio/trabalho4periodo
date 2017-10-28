@@ -80,8 +80,8 @@ public class PanelEstoque extends JPanel {
 		add(getJlQuantidade(), getJlQuantidadeConstraints());
 		add(getJtQuantidade(), getJtQuantidadeConstraints());
 		
-		//add(getJlData(), getJlDataConstraints());
-		//add(getJtData(), getJtDataConstraints());
+		add(getJlData(), getJlDataConstraints());
+		add(getJtData(), getJtDataConstraints());
 
 		// ButtonsGroup
 		getGroupAcao().add(getJrbAdicionar());
@@ -175,7 +175,7 @@ public class PanelEstoque extends JPanel {
 	public JTextField getJtData() {
 		if (jtData == null) {
 			jtData = new JTextField();
-			jtData.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date(
+			jtData.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date(
 					System.currentTimeMillis())));
 			jtData.setEditable(false);
 		}
@@ -315,7 +315,7 @@ public class PanelEstoque extends JPanel {
 			jtCodigoConstraints = new GridBagConstraints();
 			jtCodigoConstraints.gridx = 1;
 			jtCodigoConstraints.gridy = 3;
-			jtCodigoConstraints.ipadx = 100;
+			jtCodigoConstraints.ipadx = 152;
 			jtCodigoConstraints.insets = new Insets(5, 5, 5, 5);
 			jtCodigoConstraints.anchor = GridBagConstraints.LINE_START;
 		}
@@ -327,7 +327,7 @@ public class PanelEstoque extends JPanel {
 			jtQuantidadeConstraints = new GridBagConstraints();
 			jtQuantidadeConstraints.gridx = 1;
 			jtQuantidadeConstraints.gridy = 4;
-			jtQuantidadeConstraints.ipadx = 100;
+			jtQuantidadeConstraints.ipadx = 152;
 			jtQuantidadeConstraints.insets = new Insets(5, 5, 5, 5);
 			jtQuantidadeConstraints.anchor = GridBagConstraints.LINE_START;
 		}

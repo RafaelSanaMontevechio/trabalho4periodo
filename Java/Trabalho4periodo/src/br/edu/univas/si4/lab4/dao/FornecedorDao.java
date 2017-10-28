@@ -75,7 +75,7 @@ public class FornecedorDao {
 		ResultSet rs = stm.executeQuery(sql);
 
 		while (rs.next()) {
-			//fornecedor = new FornecedorTO();
+			fornecedor = new FornecedorTO();
 			fornecedor.setCnpj(rs.getLong(1));
 			fornecedor.setNomeRazao(rs.getString(2));
 			fornecedor.setFantasia(rs.getString(3));

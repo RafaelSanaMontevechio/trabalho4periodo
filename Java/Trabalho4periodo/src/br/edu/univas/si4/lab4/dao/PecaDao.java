@@ -41,7 +41,7 @@ public class PecaDao {
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM PECA ORDER BY FORNECEDOR ";
+		String sql = " SELECT codigo_peca, nome, quantidade, tipo, equipamento, fornecedor FROM PECA ORDER BY FORNECEDOR ";
 
 		Statement stm = conn.createStatement();
 		ResultSet rs = stm.executeQuery(sql);
@@ -71,7 +71,7 @@ public class PecaDao {
 
 		try {
 			codigo = Integer.parseInt(str);
-			String sql = " SELECT * FROM PECA WHERE codigo_peca = ? ";
+			String sql = " SELECT codigo_peca, nome, quantidade, tipo, equipamento, fornecedor FROM PECA WHERE codigo_peca = ? ";
 
 			PreparedStatement prep = conn.prepareStatement(sql);
 			prep.setInt(1, codigo);
@@ -102,7 +102,7 @@ public class PecaDao {
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM PECA WHERE nome LIKE ? ";
+		String sql = " SELECT codigo_peca, nome, quantidade, tipo, equipamento, fornecedor FROM PECA WHERE nome LIKE ? ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
 		prep.setString(1, '%' + name.toUpperCase() + '%');
@@ -129,7 +129,7 @@ public class PecaDao {
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT * FROM PECA WHERE fornecedor LIKE ? ";
+		String sql = " SELECT codigo_peca, nome, quantidade, tipo, equipamento, fornecedor FROM PECA WHERE fornecedor LIKE ? ";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
 		prep.setString(1, '%' + fornecedor.toUpperCase() + '%');
@@ -188,7 +188,7 @@ public class PecaDao {
 	}
 
 	// Retira peça do estoque
-	public void TakeOffPeca(PecaTO pecaTO) throws SQLException {
+	public boolean TakeOffPeca(PecaTO pecaTO) throws SQLException {
 		Connection conn = null;
 		if (compareQtd(pecaTO)) {
 			int qtd = 0;
@@ -201,11 +201,13 @@ public class PecaDao {
 				prep.setInt(1, qtd);
 				prep.setInt(2, pecaTO.getCodigo());
 				prep.execute();
+				return true;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 			conn.close();
 		}
+		return false;
 	}
 
 	// Atualiza a quantidade de peça no estoque já cadastrada
