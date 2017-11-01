@@ -45,7 +45,7 @@ public class EstoqueDao {
 			dataUtil = new java.sql.Date(dataUtil.getTime());
 			dataSql = (java.sql.Date) dataUtil;
 		} catch (DateTimeException e) {
-			JOptionPane.showMessageDialog(null, "Erro ao converte data para sql: " + e.getMessage(), "Error",
+			JOptionPane.showMessageDialog(null, "Erro ao converter data para sql: " + e.getMessage(), "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
 		return dataSql;

@@ -3,6 +3,7 @@ package br.edu.univas.si4.lab4.view.estoque;
 import java.awt.BorderLayout;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -102,7 +103,12 @@ public class FrameEstoque extends JDialog {
 	//Retira peça do estoque
 	private void retirarPecaSelected() {
 		if(pecaControll.updatePeca(takeDataPeca())) {
-			estoqueControll.adicionaHistorico(takeDataPecaOut());
+			//estoqueControll.adicionaHistorico(takeDataPecaOut());
+			Date dataHoraAtual = new Date();
+			String data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(dataHoraAtual);
+			String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
+			//System.out.println(data);
+			System.out.println(new Date().getTime());
 		}else {
 			System.out.println("Erro!");
 		}
@@ -137,6 +143,7 @@ public class FrameEstoque extends JDialog {
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		estoqueTO.setCodigo(pecaTO.getCodigo());
 		estoqueTO.setQuantidade(pecaTO.getQuantidade());
+		estoqueTO.setData(new Date());
 		try {
 			estoqueTO.setData(formato.parse(getPanelEstoque().getJtData().getText()));
 		} catch (ParseException e) {
