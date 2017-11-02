@@ -87,8 +87,7 @@ public class FrameEstoque extends JDialog {
 			addEquipamentoSelected();
 		} else if (getPanelEstoque().getJrbAdicionar().isSelected() && getPanelEstoque().getJrbPeca().isSelected()) {
 			addPecaSelected();
-		} else if (getPanelEstoque().getJrbRetirar().isSelected()
-				&& getPanelEstoque().getJrbEquipamento().isSelected()) {
+		} else if (getPanelEstoque().getJrbRetirar().isSelected() && getPanelEstoque().getJrbEquipamento().isSelected()) {
 			retirarEquipamentoSelected();
 		} else if (getPanelEstoque().getJrbRetirar().isSelected() && getPanelEstoque().getJrbPeca().isSelected()) {
 			retirarPecaSelected();
@@ -103,12 +102,12 @@ public class FrameEstoque extends JDialog {
 	//Retira peça do estoque
 	private void retirarPecaSelected() {
 		if(pecaControll.updatePeca(takeDataPeca())) {
-			//estoqueControll.adicionaHistorico(takeDataPecaOut());
+			estoqueControll.adicionaHistorico(takeDataPecaOut());
 			Date dataHoraAtual = new Date();
 			String data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(dataHoraAtual);
 			String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
 			//System.out.println(data);
-			System.out.println(new Date().getTime());
+			//System.out.println(new Date().getTime());
 		}else {
 			System.out.println("Erro!");
 		}
@@ -144,11 +143,11 @@ public class FrameEstoque extends JDialog {
 		estoqueTO.setCodigo(pecaTO.getCodigo());
 		estoqueTO.setQuantidade(pecaTO.getQuantidade());
 		estoqueTO.setData(new Date());
-		try {
-			estoqueTO.setData(formato.parse(getPanelEstoque().getJtData().getText()));
-		} catch (ParseException e) {
-			JOptionPane.showMessageDialog(null, "Erro na data\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-		}
+//		try {
+//			estoqueTO.setData(formato.parse(getPanelEstoque().getJtData().getText()));
+//		} catch (ParseException e) {
+//			JOptionPane.showMessageDialog(null, "Erro na data\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//		}
 		return estoqueTO;
 	}
 }

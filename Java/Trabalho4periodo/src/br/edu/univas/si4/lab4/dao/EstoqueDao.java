@@ -13,7 +13,7 @@ public class EstoqueDao {
 
 	// private EstoqueTO estoqueTO;
 
-	// Insere novos fornecedores
+	// Insere dados de peças que sairam do estoque
 	public void insertHistoricoPeca(EstoqueTO estoqueTO) throws SQLException {
 
 		String sql = "INSERT INTO historico_peca " + " (codigo, quantidade, data_saida) " + " VALUES (?, ?, ?)";
@@ -25,7 +25,7 @@ public class EstoqueDao {
 
 			prepStat.setInt(1, estoqueTO.getCodigo());
 			prepStat.setInt(2, estoqueTO.getQuantidade());
-			prepStat.setDate(3, converteDataUtilToSql(estoqueTO.getData()));
+			prepStat.setTimestamp(3, converteDataUtilToSql(estoqueTO.getData()));
 
 			prepStat.execute();
 		} catch (Exception e) {
@@ -38,17 +38,14 @@ public class EstoqueDao {
 	}
 
 	// Converte a data de java.util.Date para java.sql.Date
-	public java.sql.Date converteDataUtilToSql(java.util.Date date) {
-		java.util.Date dataUtil = date;
-		java.sql.Date dataSql = null;
+	public java.sql.Timestamp converteDataUtilToSql(java.util.Date date) {
+		java.sql.Timestamp dataSql = null;
 		try {
-			dataUtil = new java.sql.Date(dataUtil.getTime());
-			dataSql = (java.sql.Date) dataUtil;
+			dataSql = new java.sql.Timestamp(date.getTime());
 		} catch (DateTimeException e) {
 			JOptionPane.showMessageDialog(null, "Erro ao converter data para sql: " + e.getMessage(), "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
 		return dataSql;
 	}
-
 }
