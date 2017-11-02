@@ -1,12 +1,9 @@
 package br.edu.univas.si4.lab4.view.estoque;
 
 import java.awt.BorderLayout;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.lab4.controller.EquipamentoController;
 import br.edu.univas.si4.lab4.controller.EstoqueController;
@@ -31,7 +28,7 @@ public class FrameEstoque extends JDialog {
 	private EquipamentoController equipamentoControll;
 
 	public FrameEstoque() {
-		this.setTitle("Adicionar e remover item do estoque");
+		this.setTitle("Adicionar/Retirar equipamento ou peça do estoque");
 		this.setModal(true);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -103,11 +100,6 @@ public class FrameEstoque extends JDialog {
 	private void retirarPecaSelected() {
 		if(pecaControll.updatePeca(takeDataPeca())) {
 			estoqueControll.adicionaHistorico(takeDataPecaOut());
-			Date dataHoraAtual = new Date();
-			String data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(dataHoraAtual);
-			String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
-			//System.out.println(data);
-			//System.out.println(new Date().getTime());
 		}else {
 			System.out.println("Erro!");
 		}
@@ -139,15 +131,9 @@ public class FrameEstoque extends JDialog {
 	
 	//Captura os dados da peça que será retirada para salvar no historico
 	private EstoqueTO takeDataPecaOut() {
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		estoqueTO.setCodigo(pecaTO.getCodigo());
 		estoqueTO.setQuantidade(pecaTO.getQuantidade());
 		estoqueTO.setData(new Date());
-//		try {
-//			estoqueTO.setData(formato.parse(getPanelEstoque().getJtData().getText()));
-//		} catch (ParseException e) {
-//			JOptionPane.showMessageDialog(null, "Erro na data\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//		}
 		return estoqueTO;
 	}
 }

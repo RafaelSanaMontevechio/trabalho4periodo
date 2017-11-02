@@ -27,7 +27,7 @@ public class PecaDao {
 		prepStat.setInt(1, pecaTO.getCodigo());
 		prepStat.setString(2, pecaTO.getNome().toUpperCase());
 		prepStat.setInt(3, pecaTO.getQuantidade());
-		prepStat.setString(4, pecaTO.getTipo().toUpperCase().toUpperCase());
+		prepStat.setString(4, pecaTO.getTipo().toUpperCase());
 		prepStat.setString(5, pecaTO.getEquipamento().toUpperCase());
 		prepStat.setString(6, pecaTO.getFornecedor().toUpperCase());
 

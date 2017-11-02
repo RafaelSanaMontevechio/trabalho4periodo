@@ -79,10 +79,11 @@ public class PecaController {
 
 	// Retira peca
 	public boolean updatePeca(PecaTO pecaTO) {
-
 		try {
-			pecaDAO.TakeOffPeca(pecaTO);
-			return true;
+			if (pecaDAO.TakeOffPeca(pecaTO)) {
+				return true;
+			}
+
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Erro ao atualizar a quantidade" + e.getMessage());
 		}
