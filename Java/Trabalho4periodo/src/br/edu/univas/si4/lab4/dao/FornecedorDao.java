@@ -69,7 +69,7 @@ public class FornecedorDao {
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT cnpj, razao_social, nome_fantasia FROM FORNECEDOR ";
+		String sql = " SELECT cnpj, razao_social, nome_fantasia FROM FORNECEDOR ORDER BY razao_social ";
 
 		Statement stm = conn.createStatement();
 		ResultSet rs = stm.executeQuery(sql);
