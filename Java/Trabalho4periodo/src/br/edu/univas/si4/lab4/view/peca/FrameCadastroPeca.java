@@ -3,6 +3,7 @@ package br.edu.univas.si4.lab4.view.peca;
 import java.awt.BorderLayout;
 
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.lab4.controller.PecaController;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
@@ -75,18 +76,39 @@ public class FrameCadastroPeca extends JDialog {
 	}
 
 	private void salvarClicked() {
-		getPecaTO().setCodigo(Integer.parseInt(getPanelCadPeca().getJtCodigo().getText()));
-		getPecaTO().setNome(getPanelCadPeca().getJtNome().getText());
-		getPecaTO().setQuantidade(Integer.parseInt(getPanelCadPeca().getJtQuantidade().getText()));
-		getPecaTO().setTipo(getPanelCadPeca().getJcTipo().getSelectedItem().toString());
-		getPecaTO().setEquipamento(getPanelCadPeca().getJcEquipamento().getSelectedItem().toString());
-		getPecaTO().setFornecedor(getPanelCadPeca().getJcFornecedor().getSelectedItem().toString());
-		
-		getPecaControll().newPeca(getPecaTO());
+		String str1 = getPanelCadPeca().getJtCodigo().getText();
+		String str2 = getPanelCadPeca().getJtNome().getText();
+		String str3 = getPanelCadPeca().getJtQuantidade().getText();
+		if (verifyEmptyString(str1, str2, str3)) {
+			getPecaTO().setCodigo(Integer.parseInt(str1));
+			getPecaTO().setNome(str2);
+			getPecaTO().setQuantidade(Integer.parseInt(str3));
+			getPecaTO().setTipo(getPanelCadPeca().getJcTipo().getSelectedItem().toString());
+			getPecaTO().setEquipamento(getPanelCadPeca().getJcEquipamento().getSelectedItem().toString());
+			getPecaTO().setFornecedor(getPanelCadPeca().getJcFornecedor().getSelectedItem().toString());
+			getPecaControll().newPeca(getPecaTO());
+			setText();
+		} else {
+			JOptionPane.showMessageDialog(this, "Todos os campos devem ser preenchidos!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	private void cancelarClicked() {
 		this.dispose();
 	}
 
+	// Verifica String vazia
+	private boolean verifyEmptyString(String str, String str2, String str3) {
+		if (str.trim().equals("") || str2.trim().equals("") || str2.trim().equals("")) {
+			return false;
+		}
+		return true;
+	}
+	
+	private void setText() {
+		getPanelCadPeca().getJtCodigo().setText("");
+		getPanelCadPeca().getJtNome().setText("");
+		getPanelCadPeca().getJtQuantidade().setText("");
+	}
 }

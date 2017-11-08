@@ -3,6 +3,7 @@ package br.edu.univas.si4.lab4.view.fornecedor;
 import java.awt.BorderLayout;
 
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.lab4.controller.FornecedorController;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
@@ -13,8 +14,8 @@ public class FrameCadastroFornecedor extends JDialog {
 
 	private PanelCadastroFornecedor panelCadFornecedor;
 	private ButtonsPanelCadastros buttonsCadastro;
-	private FornecedorController fornecedorController = new FornecedorController();
-	private FornecedorTO fornecedorTO = new FornecedorTO();
+	private FornecedorController fornecedorController;
+	private FornecedorTO fornecedorTO;
 
 	private static final long serialVersionUID = 8703398655774672349L;
 
@@ -22,6 +23,9 @@ public class FrameCadastroFornecedor extends JDialog {
 		this.setTitle("Cadastro de Fornecedor");
 		this.setModal(true);
 		this.setResizable(false);
+
+		fornecedorController = new FornecedorController();
+		fornecedorTO = new FornecedorTO();
 
 		addComponents();
 		pack();
@@ -58,23 +62,41 @@ public class FrameCadastroFornecedor extends JDialog {
 		return buttonsCadastro;
 	}
 
+	// Passa os dados capturados para o controller
 	private void salvarClicked() {
 
-		long cnpjInt = Long.parseLong(fornecedorController.removeMask(panelCadFornecedor.getJtCnpj().getText()));
+		String str = fornecedorController.removeMask(panelCadFornecedor.getJtCnpj().getText());
+		String str2 = panelCadFornecedor.getJtNomeRazao().getText();
+		String str3 = panelCadFornecedor.getJtFantasia().getText();
 
-		fornecedorTO.setCnpj(cnpjInt);
-		fornecedorTO.setNomeRazao(panelCadFornecedor.getJtNomeRazao().getText());
-		fornecedorTO.setFantasia(panelCadFornecedor.getJtFantasia().getText());
+		if (verifyEmptyString(str, str2, str3)) {
+			fornecedorTO.setCnpj(Long.parseLong(str));
+			fornecedorTO.setNomeRazao(str2);
+			fornecedorTO.setFantasia(str3);
+			fornecedorController.newFornecedor(fornecedorTO);
+			setText();
+		} else {
+			JOptionPane.showMessageDialog(this, "Todos os campos devem ser preenchidos!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	// Fecha a tela
+	private void cancelarClicked() {
+		this.dispose();
+	}
 
-		fornecedorController.newFornecedor(fornecedorTO);
+	// Verifica String vazia
+	private boolean verifyEmptyString(String str, String str2, String str3) {
+		if (str.trim().equals("") || str2.trim().equals("") || str2.trim().equals("")) {
+			return false;
+		}
+		return true;
+	}
 
+	private void setText() {
 		panelCadFornecedor.getJtCnpj().setText("");
 		panelCadFornecedor.getJtNomeRazao().setText("");
 		panelCadFornecedor.getJtFantasia().setText("");
-
-	}
-
-	private void cancelarClicked() {
-		this.dispose();
 	}
 }

@@ -95,4 +95,5 @@ public abstract class Comum extends JInternalFrame {
 		}
 		return true;
 	}
+
 }

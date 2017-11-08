@@ -3,6 +3,7 @@ package br.edu.univas.si4.lab4.view.equipamento;
 import java.awt.BorderLayout;
 
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 import br.edu.univas.si4.lab4.controller.EquipamentoController;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
@@ -75,20 +76,38 @@ public class FrameCadastroEquipamentos extends JDialog {
 	}
 
 	private void salvarClicked() {
+		String str1 = getPanelCadEquipamento().getJtCodigo().getText();
+		String str2 = getPanelCadEquipamento().getJtNome().getText();
+		String str3 = getPanelCadEquipamento().getJtQuantidade().getText();
 
-		getEquipamentoTO().setCodigo(Integer.parseInt(getPanelCadEquipamento().getJtCodigo().getText()));
-		getEquipamentoTO().setNome(getPanelCadEquipamento().getJtNome().getText());
-		getEquipamentoTO().setQuantidade(Integer.parseInt(getPanelCadEquipamento().getJtQuantidade().getText()));
-		getEquipamentoTO().setFornecedor(getPanelCadEquipamento().getComboForncedores().getSelectedItem().toString());
-
-		getEquipamentoControll().newEquipamento(getEquipamentoTO());
-
-		getPanelCadEquipamento().getJtCodigo().setText("");
-		getPanelCadEquipamento().getJtNome().setText("");
-		getPanelCadEquipamento().getJtQuantidade().setText("");
+		if (verifyEmptyString(str1, str2, str3)) {
+			getEquipamentoTO().setCodigo(Integer.parseInt(str1));
+			getEquipamentoTO().setNome(str2);
+			getEquipamentoTO().setQuantidade(Integer.parseInt(str3));
+			getEquipamentoTO().setFornecedor(getPanelCadEquipamento().getComboForncedores().getSelectedItem().toString());
+			getEquipamentoControll().newEquipamento(getEquipamentoTO());
+			setText();
+		} else {
+			JOptionPane.showMessageDialog(this, "Todos os campos devem ser preenchidos!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	private void cancelarClicked() {
 		this.dispose();
+	}
+
+	// Verifica String vazia
+	private boolean verifyEmptyString(String str, String str2, String str3) {
+		if (str.trim().equals("") || str2.trim().equals("") || str2.trim().equals("")) {
+			return false;
+		}
+		return true;
+	}
+
+	private void setText() {
+		getPanelCadEquipamento().getJtCodigo().setText("");
+		getPanelCadEquipamento().getJtNome().setText("");
+		getPanelCadEquipamento().getJtQuantidade().setText("");
 	}
 }

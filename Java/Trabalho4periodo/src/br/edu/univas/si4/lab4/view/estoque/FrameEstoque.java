@@ -1,6 +1,7 @@
 package br.edu.univas.si4.lab4.view.estoque;
 
 import java.awt.BorderLayout;
+import java.util.Date;
 
 import javax.swing.JDialog;
 
@@ -9,6 +10,7 @@ import br.edu.univas.si4.lab4.controller.EstoqueController;
 import br.edu.univas.si4.lab4.controller.PecaController;
 import br.edu.univas.si4.lab4.interfaces.ButtonsListener;
 import br.edu.univas.si4.lab4.to.EquipamentoTO;
+import br.edu.univas.si4.lab4.to.EstoqueTO;
 import br.edu.univas.si4.lab4.to.PecaTO;
 import br.edu.univas.si4.lab4.view.ButtonsPanels.ButtonsPanelCadastros;
 
@@ -20,18 +22,20 @@ public class FrameEstoque extends JDialog {
 	private ButtonsPanelCadastros buttonsPanel;
 	private PecaTO pecaTO;
 	private EquipamentoTO equipamentoTO;
+	private EstoqueTO estoqueTO;
 	private EstoqueController estoqueControll;
 	private PecaController pecaControll;
 	private EquipamentoController equipamentoControll;
 
 	public FrameEstoque() {
-		this.setTitle("Adicionar e remover item do estoque");
+		this.setTitle("Adicionar/Retirar equipamento ou peça do estoque");
 		this.setModal(true);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
-		
+
 		pecaTO = new PecaTO();
 		equipamentoTO = new EquipamentoTO();
+		estoqueTO = new EstoqueTO();
 		estoqueControll = new EstoqueController();
 		pecaControll = new PecaController();
 		equipamentoControll = new EquipamentoController();
@@ -86,32 +90,50 @@ public class FrameEstoque extends JDialog {
 			retirarPecaSelected();
 		}
 	}
-
+	
+	//Atualiza a quantidade de paça
 	private void addPecaSelected() {
-		pecaControll.alteraQtdPecaAdd(takeDataPeca());		
+		pecaControll.alteraQtdPecaAdd(takeDataPeca());
 	}
-
+	
+	//Retira peça do estoque
 	private void retirarPecaSelected() {
-		pecaControll.updatePeca(takeDataPeca());
+		if(pecaControll.updatePeca(takeDataPeca())) {
+			estoqueControll.adicionaHistorico(takeDataPecaOut());
+		}else {
+			System.out.println("Erro!");
+		}
 	}
-
+	
+	//Atualiza quantidade de equipamento no estoque
 	private void addEquipamentoSelected() {
 		equipamentoControll.alteraQtdPecaAdd(takeDataEquipamento());
 	}
 
+	//Retira equipamento do estoque
 	private void retirarEquipamentoSelected() {
 		equipamentoControll.updatePeca(takeDataEquipamento());
 	}
-	
+
+	//Captura os dados na tela
 	private PecaTO takeDataPeca() {
-		pecaTO.setCodigo(Integer.parseInt(getPanelEstoque().getJtCodigo().getText())); 
+		pecaTO.setCodigo(Integer.parseInt(getPanelEstoque().getJtCodigo().getText()));
 		pecaTO.setQuantidade(Integer.parseInt(getPanelEstoque().getJtQuantidade().getText()));
 		return pecaTO;
 	}
-	
+
+	//Captura os dados na tela
 	private EquipamentoTO takeDataEquipamento() {
-		equipamentoTO.setCodigo(Integer.parseInt(getPanelEstoque().getJtCodigo().getText())); 
+		equipamentoTO.setCodigo(Integer.parseInt(getPanelEstoque().getJtCodigo().getText()));
 		equipamentoTO.setQuantidade(Integer.parseInt(getPanelEstoque().getJtQuantidade().getText()));
 		return equipamentoTO;
+	}
+	
+	//Captura os dados da peça que será retirada para salvar no historico
+	private EstoqueTO takeDataPecaOut() {
+		estoqueTO.setCodigo(pecaTO.getCodigo());
+		estoqueTO.setQuantidade(pecaTO.getQuantidade());
+		estoqueTO.setData(new Date());
+		return estoqueTO;
 	}
 }
