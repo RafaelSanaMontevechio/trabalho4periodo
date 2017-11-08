@@ -7,7 +7,7 @@
 		Connection conn = DBUtil.openConnection();
 
 		String sql = " SELECT equip.codigo_equipamento, equip.nome, equip.quantidade, f.fantasia FROM EQUIPAMENTO equip, FORNECEDOR forn " 
-		+ " WHERE equip.cnpj = forn.cnpj ORDER BY FORNECEDOR ";
+				   + " WHERE equip.cnpj = forn.cnpj ORDER BY codigo_equipamento";
 
 		Statement stm = conn.createStatement();
 		ResultSet rs = stm.executeQuery(sql);
@@ -19,6 +19,64 @@
 			equipamentoTO.setQuantidade(rs.getInt(3));
 			equipamentoTO.setFornecedor(rs.getString(4));
 			equipamentos.add(equipamentoTO);
+		}
+		conn.close();
+		return equipamentos;
+	}
+	
+// Select o equipamento pelo codigo informado
+	public ArrayList<EquipamentoTO> selectEquipamentobyCodigo(String str) throws SQLException {
+		ArrayList<EquipamentoTO> equipamentos = new ArrayList<EquipamentoTO>();
+
+		Connection conn = DBUtil.openConnection();
+
+		int codigo;
+		try {
+			codigo = Integer.parseInt(str);
+			String sql = " SELECT equip.codigo_equipamento, equip.nome, equip.quantidade, forn.fantasia FROM EQUIPAMENTO equip, FORNECEDOR forn " 
+					   + " WHERE codigo_equipamento = ? AND equip.cnpjfornecedor = forn.cnpj";
+
+			PreparedStatement prep = conn.prepareStatement(sql);
+			prep.setInt(1, codigo);
+			ResultSet rs = prep.executeQuery();
+
+			while (rs.next()) {
+				equipamentoTO = new EquipamentoTO();
+				equipamentoTO.setCodigo(rs.getInt(1));
+				equipamentoTO.setNome(rs.getString(2));
+				equipamentoTO.setQuantidade(rs.getInt(3));
+				equipamentoTO.setFornecedor(rs.getString(4));
+				equipamentos.add(equipamentoTO);
+			}
+			conn.close();
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "Código incorreto!\n " + e.getMessage(), "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		return equipamentos;
+	}
+	
+// Select o equipamento cujo nome contenha parte da string informada
+	public ArrayList<EquipamentoTO> selectEquipamentobyName(String name) throws SQLException {
+		ArrayList<EquipamentoTO> equipamentos = new ArrayList<EquipamentoTO>();
+
+		Connection conn = DBUtil.openConnection();
+
+		String sql = " SELECT equip.codigo_equipamento, equip.nome, equip.quantidade, forn.fantasia FROM EQUIPAMENTO equip, FORNECEDOR forn"
+				   + " WHERE nome LIKE ? AND equip.cnpjfornecedor = forn.cnpj";
+
+		PreparedStatement prep = conn.prepareStatement(sql);
+		prep.setString(1, '%' + name.toUpperCase() + '%');
+		ResultSet rs = prep.executeQuery();
+
+		while (rs.next()) {
+			equipamentoTO = new EquipamentoTO();
+			equipamentoTO.setCodigo(rs.getInt(1));
+			equipamentoTO.setNome(rs.getString(2));
+			equipamentoTO.setQuantidade(rs.getInt(3));
+			equipamentoTO.setFornecedor(rs.getString(4));
+			equipamentos.add(equipamentoTO);
+
 		}
 		conn.close();
 		return equipamentos;
