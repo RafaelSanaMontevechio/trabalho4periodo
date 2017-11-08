@@ -6,8 +6,8 @@
 
 		Connection conn = DBUtil.openConnection();
 
-		String sql = " SELECT equip.codigo_equipamento, equip.nome, equip.quantidade, f.fantasia FROM EQUIPAMENTO equip, FORNECEDOR forn " 
-				   + " WHERE equip.cnpj = forn.cnpj ORDER BY codigo_equipamento";
+		String sql = " SELECT equip.codigo_equipamento, equip.nome, equip.quantidade, forn.fantasia FROM EQUIPAMENTO equip, FORNECEDOR forn " 
+				   + " WHERE equip.cnpj = forn.cnpj ORDER BY forn.fantasia";
 
 		Statement stm = conn.createStatement();
 		ResultSet rs = stm.executeQuery(sql);
@@ -34,7 +34,7 @@
 		try {
 			codigo = Integer.parseInt(str);
 			String sql = " SELECT equip.codigo_equipamento, equip.nome, equip.quantidade, forn.fantasia FROM EQUIPAMENTO equip, FORNECEDOR forn " 
-					   + " WHERE codigo_equipamento = ? AND equip.cnpjfornecedor = forn.cnpj";
+					   + " WHERE equip.codigo_equipamento = ? AND equip.cnpjfornecedor = forn.cnpj";
 
 			PreparedStatement prep = conn.prepareStatement(sql);
 			prep.setInt(1, codigo);
@@ -63,7 +63,7 @@
 		Connection conn = DBUtil.openConnection();
 
 		String sql = " SELECT equip.codigo_equipamento, equip.nome, equip.quantidade, forn.fantasia FROM EQUIPAMENTO equip, FORNECEDOR forn"
-				   + " WHERE nome LIKE ? AND equip.cnpjfornecedor = forn.cnpj";
+				   + " WHERE equip.nome LIKE ? AND equip.cnpjfornecedor = forn.cnpj";
 
 		PreparedStatement prep = conn.prepareStatement(sql);
 		prep.setString(1, '%' + name.toUpperCase() + '%');
