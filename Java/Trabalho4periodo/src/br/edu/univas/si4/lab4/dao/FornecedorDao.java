@@ -45,17 +45,19 @@ public class FornecedorDao {
 	}
 
 	// Deleta fornecedores
-	public void deleteFornecedor(Long cnpj) throws SQLException {
+	public void deleteFornecedor(String str) throws SQLException {
 		String sql = "DELETE FROM FORNECEDOR WHERE CNPJ = ?";
 		Connection conn = null;
-
+		Long cnpj;
 		try {
+			cnpj = Long.parseLong(str);
 			conn = DBUtil.openConnection();
 			PreparedStatement prep = conn.prepareStatement(sql);
 			prep.setLong(1, cnpj);
 			prep.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro!", "Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
 		conn.close();
 	}
