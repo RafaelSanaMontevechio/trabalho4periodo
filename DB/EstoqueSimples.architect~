@@ -100,26 +100,32 @@
     <column id="COL25" populated="true" UUID="50f2f6da-22c5-486c-9fe6-95b561e51094" autoIncrement="false" autoIncrementSequenceName="Historico_peca_quantidade_saida_seq" defaultValue="" name="quantidade_saida" nullable="0" physicalName="quantidade_saida" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
+    <column id="COL26" populated="true" UUID="8d8e9dac-3446-48a1-918a-371c182219cb" autoIncrement="false" autoIncrementSequenceName="peca_codigoPeca_seq" defaultValue="" name="codigoPeca" nullable="0" physicalName="codigoPeca" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
     </folder>
     <folder id="FOLTAB223" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
     </folder>
     <folder id="FOLTAB222" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
     <folder id="FOLTAB224" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX26" populated="true" UUID="02d07998-03b4-4ffc-9340-57ec63af1792" clustered="false" name="Historico_peca_PK" physicalName="Historico_peca_PK" primaryKeyIndex="true" unique="false" >
-     <index-column id="IDC27" populated="true" UUID="9d46aba1-6360-4805-8b68-364db05fbaf9" ascendingOrDescending="UNSPECIFIED" column-ref="COL23" name="data_saida" physicalName="data_saida" />
+    <index id="IDX27" populated="true" UUID="02d07998-03b4-4ffc-9340-57ec63af1792" clustered="false" name="Historico_peca_PK" physicalName="Historico_peca_PK" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC28" populated="true" UUID="9d46aba1-6360-4805-8b68-364db05fbaf9" ascendingOrDescending="UNSPECIFIED" column-ref="COL23" name="data_saida" physicalName="data_saida" />
     </index>
    </folder>
   </table>
   <relationships>
-   <relationship id="REL28" populated="true" UUID="e23f77ec-c0f7-40e4-aa22-f38df59471b1" deferrability="7" deleteRule="3" fk-table-ref="TAB7" fkCardinality="7" identifying="false" name="Fornecedor_Equipamento_fk" physicalName="Fornecedor_Equipamento_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP29" populated="true" UUID="7d36b4ec-dc06-410e-a1a8-125108a4c9c6" fk-column-ref="COL11" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
+   <relationship id="REL29" populated="true" UUID="e23f77ec-c0f7-40e4-aa22-f38df59471b1" deferrability="7" deleteRule="3" fk-table-ref="TAB7" fkCardinality="7" identifying="false" name="Fornecedor_Equipamento_fk" physicalName="Fornecedor_Equipamento_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP30" populated="true" UUID="7d36b4ec-dc06-410e-a1a8-125108a4c9c6" fk-column-ref="COL11" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
    </relationship>
-   <relationship id="REL30" populated="true" UUID="11ec1d70-3e94-4b6b-9c40-1e9785552cdc" deferrability="7" deleteRule="3" fk-table-ref="TAB14" fkCardinality="7" identifying="false" name="Fornecedor_peca_fk" physicalName="Fornecedor_peca_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP31" populated="true" UUID="8f905f56-7c8c-4b65-abf3-c37b1dbf5c4e" fk-column-ref="COL18" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
+   <relationship id="REL31" populated="true" UUID="11ec1d70-3e94-4b6b-9c40-1e9785552cdc" deferrability="7" deleteRule="3" fk-table-ref="TAB14" fkCardinality="7" identifying="false" name="Fornecedor_peca_fk" physicalName="Fornecedor_peca_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP32" populated="true" UUID="8f905f56-7c8c-4b65-abf3-c37b1dbf5c4e" fk-column-ref="COL18" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
    </relationship>
-   <relationship id="REL32" populated="true" UUID="e154bf08-2060-4bae-a2c8-18fd60af75b3" deferrability="7" deleteRule="3" fk-table-ref="TAB14" fkCardinality="7" identifying="false" name="Equipamento_peca_fk" physicalName="Equipamento_peca_fk" pk-table-ref="TAB7" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP33" populated="true" UUID="d5e1b6cd-1863-4b89-8f0e-ed50b0271961" fk-column-ref="COL19" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL8" />
+   <relationship id="REL33" populated="true" UUID="e154bf08-2060-4bae-a2c8-18fd60af75b3" deferrability="7" deleteRule="3" fk-table-ref="TAB14" fkCardinality="7" identifying="false" name="Equipamento_peca_fk" physicalName="Equipamento_peca_fk" pk-table-ref="TAB7" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP34" populated="true" UUID="d5e1b6cd-1863-4b89-8f0e-ed50b0271961" fk-column-ref="COL19" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL8" />
+   </relationship>
+   <relationship id="REL35" populated="true" UUID="eba7ee27-7d90-48bb-bace-6f43763e4715" deferrability="7" deleteRule="3" fk-table-ref="TAB22" fkCardinality="7" identifying="false" name="peca_Historico_peca_fk" physicalName="peca_Historico_peca_fk" pk-table-ref="TAB14" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP36" populated="true" UUID="0ed78cfd-4303-4055-b61e-c63f71f8bce0" fk-column-ref="COL26" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL15" />
    </relationship>
   </relationships>
  </target-database>
@@ -130,10 +136,11 @@
   <table-pane table-ref="TAB1" x="44" y="152" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB7" x="361" y="59" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB14" x="361" y="291" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB22" x="779" y="304" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-link relationship-ref="REL28" pkConnection="0.5221674876847291" fkConnection="0.4823529411764706" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="40"/>
-  <table-link relationship-ref="REL30" pkConnection="0.5270935960591133" fkConnection="0.5411764705882353" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="36"/>
-  <table-link relationship-ref="REL32" pkConnection="0.5" fkConnection="0.5" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-pane table-ref="TAB22" x="740" y="301" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-link relationship-ref="REL29" pkConnection="0.5221674876847291" fkConnection="0.4823529411764706" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="40"/>
+  <table-link relationship-ref="REL31" pkConnection="0.5270935960591133" fkConnection="0.5411764705882353" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="36"/>
+  <table-link relationship-ref="REL33" pkConnection="0.5" fkConnection="0.5" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL35" pkConnection="0.5151515151515151" fkConnection="0.47058823529411764" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
  </play-pen>
  <critic-manager>
   <critic-grouping platformType="Generic" enabled="true">
